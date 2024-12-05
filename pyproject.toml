@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "botgames"
+version = "0.1.0"
+description = ""
+authors = ["vasilisk7258 <ertybasevk@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+aiogram = "^3.15.0"
+logging = "^0.4.9.6"
+alembic = "^1.14.0"
+sqlalchemy = "^2.0.36"
+asyncpg = "^0.30.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

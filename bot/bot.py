@@ -1,16 +1,19 @@
 import asyncio
 from aiogram import Bot, Dispatcher
-from commands import router
-from controlGames import router_m
+# from commands import router
+# from controlGames import router_m
 import logging
-from config import settings
-from middlewares import UserMiddleware
-
+from bot.config import settings
+from bot.middlewares.user_middleware import UserMiddleware
+from bot.handlers.inline import router
 
 async def main() -> None:
     bot = Bot(settings.BOT_TOKEN.get_secret_value())
     dp = Dispatcher()
     dp.update.middleware(UserMiddleware())
+    dp.include_routers(
+        router
+    )
     await bot.delete_webhook(True)
     await dp.start_polling(bot)
 

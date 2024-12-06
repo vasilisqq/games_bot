@@ -1,9 +1,9 @@
 from typing import Callable, Any, Awaitable
 from aiogram import BaseMiddleware
 from aiogram.types import Update
-from db import DAO
+from db.DAO import DAO
 
-dao = DAO()
+# dao = DAO()
 
 # создаю класс для создания своего middleware
 class UserMiddleware(BaseMiddleware):
@@ -20,6 +20,7 @@ class UserMiddleware(BaseMiddleware):
             or event.inline_query
             or event.chosen_inline_result
         )
-        user = await dao.create_and_return_user(current_evenr.from_user.id)
-        data["user"] = user[0]
+        user = await DAO.create_and_return_user(current_evenr.from_user.id)
+        data["user"] = user
+        print(data)
         return await handler(event, data)

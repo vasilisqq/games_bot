@@ -1,15 +1,11 @@
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
 import asyncpg
+from bot.config import settings
 
-DB_HOST = "localhost" 
-DB_PORT = 5432
-DB_USER = "postgres"
-DB_PASS = "1234"
-DB_NAME = "games_db"
 
 # Ссылка на базу данных
-DATABASE_URL = f"postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+DATABASE_URL = settings.DB_URL.get_secret_value()
 
 # создаем движок для передачи ссылки в базы данных в sqlalchemy(создание движка)
 engine = create_async_engine(DATABASE_URL)

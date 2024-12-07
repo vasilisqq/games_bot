@@ -1,5 +1,5 @@
 from secrets import token_hex
-
+from typing import Any
 from aiogram import Router
 from aiogram.types import (
     InlineQuery,
@@ -11,13 +11,13 @@ from aiogram.types import (
 )
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from db.models.user import Users
+from bot.keyboards.inline_keyboard import create_cross_aeroes
 
 router = Router()
 
 #обработка inline запроса
 @router.inline_query()
 async def new_user(iquery: InlineQuery) -> None:
-    data, username, message = iquery.query, "", ""
     random_id = token_hex(2)
     markup = (
         InlineKeyboardBuilder()
@@ -29,7 +29,11 @@ async def new_user(iquery: InlineQuery) -> None:
             photo_url="https://i.ibb.co/StnJn5g/cross-zeroes-big.png",
             thumbnail_url="https://i.ibb.co/hMRs6j4/cross-zeroes.png",
             photo_height=100,
-            photo_width=100
+            photo_width=100,
+            input_message_content=InputTextMessageContent(
+                message_text=(f"игра в крестики-нолики\n\n @{iquery.from_user.username}"),
+            ),
+            reply_markup=create_cross_aeroes()
         )
     ],
     is_personal=False,
@@ -57,4 +61,4 @@ async def new_user(iquery: InlineQuery) -> None:
 #сюда приходит то, что пользователь отправил в предыдущем запросе
 @router.chosen_inline_result()
 async def f(iquery: ChosenInlineResult) -> None:
-    print("sdfgkjkhf")
+    ...

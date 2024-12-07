@@ -4,6 +4,7 @@ from aiogram import Router
 from aiogram.types import (
     InlineQuery,
     InlineQueryResultArticle,
+    InlineQueryResultPhoto,
     InputTextMessageContent,
     ChosenInlineResult,
     LinkPreviewOptions
@@ -23,24 +24,35 @@ async def new_user(iquery: InlineQuery) -> None:
         .button(text="кнопка", callback_data="w_")
     )
     await iquery.answer([
-        InlineQueryResultArticle(
-        id=random_id,
-        title="врлоываровыплл",
-        description="КИРИЛЛ",
-        input_message_content=InputTextMessageContent(
-            message_text=(
-                "покемончик"
-            ),
-            link_preview_option=LinkPreviewOptions(is_disabled=True),
-            disable_web_page_preview=True
-        ),
-        reply_markup= markup.as_markup()
+        InlineQueryResultPhoto(
+            id = random_id,
+            photo_url="https://i.ibb.co/StnJn5g/cross-zeroes-big.png",
+            thumbnail_url="https://i.ibb.co/hMRs6j4/cross-zeroes.png",
+            photo_height=100,
+            photo_width=100
         )
     ],
-    cache_time=1,
-    #можно использовать запросы в не бота
-    is_presonal = False
-    )
+    is_personal=False,
+    cache_time=1)
+    # await iquery.answer([
+    #     InlineQueryResultArticle(
+    #     id=random_id,
+    #     title="врлоываровыплл",
+    #     description="КИРИЛЛ",
+    #     input_message_content=InputTextMessageContent(
+    #         message_text=(
+    #             "покемончик"
+    #         ),
+    #         link_preview_option=LinkPreviewOptions(is_disabled=True),
+    #         disable_web_page_preview=True
+    #     ),
+    #     reply_markup= markup.as_markup()
+    #     )
+    # ],
+    # cache_time=1,
+    # #можно использовать запросы в не бота
+    # is_presonal = False
+    # )
 
 #сюда приходит то, что пользователь отправил в предыдущем запросе
 @router.chosen_inline_result()

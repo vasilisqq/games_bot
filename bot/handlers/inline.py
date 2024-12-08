@@ -12,17 +12,15 @@ from aiogram.types import (
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from db.models.user import Users
 from bot.keyboards.inline_keyboard import create_cross_aeroes
-
+from gameControll.game import game
 router = Router()
-
+keyboard = create_cross_aeroes()
 #обработка inline запроса
 @router.inline_query()
 async def new_user(iquery: InlineQuery) -> None:
     random_id = token_hex(2)
-    markup = (
-        InlineKeyboardBuilder()
-        .button(text="кнопка", callback_data="w_")
-    )
+    print(random_id)
+    keyboard = create_cross_aeroes()
     await iquery.answer([
         InlineQueryResultPhoto(
             id = random_id,
@@ -33,32 +31,21 @@ async def new_user(iquery: InlineQuery) -> None:
             input_message_content=InputTextMessageContent(
                 message_text=(f"игра в крестики-нолики\n\n @{iquery.from_user.username}"),
             ),
-            reply_markup=create_cross_aeroes()
+            reply_markup=keyboard
         )
     ],
     is_personal=False,
     cache_time=1)
-    # await iquery.answer([
-    #     InlineQueryResultArticle(
-    #     id=random_id,
-    #     title="врлоываровыплл",
-    #     description="КИРИЛЛ",
-    #     input_message_content=InputTextMessageContent(
-    #         message_text=(
-    #             "покемончик"
-    #         ),
-    #         link_preview_option=LinkPreviewOptions(is_disabled=True),
-    #         disable_web_page_preview=True
-    #     ),
-    #     reply_markup= markup.as_markup()
-    #     )
-    # ],
-    # cache_time=1,
-    # #можно использовать запросы в не бота
-    # is_presonal = False
-    # )
+
 
 #сюда приходит то, что пользователь отправил в предыдущем запросе
 @router.chosen_inline_result()
 async def f(iquery: ChosenInlineResult) -> None:
-    ...
+    k = create_cross_aeroes()
+    await game.crossZeroes.create__private_room(iquery.from_user.username, k, iquery.inline_message_id)
+    print(game.crossZeroes.private_rooms[iquery.inline_message_id]["first_player"])
+    await iquery.bot.edit_message_text(inline_message_id=iquery.inline_message_id, 
+                                       text=(f"игра в крестики-нолики\n\n --> @{iquery.from_user.username} X \n ? O") if 
+                                       game.crossZeroes.private_rooms[iquery.inline_message_id]["first_player"] == iquery.from_user.username else 
+                                       (f"игра в крестики-нолики\n\n @{iquery.from_user.username} O \n --> ? X"),
+                                       reply_markup=k)

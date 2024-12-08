@@ -1,7 +1,5 @@
 import asyncio
 from aiogram import Bot, Dispatcher
-# from commands import router
-# from controlGames import router_m
 import logging
 from bot.config import settings
 from bot.middlewares.user_middleware import UserMiddleware

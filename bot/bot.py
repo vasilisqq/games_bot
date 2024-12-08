@@ -22,4 +22,6 @@ async def main() -> None:
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
+    #print()
     asyncio.run(main())
+    

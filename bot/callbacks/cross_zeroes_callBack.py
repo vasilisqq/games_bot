@@ -2,6 +2,7 @@ from aiogram import Router, F
 from aiogram.types import CallbackQuery, InlineQuery
 from bot.keyboards.inline_keyboard import create_cross_aeroes
 from gameControll.game import game
+from aiogram.types import InlineKeyboardButton
 
 router = Router()
 
@@ -30,7 +31,16 @@ async def mark_button(query: CallbackQuery):
             return
         if await game.crossZeroes.check_win(query.inline_message_id):
             text = f"Победил @{query.from_user.username}"
-            await query.bot.edit_message_text(text=text, inline_message_id=query.inline_message_id)
+            await query.bot.edit_message_text(text=text, 
+                                              inline_message_id=query.inline_message_id,
+                                              reply_markup=properties["keyboard"])
+        elif await game.crossZeroes.is_draw(query.inline_message_id):
+            text = f"Ничья"
+            properties["keyboard"].inline_keyboard.append([InlineKeyboardButton(text="заново", 
+                                                 callback_data="reload_cross_zeroes_inline")])
+            await query.bot.edit_message_text(text=text, 
+                                              inline_message_id=query.inline_message_id,
+                                              reply_markup=properties["keyboard"])
         else:
             properties["move"] = properties["players"][1 - properties["players"].index(query.from_user.username)]
             if properties["move"] == properties["players"][0]:
@@ -46,4 +56,16 @@ async def mark_button(query: CallbackQuery):
             await query.bot.edit_message_text(inline_message_id=query.inline_message_id,
                                             text=text, reply_markup=properties["keyboard"])
     else:
-        await query.answer("Не твой ход", show_alert=True)
+        await query.answer("Не твой ход")
+
+
+@router.callback_query(F.data.in_("reload_cross_zeroes_inline"))
+async def reload_game(iquery: CallbackQuery):
+    k = create_cross_aeroes()
+    await game.crossZeroes.create__private_room(iquery.from_user.username, k, iquery.inline_message_id, reload=True)
+    players = game.crossZeroes.private_rooms[iquery.inline_message_id]["players"]
+    await iquery.bot.edit_message_text(inline_message_id=iquery.inline_message_id, 
+                                       text=(f"игра в крестики-нолики\n\n --> @{players[0]} X \n @{players[1]} O") if 
+                                       game.crossZeroes.private_rooms[iquery.inline_message_id]["first_player"] == players[0] else 
+                                       (f"игра в крестики-нолики\n\n @{players[0]} O \n --> @{players[1]} X"),
+                                       reply_markup=k)

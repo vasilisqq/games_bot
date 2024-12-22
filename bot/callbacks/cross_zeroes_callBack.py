@@ -40,6 +40,11 @@ async def mark_button(query: CallbackQuery):
             await query.bot.edit_message_text(text=text, 
                                               inline_message_id=query.inline_message_id,
                                               reply_markup=properties["keyboard"])
+            game.crossZeroes.scheduler.add_job(kick_game,
+                                       trigger="interval",
+                                       minutes=1,
+                                       kwargs = {"query": query, "is_end":True},
+                                       id=query.inline_message_id)
         elif await game.crossZeroes.is_draw(query.inline_message_id):
             text = f"Ничья"
             properties["keyboard"].inline_keyboard.append([InlineKeyboardButton(text="заново", 
@@ -47,6 +52,11 @@ async def mark_button(query: CallbackQuery):
             await query.bot.edit_message_text(text=text, 
                                               inline_message_id=query.inline_message_id,
                                               reply_markup=properties["keyboard"])
+            game.crossZeroes.scheduler.add_job(kick_game,
+                                       trigger="interval",
+                                       minutes=1,
+                                       kwargs = {"query": query, "is_end":True},
+                                       id=query.inline_message_id)
         else:
             properties["move"] = properties["players"][1 - properties["players"].index(query.from_user.username)]
             if properties["move"] == properties["players"][0]:
@@ -72,6 +82,7 @@ async def mark_button(query: CallbackQuery):
 
 @router.callback_query(F.data.in_("reload_cross_zeroes_inline"))
 async def reload_game(iquery: CallbackQuery):
+    game.crossZeroes.scheduler.remove_job(iquery.inline_message_id)
     k = create_cross_aeroes()
     await game.crossZeroes.create__private_room(iquery.from_user.username, k, iquery.inline_message_id, reload=True)
     players = game.crossZeroes.private_rooms[iquery.inline_message_id]["players"]

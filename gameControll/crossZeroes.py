@@ -2,7 +2,6 @@ from aiogram.types import InlineKeyboardMarkup
 import random
 from aiogram.types import InlineKeyboardButton
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-
 class CrossZeroes:
     #room_id: int = 0
     symbols = "XO"
@@ -18,8 +17,7 @@ class CrossZeroes:
         self.private_rooms.update({inline: {"players": players,
                                             "first_player": first,
                                             "move": first, 
-                                            "keyboard": keyboard,
-                                            "scheduler":scheduler
+                                            "keyboard": keyboard
                                             }})
     async def check_win(self, id:str) -> bool:
         field = self.private_rooms[id]["keyboard"].inline_keyboard
@@ -48,7 +46,6 @@ class CrossZeroes:
                     field,
                     i,l
                 )
-                print(self.private_rooms[id]["keyboard"].inline_keyboard)
                 return True
             
     async def is_draw(self, id:str) -> bool:

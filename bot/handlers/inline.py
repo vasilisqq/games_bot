@@ -55,4 +55,5 @@ async def f(iquery: ChosenInlineResult) -> None:
                                        minutes=1,
                                        kwargs = {"query": iquery},
                                        id=iquery.inline_message_id)
-    game.crossZeroes.scheduler.start()
+    if not game.crossZeroes.scheduler.running:
+        game.crossZeroes.scheduler.start()

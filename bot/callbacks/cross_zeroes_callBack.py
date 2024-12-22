@@ -3,7 +3,7 @@ from aiogram.types import CallbackQuery, InlineQuery
 from bot.keyboards.inline_keyboard import create_cross_aeroes
 from gameControll.game import game
 from aiogram.types import InlineKeyboardButton
-
+from bot.schedulers.cross_zeroes import kick_game
 router = Router()
 
 @router.callback_query(F.data.in_([str(i) for i in range(9)]))
@@ -16,6 +16,7 @@ async def mark_button(query: CallbackQuery):
             properties["first_player"] = query.from_user.username
         properties["move"] = query.from_user.username
     if properties["move"] == query.from_user.username:
+        game.crossZeroes.scheduler.remove_job(query.inline_message_id)
         if properties["first_player"] == query.from_user.username:
             symbol = "X"
         else:
@@ -28,6 +29,11 @@ async def mark_button(query: CallbackQuery):
             properties["keyboard"].inline_keyboard[2][int(query.data)-6].text = symbol
         else:
             await query.answer("Выбери свободную клетку")
+            game.crossZeroes.scheduler.add_job(kick_game,
+                                       trigger="interval",
+                                       minutes=1,
+                                       kwargs = {"query": query},
+                                       id=query.inline_message_id)
             return
         if await game.crossZeroes.check_win(query.inline_message_id):
             text = f"Победил @{query.from_user.username}"
@@ -55,6 +61,11 @@ async def mark_button(query: CallbackQuery):
                     text = (f"игра в крестики-нолики\n\n@{properties["players"][0]} O \n--> @{properties["players"][1]} X")
             await query.bot.edit_message_text(inline_message_id=query.inline_message_id,
                                             text=text, reply_markup=properties["keyboard"])
+            game.crossZeroes.scheduler.add_job(kick_game,
+                                       trigger="interval",
+                                       minutes=1,
+                                       kwargs = {"query": query},
+                                       id=query.inline_message_id)
     else:
         await query.answer("Не твой ход")
 

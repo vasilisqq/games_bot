@@ -13,6 +13,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 from db.models.user import Users
 from bot.keyboards.inline_keyboard import create_cross_aeroes
 from gameControll.game import game
+from bot.schedulers.cross_zeroes import kick_game
 router = Router()
 keyboard = create_cross_aeroes()
 #обработка inline запроса
@@ -49,3 +50,9 @@ async def f(iquery: ChosenInlineResult) -> None:
                                        game.crossZeroes.private_rooms[iquery.inline_message_id]["first_player"] == iquery.from_user.username else 
                                        (f"игра в крестики-нолики\n\n @{iquery.from_user.username} O \n --> ? X"),
                                        reply_markup=k)
+    game.crossZeroes.scheduler.add_job(kick_game,
+                                       trigger="interval",
+                                       minutes=1,
+                                       kwargs = {"query": iquery},
+                                       id=iquery.inline_message_id)
+    game.crossZeroes.scheduler.start()

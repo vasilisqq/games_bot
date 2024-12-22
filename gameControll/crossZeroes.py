@@ -1,10 +1,12 @@
 from aiogram.types import InlineKeyboardMarkup
 import random
 from aiogram.types import InlineKeyboardButton
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 class CrossZeroes:
     #room_id: int = 0
     symbols = "XO"
+    scheduler = AsyncIOScheduler(timezone='Europe/Moscow')
     private_rooms: dict = {}
     async def create__private_room(self, username: str, 
                                    keyboard: InlineKeyboardMarkup, 
@@ -12,10 +14,12 @@ class CrossZeroes:
                                    reload=False) -> None:
         players = self.private_rooms[inline]["players"] if reload else [username, ""]
         first = random.choice(players)
+        scheduler = AsyncIOScheduler(timezone='Europe/Moscow')
         self.private_rooms.update({inline: {"players": players,
                                             "first_player": first,
                                             "move": first, 
-                                            "keyboard": keyboard
+                                            "keyboard": keyboard,
+                                            "scheduler":scheduler
                                             }})
     async def check_win(self, id:str) -> bool:
         field = self.private_rooms[id]["keyboard"].inline_keyboard
@@ -111,7 +115,8 @@ class CrossZeroes:
         field.append([InlineKeyboardButton(text="заново", 
                                                  callback_data="reload_cross_zeroes_inline")])
         return field
-            
+    
+
 
 
 

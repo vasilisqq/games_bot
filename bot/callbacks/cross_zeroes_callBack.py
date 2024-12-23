@@ -29,11 +29,6 @@ async def mark_button(query: CallbackQuery):
             properties["keyboard"].inline_keyboard[2][int(query.data)-6].text = symbol
         else:
             await query.answer("Выбери свободную клетку")
-            game.crossZeroes.scheduler.add_job(kick_game,
-                                       trigger="interval",
-                                       minutes=1,
-                                       kwargs = {"query": query},
-                                       id=query.inline_message_id)
             return
         if await game.crossZeroes.check_win(query.inline_message_id):
             text = f"Победил @{query.from_user.username}"
@@ -83,6 +78,11 @@ async def mark_button(query: CallbackQuery):
 @router.callback_query(F.data.in_("reload_cross_zeroes_inline"))
 async def reload_game(iquery: CallbackQuery):
     game.crossZeroes.scheduler.remove_job(iquery.inline_message_id)
+    game.crossZeroes.scheduler.add_job(kick_game,
+                                       trigger="interval",
+                                       minutes=1,
+                                       kwargs = {"query": iquery},
+                                       id=iquery.inline_message_id)
     k = create_cross_aeroes()
     await game.crossZeroes.create__private_room(iquery.from_user.username, k, iquery.inline_message_id, reload=True)
     players = game.crossZeroes.private_rooms[iquery.inline_message_id]["players"]

@@ -5,12 +5,14 @@ from bot.config import settings
 from bot.middlewares.user_middleware import UserMiddleware
 from bot.handlers.inline import router
 from bot.callbacks.cross_zeroes_callBack import router as router_call_back
+from bot.handlers.commands import router as c_r
 
 async def main() -> None:
     bot = Bot(settings.BOT_TOKEN.get_secret_value())
     dp = Dispatcher()
     dp.update.middleware(UserMiddleware())
     dp.include_routers(
+        c_r,
         router,
         router_call_back
     )

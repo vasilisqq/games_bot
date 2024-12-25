@@ -11,3 +11,9 @@ def create_cross_aeroes() -> InlineKeyboardMarkup:
 
 return_to_bot = InlineKeyboardButton(text="к боту", 
                                      url="https://t.me/gamedota22_bot")
+
+choose_game = InlineKeyboardMarkup(
+    inline_keyboard=[[
+        InlineKeyboardButton(text="крестики-нолики", callback_data="cross_zeroes")
+    ]]
+)

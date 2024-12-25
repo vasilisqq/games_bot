@@ -75,7 +75,7 @@ async def mark_button(query: CallbackQuery):
         await query.answer("Не твой ход")
 
 
-@router.callback_query(F.data.in_("reload_cross_zeroes_inline"))
+@router.callback_query(F.data == "reload_cross_zeroes_inline")
 async def reload_game(iquery: CallbackQuery):
     game.crossZeroes.scheduler.remove_job(iquery.inline_message_id)
     game.crossZeroes.scheduler.add_job(kick_game,

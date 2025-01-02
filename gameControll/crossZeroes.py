@@ -2,18 +2,21 @@ from aiogram.types import InlineKeyboardMarkup
 import random
 from aiogram.types import InlineKeyboardButton
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from bot.keyboards.inline_keyboard import create_cross_aeroes
+from aiogram.types import User
 class CrossZeroes:
-    #room_id: int = 0
     symbols = "XO"
     scheduler = AsyncIOScheduler(timezone='Europe/Moscow')
     private_rooms: dict = {}
+    open_rooms: dict = {}
+    open_rooms_listener: str = None
+    scheduler = AsyncIOScheduler(timezone="Europe/Moscow")
     async def create__private_room(self, username: str, 
                                    keyboard: InlineKeyboardMarkup, 
                                    inline:str,
                                    reload=False) -> None:
         players = self.private_rooms[inline]["players"] if reload else [username, ""]
         first = random.choice(players)
-        scheduler = AsyncIOScheduler(timezone='Europe/Moscow')
         self.private_rooms.update({inline: {"players": players,
                                             "first_player": first,
                                             "move": first, 
@@ -112,7 +115,25 @@ class CrossZeroes:
         field.append([InlineKeyboardButton(text="заново", 
                                                  callback_data="reload_cross_zeroes_inline")])
         return field
-    
+    async def add_to_listener(self, user: User) -> list[str, InlineKeyboardMarkup, int]:
+        if self.open_rooms_listener is not None:
+            user1, user2 = self.open_rooms_listener, user
+            self.open_rooms_listener = None
+            f = random.choice([user1.username, user2.username])
+            k = create_cross_aeroes(user1.username)
+            self.open_rooms.update({user1: {"players": [[user1.username, user1.id], [user2.username, user2.id]],
+                                            "first_player": f,
+                                            "move": f, 
+                                            "keyboard":k 
+                                            }})
+            text=((f"игра в крестики-нолики\n\n --> @{user1.username} X \n @{user2.username} O") if 
+                                       f == user1 else 
+                                       (f"игра в крестики-нолики\n\n @{user1.username} O \n --> {user2.username} X"))
+            return [text, k, user1.id]
+        else:
+            self.open_rooms_listener = user
+            return None    
+            
 
 
 

@@ -17,10 +17,21 @@ async def find_opp(call: CallbackQuery) -> None:
     if a == None:
         await call.message.answer("все еще идет поиск")
     else:
-        await call.message.answer(text=a[0],
+        m = await call.message.answer(text=a[0],
                                        reply_markup=a[1])
-        await call.bot.send_message(
+        # print(m.message_id)
+        # print(call.from_user.id)
+        # print(call.message.message_id)
+        await call.bot.delete_message(
+            chat_id=call.from_user.id,
+            message_id=m.message_id
+        )
+        m1 = await call.bot.send_message(
             chat_id=a[2],
             text=a[0],
             reply_markup=a[1]
+        )
+        await call.bot.delete_message(
+            chat_id=a[2],
+            message_id=m1.message_id
         )

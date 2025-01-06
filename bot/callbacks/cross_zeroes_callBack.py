@@ -75,7 +75,71 @@ async def mark_button(query: CallbackQuery):
         else:
             await query.answer("Не твой ход")
     else:
-        pass
+        print(query.message.message_id)
+        properties = game.crossZeroes.open_rooms[query.data[1:]]
+        # print(properties)
+        if properties["move"] == query.from_user.username:
+            print("moove")
+            game.crossZeroes.scheduler.remove_job(query.inline_message_id)
+            print("job remooved")
+            if properties["first_player"] == query.from_user.username:
+                symbol = "X"
+            else:
+                symbol = "O"
+            print(symbol)
+            if int(query.data) in range(3) and properties["keyboard"].inline_keyboard[0][int(query.data)].text == " ":
+                properties["keyboard"].inline_keyboard[0][int(query.data)].text = symbol
+            elif(int(query.data) in range(3,6)and properties["keyboard"].inline_keyboard[1][int(query.data)-3].text == " "):
+                properties["keyboard"].inline_keyboard[1][int(query.data)-3].text = symbol
+            elif(int(query.data) in range(6,9) and properties["keyboard"].inline_keyboard[2][int(query.data)-6].text == " "):
+                properties["keyboard"].inline_keyboard[2][int(query.data)-6].text = symbol
+            else:
+                await query.answer("Выбери свободную клетку")
+                return
+            print("поставлен символ")
+            # if await game.crossZeroes.check_win(query.inline_message_id):
+            #     text = f"Победил @{query.from_user.username}"
+            #     await query.bot.edit_message_text(text=text, 
+            #                                     inline_message_id=query.inline_message_id,
+            #                                     reply_markup=properties["keyboard"])
+            #     game.crossZeroes.scheduler.add_job(kick_game,
+            #                             trigger="interval",
+            #                             minutes=1,
+            #                             kwargs = {"query": query, "is_end":True},
+            #                             id=query.inline_message_id)
+        #     elif await game.crossZeroes.is_draw(query.inline_message_id):
+        #         text = f"Ничья"
+        #         properties["keyboard"].inline_keyboard.append([InlineKeyboardButton(text="заново", 
+        #                                             callback_data="reload_cross_zeroes_inline")])
+        #         await query.bot.edit_message_text(text=text, 
+        #                                         inline_message_id=query.inline_message_id,
+        #                                         reply_markup=properties["keyboard"])
+        #         game.crossZeroes.scheduler.add_job(kick_game,
+        #                                 trigger="interval",
+        #                                 minutes=1,
+        #                                 kwargs = {"query": query, "is_end":True},
+        #                                 id=query.inline_message_id)
+        #     else:
+        #         properties["move"] = properties["players"][1 - properties["players"].index(query.from_user.username)]
+        #         if properties["move"] == properties["players"][0]:
+        #             if properties["first_player"] == properties["players"][0]:
+        #                 text = (f"игра в крестики-нолики\n\n --> @{properties["players"][0]} X \n @{properties["players"][1]} O")
+        #             else:
+        #                 text = (f"игра в крестики-нолики\n\n --> @{properties["players"][0]} O \n @{properties["players"][1]} X")
+        #         else:
+        #             if properties["first_player"] == properties["players"][0]:
+        #                 text = (f"игра в крестики-нолики\n\n@{properties["players"][0]} X \n--> @{properties["players"][1]} O")
+        #             else:
+        #                 text = (f"игра в крестики-нолики\n\n@{properties["players"][0]} O \n--> @{properties["players"][1]} X")
+        #         await query.bot.edit_message_text(inline_message_id=query.inline_message_id,
+        #                                         text=text, reply_markup=properties["keyboard"])
+        #         game.crossZeroes.scheduler.add_job(kick_game,
+        #                                 trigger="interval",
+        #                                 minutes=1,
+        #                                 kwargs = {"query": query},
+        #                                 id=query.inline_message_id)
+        # else:
+        #     await query.answer("Не твой ход")
 
 
 @router.callback_query(F.data == "reload_cross_zeroes_inline")

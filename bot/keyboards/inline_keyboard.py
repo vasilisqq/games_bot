@@ -5,7 +5,7 @@ from aiogram.types import InlineKeyboardMarkup
 def create_cross_aeroes(uniq_id:str=None) -> InlineKeyboardMarkup: 
     cross_zeroes_markup = InlineKeyboardBuilder()
     if uniq_id:
-        [cross_zeroes_markup.button(text=" ", callback_data=str(i+uniq_id)) for i in range(9)]
+        [cross_zeroes_markup.button(text=" ", callback_data=str(i)+uniq_id) for i in range(9)]
     else:
         [cross_zeroes_markup.button(text=" ", callback_data=str(i)) for i in range(9)]    
     cross_zeroes_markup.adjust(*[3]*3)

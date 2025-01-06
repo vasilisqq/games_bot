@@ -121,14 +121,14 @@ class CrossZeroes:
             self.open_rooms_listener = None
             f = random.choice([user1.username, user2.username])
             k = create_cross_aeroes(user1.username)
-            self.open_rooms.update({user1: {"players": [[user1.username, user1.id], [user2.username, user2.id]],
+            self.open_rooms.update({user1.username: {"players": [[user1.username, user1.id], [user2.username, user2.id]],
                                             "first_player": f,
                                             "move": f, 
                                             "keyboard":k 
                                             }})
             text=((f"игра в крестики-нолики\n\n --> @{user1.username} X \n @{user2.username} O") if 
-                                       f == user1 else 
-                                       (f"игра в крестики-нолики\n\n @{user1.username} O \n --> {user2.username} X"))
+                                       f == user1.username else 
+                                       (f"игра в крестики-нолики\n\n @{user1.username} O \n --> @{user2.username} X"))
             return [text, k, user1.id]
         else:
             self.open_rooms_listener = user

@@ -7,23 +7,22 @@ from aiogram.types import User
 class CrossZeroes:
     symbols = "XO"
     scheduler = AsyncIOScheduler(timezone='Europe/Moscow')
-    private_rooms: dict = {}
-    open_rooms: dict = {}
+    rooms: dict = {}
     open_rooms_listener: str = None
     scheduler = AsyncIOScheduler(timezone="Europe/Moscow")
     async def create__private_room(self, username: str, 
                                    keyboard: InlineKeyboardMarkup, 
                                    inline:str,
                                    reload=False) -> None:
-        players = self.private_rooms[inline]["players"] if reload else [username, ""]
+        players = self.rooms[inline]["players"] if reload else [username, ""]
         first = random.choice(players)
-        self.private_rooms.update({inline: {"players": players,
+        self.rooms.update({inline: {"players": players,
                                             "first_player": first,
                                             "move": first, 
                                             "keyboard": keyboard
                                             }})
-    async def check_win(self, id:str) -> bool:
-        field = self.private_rooms[id]["keyboard"].inline_keyboard
+    async def check_win(self, id:str, in_bot=False) -> bool:
+        field = self.rooms[id]["keyboard"].inline_keyboard
         for i in range(0,8):
             match i:
                 case 0:
@@ -47,12 +46,13 @@ class CrossZeroes:
             if ((l == "XXX") or (l == "OOO")):
                 field = await self.edit_win_markup(
                     field,
-                    i,l
+                    i,l,
+                    in_bot=in_bot
                 )
                 return True
             
     async def is_draw(self, id:str) -> bool:
-        field = self.private_rooms[id]["keyboard"].inline_keyboard
+        field = self.rooms[id]["keyboard"].inline_keyboard
         for i in range(0,9):
             if i in range (0,3):
                 if field[0][i].text == " ":
@@ -68,7 +68,8 @@ class CrossZeroes:
     async def edit_win_markup(self, 
                               field:InlineKeyboardMarkup,
                               i:int,
-                              l:str) -> InlineKeyboardMarkup:
+                              l:str,
+                              in_bot: bool) -> InlineKeyboardMarkup:
         symbol = "❎" if l == "XXX" else "🟢"
         match i:
                 case 0:
@@ -112,24 +113,29 @@ class CrossZeroes:
                 field[1][i-3].callback_data = " "
             elif i in range (6,9):
                 field[2][i-6].callback_data = " "
-        field.append([InlineKeyboardButton(text="заново", 
+        if in_bot:
+            field.append([InlineKeyboardButton(text="заново", 
+                                                 callback_data="reload_cross_zeroes_callback")])
+        else:    
+            field.append([InlineKeyboardButton(text="заново", 
                                                  callback_data="reload_cross_zeroes_inline")])
         return field
     async def add_to_listener(self, user: User) -> list[str, InlineKeyboardMarkup, int]:
         if self.open_rooms_listener is not None:
-            user1, user2 = self.open_rooms_listener, user
+            user1, user2 = user, self.open_rooms_listener
             self.open_rooms_listener = None
             f = random.choice([user1.username, user2.username])
             k = create_cross_aeroes(user1.username)
-            self.open_rooms.update({user1.username: {"players": [[user1.username, user1.id], [user2.username, user2.id]],
+            self.rooms.update({user1.username: {"players": [[user1.username, user1.id], [user2.username, user2.id]],
                                             "first_player": f,
                                             "move": f, 
-                                            "keyboard":k 
+                                            "keyboard":k,
+                                            "message_id": None 
                                             }})
             text=((f"игра в крестики-нолики\n\n --> @{user1.username} X \n @{user2.username} O") if 
                                        f == user1.username else 
                                        (f"игра в крестики-нолики\n\n @{user1.username} O \n --> @{user2.username} X"))
-            return [text, k, user1.id]
+            return [text, k, user2.id]
         else:
             self.open_rooms_listener = user
             return None    

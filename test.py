@@ -1,3 +1,1 @@
-s = None
-if not s:
-    print(s)
+print(3 // 2)

@@ -2,6 +2,7 @@ from aiogram import Router, F
 from aiogram.types import CallbackQuery
 from bot.keyboards.inline_keyboard import choose_game
 from gameControll.game import game
+from bot.schedulers.cross_zeroes import kick_open_game
 
 router = Router()
 @router.callback_query(F.data == "game_alone")
@@ -19,19 +20,19 @@ async def find_opp(call: CallbackQuery) -> None:
     else:
         m = await call.message.answer(text=a[0],
                                        reply_markup=a[1])
-        # print(m.message_id)
-        # print(call.from_user.id)
-        # print(call.message.message_id)
-        await call.bot.delete_message(
-            chat_id=call.from_user.id,
-            message_id=m.message_id
-        )
         m1 = await call.bot.send_message(
             chat_id=a[2],
             text=a[0],
             reply_markup=a[1]
         )
-        await call.bot.delete_message(
-            chat_id=a[2],
-            message_id=m1.message_id
-        )
+        game.crossZeroes.rooms[call.from_user.username]["message_id"] = [
+            m.message_id,
+            m1.message_id
+        ]
+        game.crossZeroes.scheduler.add_job(kick_open_game,
+                                       trigger="interval",
+                                       minutes=1,
+                                       kwargs = {"query": call, "properties": game.crossZeroes.rooms[call.from_user.username], "first":True},
+                                       id=call.from_user.username)
+        if not game.crossZeroes.scheduler.running:
+            game.crossZeroes.scheduler.start()

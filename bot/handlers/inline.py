@@ -44,10 +44,10 @@ async def new_user(iquery: InlineQuery) -> None:
 async def f(iquery: ChosenInlineResult) -> None:
     k = create_cross_aeroes()
     await game.crossZeroes.create__private_room(iquery.from_user.username, k, iquery.inline_message_id)
-    print(game.crossZeroes.private_rooms[iquery.inline_message_id]["first_player"])
+    print(game.crossZeroes.rooms[iquery.inline_message_id]["first_player"])
     await iquery.bot.edit_message_text(inline_message_id=iquery.inline_message_id, 
                                        text=(f"игра в крестики-нолики\n\n --> @{iquery.from_user.username} X \n ? O") if 
-                                       game.crossZeroes.private_rooms[iquery.inline_message_id]["first_player"] == iquery.from_user.username else 
+                                       game.crossZeroes.rooms[iquery.inline_message_id]["first_player"] == iquery.from_user.username else 
                                        (f"игра в крестики-нолики\n\n @{iquery.from_user.username} O \n --> ? X"),
                                        reply_markup=k)
     game.crossZeroes.scheduler.add_job(kick_game,

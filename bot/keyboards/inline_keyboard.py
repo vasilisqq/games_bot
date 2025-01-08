@@ -27,6 +27,6 @@ friend_or_alone = InlineKeyboardMarkup(
         ))
     ],
     [
-        InlineKeyboardButton(text="один", callback_data="game_alone")
+        InlineKeyboardButton(text="Играть с другими игроками💫", callback_data="game_alone")
     ]]
 )

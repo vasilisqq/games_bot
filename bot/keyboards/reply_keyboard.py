@@ -9,7 +9,6 @@ choose_game_or_else = ReplyKeyboardMarkup(
         KeyboardButton(text="Сильнейшие игроки💪")
     ]],
     resize_keyboard=True,
-    one_time_keyboard=True,
     input_field_placeholder="используй кнопки",
     selective=True
 )

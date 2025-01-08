@@ -6,6 +6,6 @@ router = Router()
 
 @router.message()
 async def helper_in_menu(message: Message):
-    if message.text == "выбор игры":
+    if message.text == "Выбор игры":
         await message.answer("Выбери с кем хочешь поиграть",
                        reply_markup=friend_or_alone)

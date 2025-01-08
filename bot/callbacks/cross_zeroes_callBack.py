@@ -4,6 +4,7 @@ from bot.keyboards.inline_keyboard import create_cross_aeroes
 from gameControll.game import game
 from aiogram.types import InlineKeyboardButton
 from bot.schedulers.cross_zeroes import kick_game, kick_open_game
+from db.DAO import DAO
 router = Router()
 
 @router.callback_query(F.data[0].in_([str(i) for i in range(9)]))
@@ -111,6 +112,9 @@ async def mark_button(query: CallbackQuery):
                                                   chat_id=properties["players"][1][1], 
                                                 message_id=properties["message_id"][1],
                                                 reply_markup=properties["keyboard"])
+                await DAO.player_win_and_loose(
+                    query.from_user.id,
+                    properties["players"][1 - properties["players"].index([query.from_user.username, query.from_user.id])][1])
                 del game.crossZeroes.rooms[query.data[1:]]
             elif await game.crossZeroes.is_draw(query.data[1:]):
                 text = f"Ничья"

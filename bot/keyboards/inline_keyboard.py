@@ -22,7 +22,7 @@ choose_game = InlineKeyboardMarkup(
 )
 friend_or_alone = InlineKeyboardMarkup(
     inline_keyboard=[[
-        InlineKeyboardButton(text="с другом", switch_inline_query_chosen_chat=SwitchInlineQueryChosenChat(
+        InlineKeyboardButton(text="Играть с другом💏", switch_inline_query_chosen_chat=SwitchInlineQueryChosenChat(
             allow_user_chats=True
         ))
     ],

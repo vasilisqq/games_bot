@@ -2,11 +2,11 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 choose_game_or_else = ReplyKeyboardMarkup(
     keyboard=[[
-        KeyboardButton(text="выбор игры")
+        KeyboardButton(text="Выбор игры")
     ],[
-        KeyboardButton(text="настройки")
+        KeyboardButton(text="Настройки⚙️")
     ],[
-        KeyboardButton(text="топ игроков")
+        KeyboardButton(text="Сильнейшие игроки💪")
     ]],
     resize_keyboard=True,
     one_time_keyboard=True,

@@ -137,14 +137,14 @@ async def mark_button(query: CallbackQuery):
                 properties["move"] = properties["players"][1 - properties["players"].index([query.from_user.username, query.from_user.id])][0]
                 if properties["move"] == properties["players"][0][0]:
                     if properties["first_player"] == properties["players"][0][0]:
-                        text = (f"игра в крестики-нолики\n\n --> @{properties["players"][0][0]} X \n @{properties["players"][1][0]} O")
+                        text = (f"игра в крестики-нолики\n\n --> @{properties["players"][0][0]} ({properties["rait"][0]}) X \n @{properties["players"][1][0]} ({properties["rait"][1]}) O")
                     else:
-                        text = (f"игра в крестики-нолики\n\n --> @{properties["players"][0][0]} O \n @{properties["players"][1][0]} X")
+                        text = (f"игра в крестики-нолики\n\n --> @{properties["players"][0][0]} ({properties["rait"][0]}) O \n @{properties["players"][1][0]} ({properties["rait"][1]}) X")
                 else:
                     if properties["first_player"] == properties["players"][0][0]:
-                        text = (f"игра в крестики-нолики\n\n@{properties["players"][0][0]} X \n--> @{properties["players"][1][0]} O")
+                        text = (f"игра в крестики-нолики\n\n@{properties["players"][0][0]} ({properties["rait"][0]}) X \n--> @{properties["players"][1][0]} ({properties["rait"][1]}) O")
                     else:
-                        text = (f"игра в крестики-нолики\n\n@{properties["players"][0][0]} O \n--> @{properties["players"][1][0]} X")
+                        text = (f"игра в крестики-нолики\n\n@{properties["players"][0][0]} ({properties["rait"][0]}) O \n--> @{properties["players"][1][0]} ({properties["rait"][1]}) X")
                 await query.bot.edit_message_text(chat_id=properties["players"][0][1],
                                                   message_id=properties["message_id"][0],
                                                 text=text, reply_markup=properties["keyboard"])

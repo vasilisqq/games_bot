@@ -4,6 +4,7 @@ from aiogram.types import InlineKeyboardButton
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from bot.keyboards.inline_keyboard import create_cross_aeroes
 from aiogram.types import User
+from db.DAO import DAO
 class CrossZeroes:
     symbols = "XO"
     scheduler = AsyncIOScheduler(timezone='Europe/Moscow')
@@ -124,17 +125,19 @@ class CrossZeroes:
         if self.open_rooms_listener is not None:
             user1, user2 = user, self.open_rooms_listener
             self.open_rooms_listener = None
+            rait = await DAO.get_two_raiting(user1.id, user2.id)
             f = random.choice([user1.username, user2.username])
             k = create_cross_aeroes(user1.username)
             self.rooms.update({user1.username: {"players": [[user1.username, user1.id], [user2.username, user2.id]],
                                             "first_player": f,
                                             "move": f, 
                                             "keyboard":k,
-                                            "message_id": None 
+                                            "message_id": None, 
+                                            "rait": rait
                                             }})
-            text=((f"игра в крестики-нолики\n\n --> @{user1.username} X \n @{user2.username} O") if 
+            text=((f"игра в крестики-нолики\n\n --> @{user1.username} ({rait[0]}) X \n @{user2.username} ({rait[1]}) O") if 
                                        f == user1.username else 
-                                       (f"игра в крестики-нолики\n\n @{user1.username} O \n --> @{user2.username} X"))
+                                       (f"игра в крестики-нолики\n\n @{user1.username} ({rait[0]}) O \n --> @{user2.username} ({rait[1]}) X"))
             return [text, k, user2.id]
         else:
             self.open_rooms_listener = user

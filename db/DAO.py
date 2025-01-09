@@ -1,6 +1,6 @@
 from db.database import async_session_maker
 from sqlalchemy.dialects.postgresql import insert
-from sqlalchemy import update
+from sqlalchemy import update, select, or_
 from db.models.user import Users
 import asyncio
 
@@ -23,4 +23,12 @@ class DAO:
                 raiting_cross_zeroes=Users.raiting_cross_zeroes-8)
             await session.execute(user)
             await session.commit()
+    @classmethod
+    async def get_two_raiting(cls, user_id1:int, user_id2: int) -> list[int]:
+        async with async_session_maker() as session:
+            query = select(Users.raiting_cross_zeroes).where(
+                or_(Users.user_id == user_id1, Users.user_id == user_id2)
+            )
+            answer = await session.execute(query)
+            return [item for item in answer.scalars()]
 

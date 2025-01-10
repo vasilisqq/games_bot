@@ -15,9 +15,7 @@ async def find_opp(call: CallbackQuery) -> None:
     await call.message.delete()
     await call.message.answer("идет поиск противника")
     a = await game.crossZeroes.add_to_listener(call.from_user)
-    if a == None:
-        await call.message.answer("все еще идет поиск")
-    else:
+    if a != None:
         m = await call.message.answer(text=a[0],
                                        reply_markup=a[1])
         m1 = await call.bot.send_message(

@@ -103,13 +103,12 @@ async def mark_button(query: CallbackQuery):
                                        id=query.data[1:])
                 return
             if await game.crossZeroes.check_win(query.data[1:], in_bot=True):
-                text = f"Победил @{query.from_user.username}"
-                await query.bot.edit_message_text(text=text,
-                                                  chat_id=properties["players"][0][1], 
+                await query.bot.edit_message_text(text="вы победили!🥇 \n\n rang +8",
+                                                  chat_id=query.from_user.id, 
                                                 message_id=properties["message_id"][0],
                                                 reply_markup=properties["keyboard"])
-                await query.bot.edit_message_text(text=text,
-                                                  chat_id=properties["players"][1][1], 
+                await query.bot.edit_message_text(text="вы проебали \n\n rang -8",
+                                                  chat_id=properties["players"][1 - properties["players"].index([query.from_user.username, query.from_user.id])][1], 
                                                 message_id=properties["message_id"][1],
                                                 reply_markup=properties["keyboard"])
                 await DAO.player_win_and_loose(

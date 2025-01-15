@@ -14,9 +14,9 @@ async def main() -> None:
     dp = Dispatcher()
     dp.update.middleware(UserMiddleware())
     dp.include_routers(
+        router,
         c_r,
         router_mc,
-        router,
         router_m,
         router_call_back
     )

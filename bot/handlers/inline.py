@@ -9,8 +9,6 @@ from aiogram.types import (
     ChosenInlineResult,
     LinkPreviewOptions
 )
-from aiogram.utils.keyboard import InlineKeyboardBuilder
-from db.models.user import Users
 from bot.keyboards.inline_keyboard import create_cross_aeroes
 from gameControll.game import game
 from bot.schedulers.cross_zeroes import kick_game

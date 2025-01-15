@@ -1,11 +1,11 @@
 from aiogram.types import Message
 from aiogram import Router
-from bot.keyboards.inline_keyboard import choose_game, friend_or_alone
+from bot.keyboards.inline_keyboard import choose_game
 
 router = Router()
 
 @router.message()
 async def helper_in_menu(message: Message):
     if message.text == "Выбор игры":
-        await message.answer("Выбери с кем хочешь поиграть",
-                       reply_markup=friend_or_alone)
+        await message.answer("Выбери игру, в которую хочешь поиграть",
+                       reply_markup=choose_game)

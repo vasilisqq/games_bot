@@ -17,8 +17,10 @@ return_to_bot = InlineKeyboardButton(text="к боту",
 
 choose_game = InlineKeyboardMarkup(
     inline_keyboard=[[
-        InlineKeyboardButton(text="крестики-нолики", callback_data="cross-zeroes")
-    ]]
+        InlineKeyboardButton(text="крестики-нолики", callback_data="cross-zeroes"),
+        InlineKeyboardButton(text="вордли", callback_data="wordlie")
+    ]
+    ]
 )
 friend_or_alone = InlineKeyboardMarkup(
     inline_keyboard=[[
@@ -28,5 +30,14 @@ friend_or_alone = InlineKeyboardMarkup(
     ],
     [
         InlineKeyboardButton(text="Играть с другими игроками💫", callback_data="game_alone")
+    ]]
+)
+
+friend_or_alone_ni = InlineKeyboardMarkup(
+    inline_keyboard=[[
+        InlineKeyboardButton(text="Играть с другом💏",callback_data="with_friend")
+    ],
+    [
+        InlineKeyboardButton(text="Играть одному", callback_data="game_alone_")
     ]]
 )

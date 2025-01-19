@@ -121,22 +121,23 @@ class CrossZeroes:
             field.append([InlineKeyboardButton(text="заново", 
                                                  callback_data="reload_cross_zeroes_inline")])
         return field
+        
     async def add_to_listener(self, user: User) -> list[str, InlineKeyboardMarkup, int]:
         if self.open_rooms_listener is not None:
             user1, user2 = user, self.open_rooms_listener
             self.open_rooms_listener = None
             rait = await DAO.get_two_raiting(user1.id, user2.id)
-            f = random.choice([user1.username, user2.username])
+            f = random.choice([[user1.username, user1.id], [user2.username, user2.id]])
             k = create_cross_aeroes(user1.username)
             self.rooms.update({user1.username: {"players": [[user1.username, user1.id], [user2.username, user2.id]],
                                             "first_player": f,
-                                            "move": f, 
+                                            "move": f[0], 
                                             "keyboard":k,
                                             "message_id": None, 
                                             "rait": rait
                                             }})
             text=((f"игра в крестики-нолики\n\n --> @{user1.username} ({rait[0]}) X \n @{user2.username} ({rait[1]}) O") if 
-                                       f == user1.username else 
+                                       f[0] == user1.username else 
                                        (f"игра в крестики-нолики\n\n @{user1.username} ({rait[0]}) O \n --> @{user2.username} ({rait[1]}) X"))
             return [text, k, user2.id]
         else:

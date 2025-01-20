@@ -1,11 +1,15 @@
 from aiogram import Router, F
-from aiogram.types import CallbackQuery, InlineQuery
+from aiogram.types import CallbackQuery, InlineQuery, InputMediaPhoto
 from bot.keyboards.inline_keyboard import create_cross_aeroes
 from gameControll.game import game
 from aiogram.types import InlineKeyboardButton
 from bot.schedulers.cross_zeroes import kick_game, kick_open_game
 from db.DAO import DAO
 from bot.bot_configs import set_state
+from aiogram.fsm.context import FSMContext
+from bot.config import settings
+import random
+from aiogram.types import FSInputFile
 router = Router()
 
 @router.callback_query(F.data[0].in_([str(i) for i in range(9)]))
@@ -124,14 +128,25 @@ async def mark_button(query: CallbackQuery):
                 text = f"Ничья"
                 properties["keyboard"].inline_keyboard.append([InlineKeyboardButton(text="заново", 
                                                     callback_data="reload_cross_zeroes_callback")])
-                await query.bot.edit_message_text(text=text,
-                                                  chat_id=properties["players"][0][1], 
-                                                message_id=properties["message_id"][properties["players"][0][1]],
-                                                reply_markup=properties["keyboard"])
-                await query.bot.edit_message_text(text=text,
-                                                  chat_id=properties["players"][1][1], 
-                                                message_id=properties["message_id"][properties["players"][1][1]],
-                                                reply_markup=properties["keyboard"])
+                img = f"{settings.HOME_PATH}/medias/photos/draw/{random.randint(1,9)}.jpg"
+                await query.bot.delete_message(
+                    properties["players"][0][1],
+                    message_id=properties["message_id"][properties["players"][0][1]]
+                )
+                await query.bot.delete_message(
+                    properties["players"][1][1],
+                    message_id=properties["message_id"][properties["players"][1][1]]
+                )
+                await query.bot.send_photo(
+                            properties["players"][0][1],
+                            FSInputFile(img),
+                            reply_markup=properties["keyboard"]
+    )
+                await query.bot.send_photo(
+                            properties["players"][1][1],
+                            FSInputFile(img),
+                            reply_markup=properties["keyboard"]
+    )
             else:
                 properties["move"] = properties["players"][1 - properties["players"].index([query.from_user.username, query.from_user.id])][0]
                 if properties["move"] == properties["players"][0][0]:
@@ -180,23 +195,30 @@ async def reload_game(iquery: CallbackQuery):
     
 
 @router.callback_query(F.data == "reload_cross_zeroes_callback")
-async def new_game_cross_zeroes_in_bot(call: CallbackQuery):
-    await call.message.answer("идет поиск противника")
-    a = await game.crossZeroes.add_to_listener(call.from_user)
-    if a != None:
-        m = await call.message.answer(text=a[0],
-                                       reply_markup=a[1])
-        m1 = await call.bot.send_message(
-            chat_id=a[2],
-            text=a[0],
-            reply_markup=a[1]
-        )
-        game.crossZeroes.rooms[call.from_user.username]["message_id"] = {
-                call.from_user.id:m.message_id, a[2]:m1.message_id}
-        game.crossZeroes.scheduler.add_job(kick_open_game,
-                                       trigger="interval",
-                                       minutes=1,
-                                       kwargs = {"query": call, "properties": game.crossZeroes.rooms[call.from_user.username], "first":True},
-                                       id=call.from_user.username)
-        if not game.crossZeroes.scheduler.running:
-            game.crossZeroes.scheduler.start()
+async def new_game_cross_zeroes_in_bot(call: CallbackQuery, state: FSMContext):
+    a:dict[str, str] = await state.get_data()
+    print(a)
+    if a == {} or not a["state"].startswith("in_game"):
+        await call.message.answer("идет поиск противника")
+        a = await game.crossZeroes.add_to_listener(call.from_user)
+        await state.update_data(state="in_game_cross_zeroes")
+        if a != None:
+            m = await call.message.answer(text=a[0],
+                                        reply_markup=a[1])
+            m1 = await call.bot.send_message(
+                chat_id=a[2],
+                text=a[0],
+                reply_markup=a[1]
+            )
+            game.crossZeroes.rooms[call.from_user.username]["message_id"] = {
+                    call.from_user.id:m.message_id, a[2]:m1.message_id}
+            game.crossZeroes.scheduler.add_job(kick_open_game,
+                                        trigger="interval",
+                                        minutes=1,
+                                        kwargs = {"query": call, "properties": game.crossZeroes.rooms[call.from_user.username], "first":True},
+                                        id=call.from_user.username)
+            if not game.crossZeroes.scheduler.running:
+                game.crossZeroes.scheduler.start()
+    else:
+        await call.answer("у тебя есть игра, закончи ее прежде, чем начинать новую", show_alert=True)
+        

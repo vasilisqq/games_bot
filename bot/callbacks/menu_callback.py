@@ -28,13 +28,12 @@ async def choose_mate_inline_games(call: CallbackQuery, state: FSMContext) -> No
 async def choose_mate(call: CallbackQuery, state: FSMContext):
     await call.message.delete()
     a:dict[str, str] = await state.get_data()
-    if a["state"].startswith("in_game"):
-        await call.message.answer("у тебя есть игра, закончи ее прежде, чем начинать новую")
-    else:
+    if a == {} or not a["state"].startswith("in_game"):
         await state.update_data(state=call.data)
         await call.message.answer("Играть одному или с другом?",
                               reply_markup=friend_or_alone_ni)
-    
+    else:
+        await call.message.answer("у тебя есть игра, закончи ее прежде, чем начинать новую")
 
 @router.callback_query(F.data == "game_alone")
 async def alone_game(call: CallbackQuery, state: FSMContext):
@@ -69,4 +68,5 @@ async def create_alone_room(call: CallbackQuery, state: FSMContext):
     await call.message.delete()
     await game.wordlie.create_alone_game(call.from_user.id)
     await state.update_data(state="in_game_wordlie")
-    
+    await call.message.answer("Введите слово")
+    await state.set_state(game.state)

@@ -6,9 +6,9 @@ import asyncio
 
 class DAO:
     @classmethod
-    async def create_and_return_user(cls, user_id:int):
+    async def create_and_return_user(cls, user_id:int, username):
         async with async_session_maker() as session:
-            user = insert(Users).values(user_id=user_id)
+            user = insert(Users).values(user_id=user_id, username=username)
             user = user.on_conflict_do_nothing().returning(Users)
             res = await session.execute(user)
             await session.commit()

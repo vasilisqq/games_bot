@@ -42,6 +42,7 @@ async def step_in_the_game(message: Message, state:FSMContext):
 @router.message(game.wordlie.send_word)
 async def check_word(message: Message):
       user, word = message.text.split(" ")
+      print(await message.bot.get_chat("@"+user))
       await message.bot.send_message(
             chat_id=user,
             text=word

@@ -9,6 +9,7 @@ from aiogram.types import (
     ChosenInlineResult,
     LinkPreviewOptions
 )
+from aiogram.fsm.context import FSMContext
 from bot.keyboards.inline_keyboard import create_cross_aeroes
 from gameControll.game import game
 from bot.schedulers.cross_zeroes import kick_game
@@ -28,7 +29,7 @@ async def new_user(iquery: InlineQuery) -> None:
             photo_height=100,
             photo_width=100,
             input_message_content=InputTextMessageContent(
-                message_text=(f"игра в крестики-нолики\n\n @{iquery.from_user.username}"),
+                message_text=(f"игра в крестики-нолики \n\n подождите чуть-чуть"),
             ),
             reply_markup=keyboard
         )
@@ -42,7 +43,6 @@ async def new_user(iquery: InlineQuery) -> None:
 async def f(iquery: ChosenInlineResult) -> None:
     k = create_cross_aeroes()
     await game.crossZeroes.create__private_room(iquery.from_user.username, k, iquery.inline_message_id)
-    print(game.crossZeroes.rooms[iquery.inline_message_id]["first_player"])
     await iquery.bot.edit_message_text(inline_message_id=iquery.inline_message_id, 
                                        text=(f"игра в крестики-нолики\n\n --> @{iquery.from_user.username} X \n ? O") if 
                                        game.crossZeroes.rooms[iquery.inline_message_id]["first_player"] == iquery.from_user.username else 

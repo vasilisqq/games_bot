@@ -5,15 +5,17 @@ base_url = "https://ru.wiktionary.org/w/api.php"
 params = {
     "action":"query",
     "format":"json",
-    "titles": "пизда" # здесь слово, которое ищем
+    "titles": "абаба" # здесь слово, которое ищем
 }
 
-response = session.get(url=base_url, params=params)
+for i in range(501):
+    response = session.get(url=base_url, params=params)
 
-print(response.json()["query"]["pages"])
-for k, v in response.json()["query"]["pages"].items():
-    if k != "-1":
-        pageId = v["pageid"]
-    else:
-        print("Нет такого слова в этом словаре")
+    for k, v in response.json()["query"]["pages"].items():
+        print(response.json()["query"]["pages"])
+        if k != "-1":
+            pageId = v["pageid"]
+        else:
+            print("Нет такого слова в этом словаре")
         pageId = None
+print('AAAAAAAAAAAAAAAAAAA')

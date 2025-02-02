@@ -65,8 +65,23 @@ async def alone_game(call: CallbackQuery, state: FSMContext):
             
 @router.callback_query(F.data == "game_alone_")
 async def create_alone_room(call: CallbackQuery, state: FSMContext):
-    await call.message.delete()
-    await game.wordlie.create_alone_game(call.from_user.id)
-    await state.update_data(state="in_game_wordlie")
-    await call.message.answer("Введите слово")
-    await state.set_state(game.state)
+    a:dict[str, str] = await state.get_data()
+    print(a)
+    if a == {}:
+        await game.wordlie.create_alone_game(call.from_user.id)
+        await state.update_data(state="in_game_wordlie")
+        await call.message.answer("Введите слово")
+        await state.set_state(game.state)
+    elif a["state"].startswith("in_game"):
+        await call.message.answer("закончи уже начатую игру")
+    else:
+        await call.message.delete()
+        await game.wordlie.create_alone_game(call.from_user.id)
+        await state.update_data(state="in_game_wordlie")
+        await call.message.answer("Введите слово")
+        await state.set_state(game.state)
+
+@router.callback_query(F.data == "with_friend")
+async def create_word_for_friend(call: CallbackQuery, state: FSMContext):
+    await call.message.answer("Введи username без собачки своего друга, а через пробел введи загаданное слово")
+    await state.set_state(game.wordlie.send_word)

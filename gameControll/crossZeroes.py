@@ -22,6 +22,7 @@ class CrossZeroes:
                                             "move": first, 
                                             "keyboard": keyboard
                                             }})
+        
     async def check_win(self, id:str, in_bot=False) -> bool:
         field = self.rooms[id]["keyboard"].inline_keyboard
         for i in range(0,8):

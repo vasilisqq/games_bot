@@ -31,4 +31,17 @@ class DAO:
             )
             answer = await session.execute(query)
             return [item for item in answer.scalars()]
+        
+    @classmethod
+    async def wordlie_change_rait(cls, user_id, rait):
+        async with async_session_maker() as session:
+            user = update(Users).where(Users.user_id == user_id).values(
+                raiting_wordlie=Users.raiting_wordlie+rait)
+            await session.execute(user)
+            await session.commit()
+
+    @classmethod
+    async def get_user_id_by_username():
+        ...
+
 

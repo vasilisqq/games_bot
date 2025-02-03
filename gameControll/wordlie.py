@@ -60,5 +60,7 @@ class Wordlie (StatesGroup):
                 return False
         return True
 
+    async def get_user_by_name(self, username:str):
+        return await DAO.get_user_id_by_username(username)
 
         

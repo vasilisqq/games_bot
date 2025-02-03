@@ -41,7 +41,10 @@ class DAO:
             await session.commit()
 
     @classmethod
-    async def get_user_id_by_username():
-        ...
+    async def get_user_id_by_username(cls, username:str):
+        async with async_session_maker() as session:
+            query = select(Users.user_id).where(Users.username==username)
+            user = await session.execute(query)
+            return user.scalar_one_or_none()
 
 

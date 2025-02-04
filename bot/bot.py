@@ -10,11 +10,12 @@ from bot.callbacks.menu_callback import router as router_mc
 from gameControll.game import game
 from bot.bot_configs import bot, dp
 from bot.contexts.wordlie_context import router as wr
-
+from bot.callbacks.wordlie_callback import router as wcbr
 
 async def main() -> None:
     dp.update.middleware(UserMiddleware())
     dp.include_routers(
+        wcbr,
         wr,
         router,
         c_r,

@@ -7,12 +7,12 @@ class Wordlie (StatesGroup):
     rooms = {}
     words: list[str] = []
     send_word = State()
-
-    async def create_alone_game(self, user_id: int|str):
-        self.rooms.update({user_id: {"word":random.choice(self.words),
+    answer_word = State()
+    async def create_alone_game(self, user_id: int|str, word=None):
+        self.rooms.update({user_id: {"word": random.choice(self.words) if word is None else word,
                            "attempts": 1}})
     
-    async def check_correct_word(self, user_answer:str, user_id):
+    async def check_correct_word(self, user_answer:str, user_id, reit=True):
         answer =["🟥","🟥","🟥","🟥","🟥"]
         elses = []
         properties = self.rooms[user_id]
@@ -39,8 +39,11 @@ class Wordlie (StatesGroup):
                     return ans, None
                 else:
                     return ans+"\n ты проиграл, попытки закончились", True
-        await DAO.wordlie_change_rait(user_id, 6-properties["attempts"])
-        ans += f"\n Ты выиграл с {properties["attempts"]} попытки \n\n rank +{6-properties["attempts"]}"
+        if reit:
+            await DAO.wordlie_change_rait(user_id, 6-properties["attempts"])
+            ans += f"\n Ты выиграл с {properties["attempts"]} попытки \n\n rank +{6-properties["attempts"]}"
+        else:
+            ans += f"\n Ты выиграл с {properties["attempts"]} попытки"
         return ans, True
 
     async def check_word_for_russian(self, string: str) -> bool:

@@ -111,7 +111,7 @@ async def mark_button(query: CallbackQuery):
                 #                        id=query.data[1:])
                 return
             if await game.crossZeroes.check_win(query.data[1:], in_bot=True):
-                await query.bot.edit_message_text(text="🎉 Поздравляю! 🎉 Ты победили! 🥳 \n\n🥇Твой рейтинг:🏆 +8",
+                await query.bot.edit_message_text(text="🎉 Поздравляю! 🎉 Ты победил! 🥳 \n\n🥇Твой рейтинг:🏆 +8",
                                                 chat_id=query.from_user.id, 
                                                 message_id=properties["message_id"][query.from_user.id],
                                                 reply_markup=properties["keyboard"])

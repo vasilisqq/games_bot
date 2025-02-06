@@ -1,6 +1,7 @@
 from aiogram import Router, F
 from aiogram.types import CallbackQuery, InlineQuery, InputMediaPhoto
 from bot.keyboards.inline_keyboard import create_cross_aeroes
+from bot.keyboards.inline_keyboard import return_to_bot
 from gameControll.game import game
 from aiogram.types import InlineKeyboardButton
 from bot.schedulers.cross_zeroes import kick_game, kick_open_game
@@ -55,7 +56,7 @@ async def mark_button(query: CallbackQuery):
             elif await game.crossZeroes.is_draw(query.inline_message_id):
                 text = f"Ничья"
                 properties["keyboard"].inline_keyboard.append([InlineKeyboardButton(text="заново", 
-                                                    callback_data="reload_cross_zeroes_inline")])
+                                                    callback_data="reload_cross_zeroes_inline"), return_to_bot])
                 await query.bot.edit_message_text(text=text, 
                                                 inline_message_id=query.inline_message_id,
                                                 reply_markup=properties["keyboard"])
@@ -110,7 +111,7 @@ async def mark_button(query: CallbackQuery):
                 #                        id=query.data[1:])
                 return
             if await game.crossZeroes.check_win(query.data[1:], in_bot=True):
-                await query.bot.edit_message_text(text="вы победили!🥇 \n\n rang +8",
+                await query.bot.edit_message_text(text="🎉 Поздравляю! 🎉 Ты победили! 🥳 \n\n🥇Твой рейтинг:🏆 +8",
                                                 chat_id=query.from_user.id, 
                                                 message_id=properties["message_id"][query.from_user.id],
                                                 reply_markup=properties["keyboard"])

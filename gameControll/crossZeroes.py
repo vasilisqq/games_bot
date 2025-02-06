@@ -2,7 +2,7 @@ from aiogram.types import InlineKeyboardMarkup
 import random
 from aiogram.types import InlineKeyboardButton
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from bot.keyboards.inline_keyboard import create_cross_aeroes
+from bot.keyboards.inline_keyboard import create_cross_aeroes, return_to_bot
 from aiogram.types import User
 from db.DAO import DAO
 class CrossZeroes:
@@ -120,7 +120,7 @@ class CrossZeroes:
                                                  callback_data="reload_cross_zeroes_callback")])
         else:    
             field.append([InlineKeyboardButton(text="заново", 
-                                                 callback_data="reload_cross_zeroes_inline")])
+                                                 callback_data="reload_cross_zeroes_inline"), return_to_bot])
         return field
         
     async def add_to_listener(self, user: User) -> list[str, InlineKeyboardMarkup, int]:

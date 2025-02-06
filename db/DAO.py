@@ -5,6 +5,8 @@ from db.models.user import Users
 import asyncio
 
 class DAO:
+
+
     @classmethod
     async def create_and_return_user(cls, user_id:int, username):
         async with async_session_maker() as session:
@@ -13,16 +15,24 @@ class DAO:
             res = await session.execute(user)
             await session.commit()
             return res.scalar_one_or_none()
+        
+
     @classmethod
     async def player_win_and_loose(cls, user_id1:int, user_id2: int) -> None:
         async with async_session_maker() as session:
             user = update(Users).where(Users.user_id == user_id1).values(
                 raiting_cross_zeroes=Users.raiting_cross_zeroes+8)
             await session.execute(user)
+            await session.commit()
             user = update(Users).where(Users.user_id == user_id2).values(
                 raiting_cross_zeroes=Users.raiting_cross_zeroes-8)
-            await session.execute(user)
+            try:
+                await session.execute(user)
+            except:
+                print("у пользователя не может быть отрицательный рейтинг")
             await session.commit()
+
+
     @classmethod
     async def get_two_raiting(cls, user_id1:int, user_id2: int) -> list[int]:
         async with async_session_maker() as session:
@@ -31,7 +41,8 @@ class DAO:
             )
             answer = await session.execute(query)
             return [item for item in answer.scalars()]
-        
+
+
     @classmethod
     async def wordlie_change_rait(cls, user_id, rait):
         async with async_session_maker() as session:
@@ -40,6 +51,7 @@ class DAO:
             await session.execute(user)
             await session.commit()
 
+    
     @classmethod
     async def get_user_id_by_username(cls, username:str):
         async with async_session_maker() as session:

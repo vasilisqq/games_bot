@@ -41,9 +41,14 @@ class Wordlie (StatesGroup):
                     return ans+"\n ты проиграл, попытки закончились", True
         if reit:
             await DAO.wordlie_change_rait(user_id, 6-properties["attempts"])
-            ans += f"\n Ты выиграл с {properties["attempts"]} попытки \n\n rank +{6-properties["attempts"]}"
+            ans = ("🎉 Поздравляю! 🎉 Ты отгадал слово! 🥳\n" +
+f"🔤 Слово загаданное: [{properties["word"]}]\n"+
+f"🕵️‍♂️ Попыток было: 🤯 {properties["attempts"]}\n"+
+f"🥇Твой рейтинг:🏆 +{6-properties["attempts"]}")
         else:
-            ans += f"\n Ты выиграл с {properties["attempts"]} попытки"
+            ans = ("🎉 Поздравляю! 🎉 Ты отгадал слово! 🥳\n" +
+f"🔤 Слово загаданное: [{properties["word"]}]\n"+
+f"🕵️‍♂️ Попыток было: 🤯 {properties["attempts"]}\n")
         return ans, True
 
     async def check_word_for_russian(self, string: str) -> bool:

@@ -31,6 +31,7 @@ async def step_in_the_game(message: Message, state:FSMContext):
                         message.from_user.id
                   )         
                   if _ != None:
+                        del game.wordlie.rooms[message.from_user.id]
                         if answer.endswith('и'):
                               await message.answer(answer)
                         else:
@@ -53,14 +54,16 @@ async def step_in_the_game(message: Message, state:FSMContext):
 @router.message(game.wordlie.send_word)
 async def check_word(message: Message, state: FSMContext):
       user, word = message.text.split(" ")
-      user = await game.wordlie.get_user_by_name(user)
-      await game.wordlie.create_alone_game(user, word)
+      users = await game.wordlie.get_user_by_name(user)
+      await game.wordlie.create_alone_game(users, word)
+      await message.answer(f"приглашение отправлено игроку (@{user})")
       await message.bot.send_message(
-            chat_id=user,
+            chat_id=users,
             text=f"тебе @{message.from_user.username} броосили вызов в wordlie",
             reply_markup=InlineKeyboardMarkup(
                   inline_keyboard=[[
-                        InlineKeyboardButton(text="пройти", callback_data="wordlie_from_friend")
+                        InlineKeyboardButton(text="пройти", callback_data="wordlie_from_friend"),
+                        InlineKeyboardButton(text="отказаться", callback_data="wordlie_diss")
                   ]]
             )
       )

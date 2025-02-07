@@ -8,8 +8,9 @@ class Wordlie (StatesGroup):
     words: list[str] = []
     send_word = State()
     answer_word = State()
-    async def create_alone_game(self, user_id: int|str, word=None):
+    async def create_alone_game(self, user_id: int|str, word=None, sender=None):
         self.rooms.update({user_id: {"word": random.choice(self.words) if word is None else word,
+                                     "sender": sender,
                            "attempts": 1}})
     
     async def check_correct_word(self, user_answer:str, user_id, reit=True):
@@ -38,7 +39,7 @@ class Wordlie (StatesGroup):
                     return ans, None
                 else:
                     await DAO.wordlie_change_rait(user_id, -5)
-                    return f"😢 Увы, ты не отгадал слово. 😞 \n\n🔤 Слово загаданное: [{properties["word"]}] \n\n🥇Твой рейтинг: 🏆 -5", True
+                    return f"😢 Увы, ты не отгадал слово. 😞 \n\n🔤 Слово загаданное: [{properties["word"]}] \n\n🥇Твой рейтинг: 🏆 -5", False
         if reit:
             await DAO.wordlie_change_rait(user_id, 7-properties["attempts"])
             ans = ("🎉 Поздравляю! 🎉 Ты отгадал слово! 🥳\n" +
@@ -49,8 +50,8 @@ f"🥇Твой рейтинг:🏆 +{7-properties["attempts"]}")
             ans = ("🎉 Поздравляю! 🎉 Ты отгадал слово! 🥳\n" +
 f"🔤 Слово загаданное: [{properties["word"]}]\n"+
 f"🕵️‍♂️ Попыток было: 🤯 {properties["attempts"]}\n")
-        return ans, True
-
+        if properties["sender"] != None:
+            return ans, True
     async def check_word_for_russian(self, string: str) -> bool:
         return all(ord('А') <= ord(char) <= ord('я') for char in string)
     

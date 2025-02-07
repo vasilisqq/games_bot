@@ -33,9 +33,22 @@ async def step_in_the_game(message: Message, state:FSMContext):
                         message.from_user.id
                   )         
                   if _ != None:
-                        del game.wordlie.rooms[message.from_user.id]
                         if answer.endswith('и'):
                               await message.answer(answer)
+                              sender = game.wordlie.rooms[message.from_user.id]["sender"]
+                              if not sender is None:
+                                    if _:
+                                          text = (f"😢 Увы, {message.from_user.username} отгадал слово. 😞\n\n"+ 
+                                               f"🔤 Слово загаданное: [{game.wordlie[message.from_user.id]["word"]}] 🕵️‍♂️\n\n"+ 
+                                                f"Попыток было: 🤯 {game.wordlie[message.from_user.id]["attempts"]}")
+                                    else:
+                                          text = (f"🎉 Поздравляю! 🎉 {message.from_user.username} не отгадал слово! 🥳\n\n"+
+                                                   f"🔤 Слово загаданное: [{game.wordlie[message.from_user.id]["word"]}]🕵️‍♂️")
+                                    await message.bot.send_message(
+                                           chat_id=sender,
+                                           text=text     
+                                          )
+
                         else:
                               await message.answer(answer,
                                           reply_markup=InlineKeyboardMarkup(
@@ -45,6 +58,7 @@ async def step_in_the_game(message: Message, state:FSMContext):
                                                 )]]
                                           ))
                         await state.clear()
+                        del game.wordlie.rooms[message.from_user.id]
                   else:
                         await message.answer(answer)
 
@@ -73,7 +87,7 @@ async def check_word(message: Message, state: FSMContext):
                   await message.answer("нельзя загадать слово самому себе")
             else:
                   users = await game.wordlie.get_user_by_name(user)
-                  await game.wordlie.create_alone_game(users, word)
+                  await game.wordlie.create_alone_game(users, word, message.from_user.id)
                   try:
                         await message.bot.send_message(
                         chat_id=users,

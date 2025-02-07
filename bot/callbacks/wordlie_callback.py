@@ -15,3 +15,8 @@ async def game_wordlie_from_friend(call: CallbackQuery, state: FSMContext):
 async def disconnect(call: CallbackQuery):
     await call.message.delete()
     await call.message.answer("Вы отклонили запрос на игру")
+    await call.bot.send_message(
+        chat_id=game.wordlie.rooms[call.from_user.id]["sender"],
+        text=f"игрок @{call.from_user.username} отклонил игру"
+    )
+    del game.wordlie.rooms[call.from_user.id]

@@ -17,4 +17,7 @@ async def start_bot(message: Message):
         reply_markup=choose_game_or_else,
         message_effect_id="5159385139981059251"
     )
-    
+
+@router.message(Command("exit"))
+async def exit_all_games(message: Message):
+    ...

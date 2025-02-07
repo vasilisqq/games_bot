@@ -74,10 +74,10 @@ async def check_word(message: Message, state: FSMContext):
             else:
                   users = await game.wordlie.get_user_by_name(user)
                   await game.wordlie.create_alone_game(users, word)
-                  await message.answer(f"приглашение отправлено игроку (@{user})", reply_markup=choose_game_or_else)
-                  await message.bot.send_message(
+                  try:
+                        await message.bot.send_message(
                         chat_id=users,
-                        text=f"тебе @{message.from_user.username} броосили вызов в wordlie",
+                        text=f"{message.from_user.username} бросил тебе вызов в wordle",
                         reply_markup=InlineKeyboardMarkup(
                               inline_keyboard=[[
                                     InlineKeyboardButton(text="пройти", callback_data="wordlie_from_friend"),
@@ -85,7 +85,11 @@ async def check_word(message: Message, state: FSMContext):
                               ]]
                         )
                   )
-                  await state.clear()
+                  except:
+                        await message.answer("пользователь должен иметь чат с ботом, чтобы бы отправил ему вызов")
+                  else:
+                        await message.answer(f"приглашение отправлено игроку @{user}", reply_markup=choose_game_or_else)
+                        await state.clear()
 
 
     

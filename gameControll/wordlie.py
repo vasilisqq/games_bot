@@ -34,17 +34,17 @@ class Wordlie (StatesGroup):
         for i in range(5):
             if ans[i] != "🟩":
                 properties["attempts"] += 1
-                print(properties["attempts"])
                 if properties["attempts"] < 6:
                     return ans, None
                 else:
-                    return ans+"\n ты проиграл, попытки закончились", True
+                    await DAO.wordlie_change_rait(user_id, -5)
+                    return f"😢 Увы, ты не отгадал слово. 😞 \n\n🔤 Слово загаданное: [{properties["word"]}] \n\n🥇Твой рейтинг: 🏆 -5", True
         if reit:
-            await DAO.wordlie_change_rait(user_id, 6-properties["attempts"])
+            await DAO.wordlie_change_rait(user_id, 7-properties["attempts"])
             ans = ("🎉 Поздравляю! 🎉 Ты отгадал слово! 🥳\n" +
 f"🔤 Слово загаданное: [{properties["word"]}]\n"+
 f"🕵️‍♂️ Попыток было: 🤯 {properties["attempts"]}\n"+
-f"🥇Твой рейтинг:🏆 +{6-properties["attempts"]}")
+f"🥇Твой рейтинг:🏆 +{7-properties["attempts"]}")
         else:
             ans = ("🎉 Поздравляю! 🎉 Ты отгадал слово! 🥳\n" +
 f"🔤 Слово загаданное: [{properties["word"]}]\n"+

@@ -1,8 +1,7 @@
 from db.database import async_session_maker
 from sqlalchemy.dialects.postgresql import insert
-from sqlalchemy import update, select, or_
+from sqlalchemy import update, select, or_, case, func
 from db.models.user import Users
-import asyncio
 
 class DAO:
 
@@ -23,13 +22,9 @@ class DAO:
             user = update(Users).where(Users.user_id == user_id1).values(
                 raiting_cross_zeroes=Users.raiting_cross_zeroes+8)
             await session.execute(user)
-            await session.commit()
             user = update(Users).where(Users.user_id == user_id2).values(
-                raiting_cross_zeroes=Users.raiting_cross_zeroes-8)
-            try:
-                await session.execute(user)
-            except:
-                print("у пользователя не может быть отрицательный рейтинг")
+                raiting_cross_zeroes=func.greatest(0, Users.raiting_cross_zeroes-8))
+            await session.execute(user)
             await session.commit()
 
 
@@ -47,7 +42,7 @@ class DAO:
     async def wordlie_change_rait(cls, user_id, rait):
         async with async_session_maker() as session:
             user = update(Users).where(Users.user_id == user_id).values(
-                raiting_wordlie=Users.raiting_wordlie+rait)
+                raiting_wordlie=func.greatest(0, Users.raiting_wordlie+rait))
             await session.execute(user)
             await session.commit()
 

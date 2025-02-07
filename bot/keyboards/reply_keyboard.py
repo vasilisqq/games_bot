@@ -12,3 +12,8 @@ choose_game_or_else = ReplyKeyboardMarkup(
     input_field_placeholder="используй кнопки",
     selective=True
 )
+cancel_btn = ReplyKeyboardMarkup(
+    keyboard=[[
+        KeyboardButton(text="отмена")
+    ]]
+)

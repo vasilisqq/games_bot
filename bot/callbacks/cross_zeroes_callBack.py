@@ -115,7 +115,7 @@ async def mark_button(query: CallbackQuery):
                                                 chat_id=query.from_user.id, 
                                                 message_id=properties["message_id"][query.from_user.id],
                                                 reply_markup=properties["keyboard"])
-                await query.bot.edit_message_text(text="вы проебали \n\n rang -8",
+                await query.bot.edit_message_text(text="😢 Увы, ты проиграл. 😞 \n\n🥇Твой рейтинг:🏆 -8",
                                                   chat_id=properties["players"][1 - properties["players"].index([query.from_user.username, query.from_user.id])][1], 
                                                 message_id=properties["message_id"][properties["players"][1 - properties["players"].index([query.from_user.username, query.from_user.id])][1]],
                                                 reply_markup=properties["keyboard"])

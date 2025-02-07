@@ -1,6 +1,7 @@
 from aiogram import Router, F
 from aiogram.types import CallbackQuery, FSInputFile
 from bot.keyboards.inline_keyboard import friend_or_alone, friend_or_alone_ni
+from bot.keyboards.reply_keyboard import cancel_btn
 from gameControll.game import game
 from bot.schedulers.cross_zeroes import kick_open_game
 from bot.config import settings
@@ -83,5 +84,7 @@ async def create_alone_room(call: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data == "with_friend")
 async def create_word_for_friend(call: CallbackQuery, state: FSMContext):
-    await call.message.answer("Введи username без собачки своего друга, а через пробел введи загаданное слово")
+    await call.message.delete()
+    await call.message.answer("Введи username без собачки своего друга, а через пробел введи загаданное слово \n\n чтобы выйти отсюда напиши 'отмена' ",
+                              reply_markup=cancel_btn)
     await state.set_state(game.wordlie.send_word)

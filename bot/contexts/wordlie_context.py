@@ -2,8 +2,10 @@ from aiogram import Router
 from gameControll.game import game
 from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
+from bot.keyboards.reply_keyboard import choose_game_or_else
 from gameControll.game import game
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from bot.keyboards.inline_keyboard import choose_game
 
 router = Router()
 @router.message(game.state)
@@ -53,21 +55,37 @@ async def step_in_the_game(message: Message, state:FSMContext):
 
 @router.message(game.wordlie.send_word)
 async def check_word(message: Message, state: FSMContext):
-      user, word = message.text.split(" ")
-      users = await game.wordlie.get_user_by_name(user)
-      await game.wordlie.create_alone_game(users, word)
-      await message.answer(f"приглашение отправлено игроку (@{user})")
-      await message.bot.send_message(
-            chat_id=users,
-            text=f"тебе @{message.from_user.username} броосили вызов в wordlie",
-            reply_markup=InlineKeyboardMarkup(
-                  inline_keyboard=[[
-                        InlineKeyboardButton(text="пройти", callback_data="wordlie_from_friend"),
-                        InlineKeyboardButton(text="отказаться", callback_data="wordlie_diss")
-                  ]]
-            )
-      )
-      await state.clear()
+      if message.text == "отмена":
+            await state.clear()
+            #await message.delete()
+            await message.answer("действие отменено",
+            reply_markup=choose_game_or_else)
+            await message.delete()
+            await message.answer("Выбери игру, в которую хочешь поиграть",
+                       reply_markup=choose_game)
+            return       
+      try:
+            user, word = message.text.split(" ")
+      except:
+            await message.answer("введи корректное сообщение")
+      else:
+            if user == message.from_user.username:
+                  await message.answer("нельзя загадать слово самому себе")
+            else:
+                  users = await game.wordlie.get_user_by_name(user)
+                  await game.wordlie.create_alone_game(users, word)
+                  await message.answer(f"приглашение отправлено игроку (@{user})", reply_markup=choose_game_or_else)
+                  await message.bot.send_message(
+                        chat_id=users,
+                        text=f"тебе @{message.from_user.username} броосили вызов в wordlie",
+                        reply_markup=InlineKeyboardMarkup(
+                              inline_keyboard=[[
+                                    InlineKeyboardButton(text="пройти", callback_data="wordlie_from_friend"),
+                                    InlineKeyboardButton(text="отказаться", callback_data="wordlie_diss")
+                              ]]
+                        )
+                  )
+                  await state.clear()
 
 
     

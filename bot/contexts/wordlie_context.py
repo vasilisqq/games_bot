@@ -10,9 +10,8 @@ from bot.keyboards.inline_keyboard import choose_game
 router = Router()
 @router.message(game.state)
 async def step_in_the_game(message: Message, state:FSMContext):
-      print(await state.get_data())
       a:dict[str, str] = await state.get_data()
-      if a["state"] in ["in_game_wordlie","f_in_game_wordlie"]:
+      if a["state"] in ["in_game_wordlie","in_game_wordlie"]:
             m:str = message.text.lower()
             if not await game.wordlie.check_word_for_russian(m):
                   await message.answer("введи корректное слов, состоящее только из русских букв")

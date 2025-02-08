@@ -15,10 +15,11 @@ from bot.callbacks.wordlie_callback import router as wcbr
 async def main() -> None:
     dp.update.middleware(UserMiddleware())
     dp.include_routers(
+
+        c_r,
         wcbr,
         wr,
         router,
-        c_r,
         router_mc,
         router_m,
         router_call_back

@@ -1,2 +1,3 @@
-a= "aaaaa0"
-b = list(a)
+a= None
+if not a:
+    print(a)

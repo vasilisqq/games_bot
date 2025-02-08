@@ -72,4 +72,12 @@ f"🕵️‍♂️ Попыток было: 🤯 {properties["attempts"]}\n")
     async def get_user_by_name(self, username:str):
         return await DAO.get_user_id_by_username(username)
 
-        
+    async def del_game_pre(self, key:int):
+        game = self.rooms[key]
+        text = "твоя игра в wordlie была завершена досрочно"
+        if game["sender"] is None:
+            await DAO.wordlie_change_rait(key, -5)
+            text += "rait -5"
+        del self.rooms[key]
+        return text, game["sender"]
+

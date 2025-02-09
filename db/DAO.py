@@ -54,4 +54,22 @@ class DAO:
             user = await session.execute(query)
             return user.scalar_one_or_none()
 
+    @classmethod
+    async def get_top_from_game(cls, game:str):
+        async with async_session_maker() as session:
+            if game == "cross-zeroes":
+                query = select(
+                    Users.username, 
+                    Users.raiting_cross_zeroes.label("rait")).order_by(
+                        Users.raiting_cross_zeroes.desc()
+                    ).limit(5)
+            elif game == "wordlie":
+                query = select(
+                    Users.username, 
+                    Users.raiting_wordlie.label("rait")).order_by(
+                        Users.raiting_wordlie.desc()
+                    ).limit(5)
+            users = await session.execute(query)
+            return users.all()
+
 

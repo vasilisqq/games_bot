@@ -41,3 +41,11 @@ friend_or_alone_ni = InlineKeyboardMarkup(
         InlineKeyboardButton(text="Играть одному", callback_data="game_alone_")
     ]]
 )
+
+show_top = InlineKeyboardMarkup(
+    inline_keyboard=[[
+        InlineKeyboardButton(text="крестики-нолики", callback_data="cross-zeroes_top"),
+        InlineKeyboardButton(text="вордли", callback_data="wordlie_top")
+    ]
+    ]
+)

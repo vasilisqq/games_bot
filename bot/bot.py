@@ -11,6 +11,7 @@ from gameControll.game import game
 from bot.bot_configs import bot, dp
 from bot.contexts.wordlie_context import router as wr
 from bot.callbacks.wordlie_callback import router as wcbr
+from bot.callbacks.top_callBack import router as router_top
 
 async def main() -> None:
     dp.update.middleware(UserMiddleware())
@@ -22,7 +23,8 @@ async def main() -> None:
         router,
         router_mc,
         router_m,
-        router_call_back
+        router_call_back,
+        router_top
     )
     await bot.delete_webhook(True)
     with open("words.json", "r", encoding="UTF-8") as f:

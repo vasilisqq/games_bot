@@ -38,8 +38,11 @@ class Wordlie (StatesGroup):
                 if properties["attempts"] < 6:
                     return ans, None
                 else:
-                    await DAO.wordlie_change_rait(user_id, -5)
-                    return f"😢 Увы, ты не отгадал слово. 😞 \n\n🔤 Слово загаданное: [{properties["word"]}] \n\n🥇Твой рейтинг: 🏆 -5", False
+                    if reit:
+                        await DAO.wordlie_change_rait(user_id, -5)
+                        return f"😢 Увы, ты не отгадал слово. 😞 \n\n🔤 Слово загаданное: [{properties["word"]}] \n\n🥇Твой рейтинг: 🏆 -5", False
+                    else:
+                        return f"😢 Увы, ты не отгадал слово. 😞 \n\n🔤 Слово загаданное: [{properties["word"]}]", False
         if reit:
             await DAO.wordlie_change_rait(user_id, 7-properties["attempts"])
             ans = ("🎉 Поздравляю! 🎉 Ты отгадал слово! 🥳\n" +
@@ -50,8 +53,8 @@ f"🥇Твой рейтинг:🏆 +{7-properties["attempts"]}")
             ans = ("🎉 Поздравляю! 🎉 Ты отгадал слово! 🥳\n" +
 f"🔤 Слово загаданное: [{properties["word"]}]\n"+
 f"🕵️‍♂️ Попыток было: 🤯 {properties["attempts"]}\n")
-        if properties["sender"] != None:
-            return ans, True
+        return ans, True
+
     async def check_word_for_russian(self, string: str) -> bool:
         return all(ord('А') <= ord(char) <= ord('я') for char in string)
     

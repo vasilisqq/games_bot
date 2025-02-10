@@ -1,6 +1,6 @@
 from aiogram import Router
 from gameControll.game import game
-from aiogram.types import Message
+from aiogram.types import Message, ErrorEvent
 from aiogram.fsm.context import FSMContext
 from bot.keyboards.reply_keyboard import choose_game_or_else
 from gameControll.game import game
@@ -11,7 +11,7 @@ router = Router()
 @router.message(game.state)
 async def step_in_the_game(message: Message, state:FSMContext):
       a:dict[str, str] = await state.get_data()
-      if a["state"] in ["in_game_wordlie","in_game_wordlie"]:
+      if a["state"] in ["in_game_wordlie", "f_in_game_wordlie"]:
             m:str = message.text.lower()
             if not await game.wordlie.check_word_for_russian(m):
                   await message.answer("введи корректное слов, состоящее только из русских букв")
@@ -20,33 +20,26 @@ async def step_in_the_game(message: Message, state:FSMContext):
             elif not await game.wordlie.check_word_available(m):
                   await message.answer("я не знаю такого слова попробуй еще раз")
             else:
-                  if a["state"].startswith("f"):
-                        answer, _ = await game.wordlie.check_correct_word(
+                  answer, _ = await game.wordlie.check_correct_word(
                         m,
                         message.from_user.id,
-                        False
-                  )
-                  else:
-                        answer, _ = await game.wordlie.check_correct_word(
-                        m,
-                        message.from_user.id
+                        not a["state"].startswith("f")
                   )         
                   if _ != None:
-                        if answer.endswith('и'):
+                        if a["state"].startswith("f"):
                               await message.answer(answer)
                               sender = game.wordlie.rooms[message.from_user.id]["sender"]
-                              if not sender is None:
-                                    if _:
-                                          text = (f"😢 Увы, {message.from_user.username} отгадал слово. 😞\n\n"+ 
-                                               f"🔤 Слово загаданное: [{game.wordlie[message.from_user.id]["word"]}] 🕵️‍♂️\n\n"+ 
-                                                f"Попыток было: 🤯 {game.wordlie[message.from_user.id]["attempts"]}")
-                                    else:
-                                          text = (f"🎉 Поздравляю! 🎉 {message.from_user.username} не отгадал слово! 🥳\n\n"+
-                                                   f"🔤 Слово загаданное: [{game.wordlie[message.from_user.id]["word"]}]🕵️‍♂️")
-                                    await message.bot.send_message(
-                                           chat_id=sender,
-                                           text=text     
-                                          )
+                              if _:
+                                    text = (f"😢 Увы, @{message.from_user.username} отгадал слово. 😞\n\n"+ 
+                                         f"🔤 Слово загаданное: [{game.wordlie.rooms[message.from_user.id]["word"]}] 🕵️‍♂️\n\n"+ 
+                                          f"Попыток было: 🤯 {game.wordlie.rooms[message.from_user.id]["attempts"]}")
+                              else:
+                                    text = (f"🎉 Поздравляю! 🎉 @{message.from_user.username} не отгадал слово! 🥳\n\n"+
+                                                f"🔤 Слово загаданное: [{game.wordlie.rooms[message.from_user.id]["word"]}]🕵️‍♂️")
+                              await message.bot.send_message(
+                                     chat_id=sender,
+                                     text=text     
+                                    )
 
                         else:
                               await message.answer(answer,
@@ -70,7 +63,6 @@ async def step_in_the_game(message: Message, state:FSMContext):
 async def check_word(message: Message, state: FSMContext):
       if message.text == "отмена":
             await state.clear()
-            #await message.delete()
             await message.answer("действие отменено",
             reply_markup=choose_game_or_else)
             await message.delete()
@@ -103,6 +95,5 @@ async def check_word(message: Message, state: FSMContext):
                   else:
                         await message.answer(f"приглашение отправлено игроку @{user}", reply_markup=choose_game_or_else)
                         await state.clear()
-
 
     

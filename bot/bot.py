@@ -12,11 +12,13 @@ from bot.bot_configs import bot, dp
 from bot.contexts.wordlie_context import router as wr
 from bot.callbacks.wordlie_callback import router as wcbr
 from bot.callbacks.top_callBack import router as router_top
+from bot.logger import logger
+from bot.handlers.errors_handler import router as re
 
 async def main() -> None:
     dp.update.middleware(UserMiddleware())
     dp.include_routers(
-
+        re,
         c_r,
         wcbr,
         wr,
@@ -30,9 +32,11 @@ async def main() -> None:
     with open("words.json", "r", encoding="UTF-8") as f:
         game.wordlie.words = json.load(f)
         f.close()
+    logger.info_logger.info("бот запущен успешно")
     await dp.start_polling(bot)
 
+
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(level=logging.DEBUG)
     asyncio.run(main())
     

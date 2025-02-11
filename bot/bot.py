@@ -12,8 +12,9 @@ from bot.bot_configs import bot, dp
 from bot.contexts.wordlie_context import router as wr
 from bot.callbacks.wordlie_callback import router as wcbr
 from bot.callbacks.top_callBack import router as router_top
-from bot.logger import logger
+# from bot.logger import logger
 from bot.handlers.errors_handler import router as re
+from bot.config import settings
 
 async def main() -> None:
     dp.update.middleware(UserMiddleware())
@@ -32,11 +33,18 @@ async def main() -> None:
     with open("words.json", "r", encoding="UTF-8") as f:
         game.wordlie.words = json.load(f)
         f.close()
-    logger.info_logger.info("бот запущен успешно")
+    logging.info("Бот запущен", extra={"username": "SYSTEM", "state": "nothing","handler_name": "MAIN"})
     await dp.start_polling(bot)
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(
+    level=logging.INFO,  # Уровень логирования (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s - %(username)s - %(state)s - %(handler_name)s",  # Формат логов
+    handlers=[
+        logging.FileHandler(f"{settings.HOME_PATH}/bot.log"),  # Логи будут записываться в файл bot.log
+        logging.StreamHandler()  # Логи также будут выводиться в консоль
+    ]
+)
     asyncio.run(main())
     

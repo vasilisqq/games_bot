@@ -1,6 +1,6 @@
 from aiogram import Router
 from aiogram.filters import Command
-from aiogram.types import Message, FSInputFile
+from aiogram.types import Message, FSInputFile, Update
 from bot.texts import start_text
 from bot.config import settings
 from aiogram.types.input_media_photo import InputMediaPhoto
@@ -8,11 +8,18 @@ import random
 from gameControll.game import game
 from aiogram.fsm.context import FSMContext
 from bot.keyboards.reply_keyboard import choose_game_or_else
+import logging
 router = Router()
 
 
 @router.message(Command("start"))
 async def start_bot(message: Message):
+    logging.info(
+        "команда старт",
+        extra={"username": message.from_user.username,
+               "state": "None",
+               "handler_name": "start_bot"}
+    )
     a = await message.answer_animation(
         animation=FSInputFile(f"{settings.HOME_PATH}/medias/gifs/start.mp4"),
         caption=start_text,

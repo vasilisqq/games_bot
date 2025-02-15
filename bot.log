@@ -1,30 +1,5 @@
-2025-02-11 12:17:35,093 - aiogram.dispatcher - WARNING - Received SIGINT signal
-2025-02-11 12:17:35,094 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
-2025-02-11 12:17:35,095 - aiogram.dispatcher - INFO - Polling stopped
-2025-02-11 12:17:49,746 - asyncio - ERROR - Unclosed client session
-client_session: <aiohttp.client.ClientSession object at 0x7a403acdf530>
-2025-02-11 12:17:54,235 - aiogram.dispatcher - INFO - Start polling
-2025-02-11 12:17:54,366 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
-2025-02-11 12:18:04,347 - root - INFO - команда старт
-2025-02-11 12:18:07,150 - aiogram.event - INFO - Update id=241309559 is handled. Duration 2819 ms by bot id=7722417104
-2025-02-11 12:20:46,271 - aiogram.dispatcher - WARNING - Received SIGINT signal
-2025-02-11 12:20:46,272 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
-2025-02-11 12:20:46,272 - aiogram.dispatcher - INFO - Polling stopped
-2025-02-11 12:20:56,624 - aiogram.dispatcher - INFO - Start polling
-2025-02-11 12:20:56,825 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
-2025-02-11 12:21:01,441 - aiogram.event - INFO - Update id=241309560 is handled. Duration 16 ms by bot id=7722417104
-2025-02-11 12:21:20,679 - aiogram.event - INFO - Update id=241309561 is handled. Duration 8 ms by bot id=7722417104
-2025-02-11 12:23:31,779 - aiogram.dispatcher - WARNING - Received SIGINT signal
-2025-02-11 12:23:31,780 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
-2025-02-11 12:23:31,780 - aiogram.dispatcher - INFO - Polling stopped
-2025-02-11 12:27:12,433 - root - INFO - Бот запущен - SYSTEM -  - MAIN
-2025-02-11 12:28:20,522 - root - INFO - Бот запущен - SYSTEM -  - MAIN
-2025-02-11 12:28:59,229 - root - INFO - Бот запущен - SYSTEM -  - MAIN
-2025-02-11 12:29:26,680 - root - INFO - Бот запущен - SYSTEM -  - MAIN
-2025-02-11 12:30:04,524 - root - INFO - команда старт - vasilisqqe -  - start_bot
-2025-02-11 12:33:26,614 - root - INFO - Бот запущен - SYSTEM -  - MAIN
-2025-02-11 12:33:49,035 - root - INFO - Бот запущен - SYSTEM - None - MAIN
-2025-02-11 12:34:48,462 - root - INFO - команда старт - vasilisqqe - None - start_bot
-2025-02-11 12:41:22,291 - root - INFO - Бот запущен - SYSTEM - nothing - MAIN
-2025-02-11 12:41:56,211 - root - INFO - Бот запущен - SYSTEM - nothing - MAIN
-2025-02-11 12:42:02,814 - root - INFO - команда старт - vasilisqqe - None - start_bot
+2025-02-15 10:19:14,195 - root - INFO - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-15 10:19:26,117 - root - INFO - команда старт - vasilisqqe - None - start_bot - {}
+2025-02-15 10:19:51,691 - root - INFO - пользователь нажал на кнопку крестиков ноликов - vasilisqqe - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-15 10:20:13,164 - root - INFO - пользователь начал поиск игры в крестики-нолики - vasilisqqe - {'state': 'in_game_cross_zeroes'} - alone_game - nothing
+2025-02-15 10:20:20,843 - root - INFO - пользователь попытался войти в вордли, но у него есть начатая игра - vasilisqqe - {'state': 'in_game_cross_zeroes'} - choose_mate - nothing

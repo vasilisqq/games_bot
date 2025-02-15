@@ -11,6 +11,7 @@ from aiogram.fsm.context import FSMContext
 from bot.config import settings
 import random
 from aiogram.types import FSInputFile
+import logging
 router = Router()
 
 @router.callback_query(F.data[0].in_([str(i) for i in range(9)]))
@@ -42,6 +43,13 @@ async def mark_button(query: CallbackQuery):
                                         minutes=1,
                                         kwargs = {"query": query, "is_end":True},
                                         id=query.inline_message_id)
+                logging.info(
+                "пользователь выбрал не свою клетку",
+                    extra={"username": query.from_user.username,
+                    "state": "cleared",
+                    "handler_name": "mark_button",
+                    "params":f"game: inline, game_id: {query.inline_message_id}"}
+                    )
                 return
             if await game.crossZeroes.check_win(query.inline_message_id):
                 text = f"Победил @{query.from_user.username}"
@@ -53,6 +61,13 @@ async def mark_button(query: CallbackQuery):
                                         minutes=1,
                                         kwargs = {"query": query, "is_end":True},
                                         id=query.inline_message_id)
+                logging.info(
+                "пользователь выиграл",
+                    extra={"username": query.from_user.username,
+                    "state": "cleared",
+                    "handler_name": "mark_button",
+                    "params":f"game: inline, game_id: {query.inline_message_id}"}
+                    )
             elif await game.crossZeroes.is_draw(query.inline_message_id):
                 text = f"Ничья"
                 properties["keyboard"].inline_keyboard.append([InlineKeyboardButton(text="заново", 
@@ -65,6 +80,13 @@ async def mark_button(query: CallbackQuery):
                                         minutes=1,
                                         kwargs = {"query": query, "is_end":True},
                                         id=query.inline_message_id)
+                logging.info(
+                "ничья в игре в крестики нолики",
+                    extra={"username": query.from_user.username,
+                    "state": "cleared",
+                    "handler_name": "mark_button",
+                    "params":f"game: inline, game_id: {query.inline_message_id}"}
+                    )
             else:
                 properties["move"] = properties["players"][1 - properties["players"].index(query.from_user.username)]
                 if properties["move"] == properties["players"][0]:
@@ -84,6 +106,13 @@ async def mark_button(query: CallbackQuery):
                                         minutes=1,
                                         kwargs = {"query": query},
                                         id=query.inline_message_id)
+                logging.info(
+                f"пользователь сделал ход на клетку {query.data}",
+                    extra={"username": query.from_user.username,
+                    "state": "cleared",
+                    "handler_name": "mark_button",
+                    "params":f"game: inline, game_id: {query.inline_message_id}"}
+                    )
         else:
             await query.answer("Не твой ход")
     else:
@@ -104,11 +133,13 @@ async def mark_button(query: CallbackQuery):
                 game.crossZeroes.scheduler.remove_job(query.data[1:])
             else:
                 await query.answer("Выбери свободную клетку")
-                # game.crossZeroes.scheduler.add_job(kick_open_game,
-                #                        trigger="interval",
-                #                        minutes=1,
-                #                        kwargs = {"query": query, "properties": game.crossZeroes.rooms[query.data[1:]]},
-                #                        id=query.data[1:])
+                logging.info(
+                "пользователь выбрал занятую клетку клетку",
+                    extra={"username": query.from_user.username,
+                    "state": "idk",
+                    "handler_name": "mark_button",
+                    "params":f"game: cb, game_id: {query.data[1:]}"}
+                    )
                 return
             if await game.crossZeroes.check_win(query.data[1:], in_bot=True):
                 await query.bot.edit_message_text(text="🎉 Поздравляю! 🎉 Ты победил! 🥳 \n\n🥇Твой рейтинг:🏆 +8",
@@ -125,6 +156,13 @@ async def mark_button(query: CallbackQuery):
                 await set_state(query.bot, query.from_user.id, "")
                 await set_state(query.bot, properties["players"][1 - properties["players"].index([query.from_user.username, query.from_user.id])][1], "")
                 del game.crossZeroes.rooms[query.data[1:]]
+                logging.info(
+                "пользователь победил",
+                    extra={"username": query.from_user.username,
+                    "state": "idk",
+                    "handler_name": "mark_button",
+                    "params":f"game: cb, game_id: {query.data[1:]}"}
+                    )
             elif await game.crossZeroes.is_draw(query.data[1:]):
                 text = f"Ничья"
                 properties["keyboard"].inline_keyboard.append([InlineKeyboardButton(text="заново", 
@@ -148,6 +186,13 @@ async def mark_button(query: CallbackQuery):
                             FSInputFile(img),
                             reply_markup=properties["keyboard"]
     )
+                logging.info(
+                "ничья",
+                    extra={"username": query.from_user.username,
+                    "state": "idk",
+                    "handler_name": "mark_button",
+                    "params":f"game: cb, game_id: {query.data[1:]}"}
+                    )
             else:
                 properties["move"] = properties["players"][1 - properties["players"].index([query.from_user.username, query.from_user.id])][0]
                 if properties["move"] == properties["players"][0][0]:
@@ -160,8 +205,6 @@ async def mark_button(query: CallbackQuery):
                         text = (f"игра в крестики-нолики\n\n@{properties["players"][0][0]} ({properties["rait"][0]}) X \n--> @{properties["players"][1][0]} ({properties["rait"][1]}) O")
                     else:
                         text = (f"игра в крестики-нолики\n\n@{properties["players"][0][0]} ({properties["rait"][0]}) O \n--> @{properties["players"][1][0]} ({properties["rait"][1]}) X")
-                print(properties["message_id"])
-                print(properties["players"][0][1])
                 await query.bot.edit_message_text(chat_id=properties["players"][0][1],
                                                   message_id=properties["message_id"][properties["players"][0][1]],
                                                 text=text, reply_markup=properties["keyboard"])
@@ -173,6 +216,13 @@ async def mark_button(query: CallbackQuery):
                                        minutes=1,
                                        kwargs = {"query": query, "properties": game.crossZeroes.rooms[query.data[1:]]},
                                        id=query.data[1:])
+                logging.info(
+                f"пользователь сделал ход на клетку {query.data[0]+1}",
+                    extra={"username": query.from_user.username,
+                    "state": "idk",
+                    "handler_name": "mark_button",
+                    "params":f"game: cb, game_id: {query.data[1:]}"}
+                    )
         else:
             await query.answer("Не твой ход")
 
@@ -193,6 +243,13 @@ async def reload_game(iquery: CallbackQuery):
                                        game.crossZeroes.rooms[iquery.inline_message_id]["first_player"] == players[0] else 
                                        (f"игра в крестики-нолики\n\n @{players[0]} O \n --> @{players[1]} X"),
                                        reply_markup=k)
+    logging.info(
+                "пользователь начал игру в крестики нолики заново",
+                    extra={"username": iquery.from_user.username,
+                    "state": "idk",
+                    "handler_name": "reload_game",
+                    "params":f"game: inline, game_id: {iquery.inline_message_id}"}
+                    )
     
 
 @router.callback_query(F.data == "reload_cross_zeroes_callback")
@@ -220,6 +277,20 @@ async def new_game_cross_zeroes_in_bot(call: CallbackQuery, state: FSMContext):
                                         id=call.from_user.username)
             if not game.crossZeroes.scheduler.running:
                 game.crossZeroes.scheduler.start()
+        logging.info(
+                "пользователь начал поиск в крестики нолики",
+                    extra={"username": call.from_user.username,
+                    "state": "idk",
+                    "handler_name": "new_game_cross_zeroes_in_bot",
+                    "params":f"game: cb, game_id: none"}
+                    )
     else:
         await call.answer("у тебя есть игра, закончи ее прежде, чем начинать новую", show_alert=True)
+        logging.info(
+                "пользователь попытался начать игру, но уже имеет текущую",
+                    extra={"username": call.from_user.username,
+                    "state": "idk",
+                    "handler_name": "new_game_cross_zeroes_in_bot",
+                    "params":f"game: cb, game_id: {call.inline_message_id}"}
+                    )
         

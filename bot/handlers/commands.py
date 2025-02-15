@@ -18,7 +18,8 @@ async def start_bot(message: Message):
         "команда старт",
         extra={"username": message.from_user.username,
                "state": "None",
-               "handler_name": "start_bot"}
+               "handler_name": "start_bot",
+               "params":"{}"}
     )
     a = await message.answer_animation(
         animation=FSInputFile(f"{settings.HOME_PATH}/medias/gifs/start.mp4"),
@@ -32,6 +33,13 @@ async def exit_all_games(message: Message, state: FSMContext):
     a = await state.get_data()
     if a == {} or not a["state"].startswith("in_game"):
         await message.answer("у тебя нет начатых игр")
+        logging.info(
+        "пользователь завершил все начатые игры (их не было)",
+        extra={"username": message.from_user.username,
+               "state": "cleared",
+               "handler_name": "exit_all_games",
+               "params":"{}"}
+    )
         return
     elif a["state"].endswith("wordlie"):
         text, _ = await game.wordlie.del_game_pre(message.from_user.id)
@@ -44,4 +52,11 @@ async def exit_all_games(message: Message, state: FSMContext):
         text = "игра закончится автоматически совсем скоро"
     await message.answer(text)  
     await state.clear()
+    logging.info(
+        "пользователь завершил все начатые игры",
+        extra={"username": message.from_user.username,
+               "state": "cleared",
+               "handler_name": "exit_all_games",
+               "params":"{}"}
+    )
 

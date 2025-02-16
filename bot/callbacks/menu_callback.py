@@ -103,24 +103,23 @@ async def alone_game(call: CallbackQuery, state: FSMContext):
 @router.callback_query(F.data == "game_alone_")
 async def create_alone_room(call: CallbackQuery, state: FSMContext):
     a:dict[str, str] = await state.get_data()
-    try:
-        if a["state"].startswith("in_game"):
-            await call.message.answer("закончи уже начатую игру")
-            logging.info(
+    if a== {} or a["state"].startswith(("in_game", "f_in_game")):
+        await call.message.answer("закончи уже начатую игру")
+        logging.info(
                 f"пользователь попытался запустить одиночный wordlie, но у него уже есть игра",
                     extra={"username": call.from_user.username,
                     "state": await state.get_data(),
                     "handler_name": "create_alone_room",
                     "params":"nothing"}
-                    )
-    except:
+                )
+    else:
         await call.message.delete()
         await game.wordlie.create_alone_game(call.from_user.id)
         await state.update_data(state="in_game_wordlie")
         await call.message.answer("Введите слово")
         await state.set_state(game.state)
         logging.info(
-                f"пользователь начал игру в wordlie {call.data[0]+1}",
+                f"пользователь начал игру в wordlie",
                     extra={"username": call.from_user.username,
                     "state": await state.get_data(),
                     "handler_name": "choose_mate",

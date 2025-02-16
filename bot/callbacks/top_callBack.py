@@ -1,13 +1,18 @@
 from aiogram import Router, F
 from aiogram.types import CallbackQuery
-from aiogram.fsm.context import FSMContext
 from gameControll.game import game
-from db.DAO import DAO
+import logging
 
 router = Router()
 
 @router.callback_query(F.data.endswith('top'))
 async def check_top(call: CallbackQuery):
-    # await DAO.get_top_from_game(call.data[:-4])
     text = await game.get_top(call.data[:-4])
     await call.message.answer(text)
+    logging.info(
+                f"пользователь зашел в топ {call.data[:-4]}",
+                    extra={"username": call.from_user.username,
+                    "state": "nothing",
+                    "handler_name": "get_top",
+                    "params":"nothing"}
+                    )

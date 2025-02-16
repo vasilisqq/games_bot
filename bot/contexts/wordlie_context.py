@@ -1,11 +1,12 @@
 from aiogram import Router
 from gameControll.game import game
-from aiogram.types import Message, ErrorEvent
+from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
 from bot.keyboards.reply_keyboard import choose_game_or_else
 from gameControll.game import game
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from bot.keyboards.inline_keyboard import choose_game
+import logging
 
 router = Router()
 @router.message(game.state)
@@ -15,10 +16,31 @@ async def step_in_the_game(message: Message, state:FSMContext):
             m:str = message.text.lower()
             if not await game.wordlie.check_word_for_russian(m):
                   await message.answer("введи корректное слов, состоящее только из русских букв")
+                  logging.info(
+                    f"пользователь в вордли ввел слово не из русских букв",
+                        extra={"username": message.from_user.username,
+                        "state": await state.get_data(),
+                        "handler_name": "step_in_the_game",
+                        "params":{"word": m}}
+                        )
             elif len(m)!=5:
                   await message.answer("введи слово, соостоящее только из 5 букв")
+                  logging.info(
+                    f"пользователь в вордли ввел слово длиннее 5 букв",
+                        extra={"username": message.from_user.username,
+                        "state": await state.get_data(),
+                        "handler_name": "step_in_the_game",
+                        "params":{"word": m}}
+                        )
             elif not await game.wordlie.check_word_available(m):
                   await message.answer("я не знаю такого слова попробуй еще раз")
+                  logging.info(
+                    f"пользователь в вордли ввел несуществующее слово",
+                        extra={"username": message.from_user.username,
+                        "state": await state.get_data(),
+                        "handler_name": "step_in_the_game",
+                        "params":{"word": m}}
+                        )
             else:
                   answer, _ = await game.wordlie.check_correct_word(
                         m,
@@ -33,14 +55,27 @@ async def step_in_the_game(message: Message, state:FSMContext):
                                     text = (f"😢 Увы, @{message.from_user.username} отгадал слово. 😞\n\n"+ 
                                          f"🔤 Слово загаданное: [{game.wordlie.rooms[message.from_user.id]["word"]}] 🕵️‍♂️\n\n"+ 
                                           f"Попыток было: 🤯 {game.wordlie.rooms[message.from_user.id]["attempts"]}")
+                                    logging.info(
+                                          f"пользователь отгадал слово от друга",
+                                          extra={"username": message.from_user.username,
+                                          "state": await state.get_data(),
+                                          "handler_name": "step_in_the_game",
+                                          "params":{"word": answer}}
+                                    )
                               else:
                                     text = (f"🎉 Поздравляю! 🎉 @{message.from_user.username} не отгадал слово! 🥳\n\n"+
                                                 f"🔤 Слово загаданное: [{game.wordlie.rooms[message.from_user.id]["word"]}]🕵️‍♂️")
+                                    logging.info(
+                                          f"пользователь не отгадал слово от друга",
+                                          extra={"username": message.from_user.username,
+                                          "state": await state.get_data(),
+                                          "handler_name": "step_in_the_game",
+                                          "params":{"word": answer}}
+                                    )
                               await message.bot.send_message(
                                      chat_id=sender,
                                      text=text     
                                     )
-
                         else:
                               await message.answer(answer,
                                           reply_markup=InlineKeyboardMarkup(
@@ -49,10 +84,24 @@ async def step_in_the_game(message: Message, state:FSMContext):
                                                       callback_data="game_alone_"
                                                 )]]
                                           ))
+                              logging.info(
+                                          f"пользователь закончил игру в вордли",
+                                          extra={"username": message.from_user.username,
+                                          "state": await state.get_data(),
+                                          "handler_name": "step_in_the_game",
+                                          "params":{"word": answer}}
+                                    )
                         await state.clear()
                         del game.wordlie.rooms[message.from_user.id]
                   else:
                         await message.answer(answer)
+                        logging.info(
+                                          f"пользователь совершил попытку отгадать слово",
+                                          extra={"username": message.from_user.username,
+                                          "state": await state.get_data(),
+                                          "handler_name": "game_wordlie_from_friend",
+                                          "params":{"word": answer}}
+                                    )
 
                   
             

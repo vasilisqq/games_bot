@@ -1,3 +1,3 @@
-a= None
-if not a:
+a = "avb"
+if a.startswith(("c", "b")):
     print(a)

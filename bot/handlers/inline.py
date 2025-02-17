@@ -1,20 +1,21 @@
 from secrets import token_hex
-from typing import Any
 from aiogram import Router
 from aiogram.types import (
     InlineQuery,
-    InlineQueryResultArticle,
     InlineQueryResultPhoto,
     InputTextMessageContent,
-    ChosenInlineResult,
-    LinkPreviewOptions
+    ChosenInlineResult
 )
-from aiogram.fsm.context import FSMContext
 from bot.keyboards.inline_keyboard import create_cross_aeroes
 from gameControll.game import game
 from bot.schedulers.cross_zeroes import kick_game
+from bot.logger import cl
+
+
 router = Router()
 keyboard = create_cross_aeroes()
+
+
 #обработка inline запроса
 @router.inline_query()
 async def new_user(iquery: InlineQuery) -> None:
@@ -36,6 +37,13 @@ async def new_user(iquery: InlineQuery) -> None:
     ],
     is_personal=False,
     cache_time=1)
+    cl.custom_logger.info(
+        "пользователь тегнул бота в чате",
+        extra={"username": iquery.from_user.username,
+               "state": "None",
+               "handler_name": "new_user",
+               "params":"{}"}
+    )
 
 
 #сюда приходит то, что пользователь отправил в предыдущем запросе
@@ -55,3 +63,10 @@ async def f(iquery: ChosenInlineResult) -> None:
                                        id=iquery.inline_message_id)
     if not game.crossZeroes.scheduler.running:
         game.crossZeroes.scheduler.start()
+    cl.custom_logger.info(
+        f"пользователь выбрал что-то",
+        extra={"username": iquery.from_user.username,
+               "state": "None",
+               "handler_name": "f",
+               "params":iquery.result_id}
+    )

@@ -1,7 +1,7 @@
 from aiogram import Router, F
 from aiogram.types import CallbackQuery
 from gameControll.game import game
-import logging
+from bot.logger import cl
 
 router = Router()
 
@@ -9,7 +9,7 @@ router = Router()
 async def check_top(call: CallbackQuery):
     text = await game.get_top(call.data[:-4])
     await call.message.answer(text)
-    logging.info(
+    cl.custom_logger.info(
                 f"пользователь зашел в топ {call.data[:-4]}",
                     extra={"username": call.from_user.username,
                     "state": "nothing",

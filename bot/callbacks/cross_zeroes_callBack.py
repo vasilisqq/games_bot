@@ -11,7 +11,7 @@ from aiogram.fsm.context import FSMContext
 from bot.config import settings
 import random
 from aiogram.types import FSInputFile
-import logging
+from bot.logger import cl
 router = Router()
 
 @router.callback_query(F.data[0].in_([str(i) for i in range(9)]))
@@ -43,7 +43,7 @@ async def mark_button(query: CallbackQuery):
                                         minutes=1,
                                         kwargs = {"query": query, "is_end":True},
                                         id=query.inline_message_id)
-                logging.info(
+                cl.custom_logger.info(
                 "пользователь выбрал не свою клетку",
                     extra={"username": query.from_user.username,
                     "state": "cleared",
@@ -61,7 +61,7 @@ async def mark_button(query: CallbackQuery):
                                         minutes=1,
                                         kwargs = {"query": query, "is_end":True},
                                         id=query.inline_message_id)
-                logging.info(
+                cl.custom_logger.info(
                 "пользователь выиграл",
                     extra={"username": query.from_user.username,
                     "state": "cleared",
@@ -80,7 +80,7 @@ async def mark_button(query: CallbackQuery):
                                         minutes=1,
                                         kwargs = {"query": query, "is_end":True},
                                         id=query.inline_message_id)
-                logging.info(
+                cl.custom_logger.info(
                 "ничья в игре в крестики нолики",
                     extra={"username": query.from_user.username,
                     "state": "cleared",
@@ -106,7 +106,7 @@ async def mark_button(query: CallbackQuery):
                                         minutes=1,
                                         kwargs = {"query": query},
                                         id=query.inline_message_id)
-                logging.info(
+                cl.custom_logger.info(
                 f"пользователь сделал ход на клетку {query.data}",
                     extra={"username": query.from_user.username,
                     "state": "cleared",
@@ -133,7 +133,7 @@ async def mark_button(query: CallbackQuery):
                 game.crossZeroes.scheduler.remove_job(query.data[1:])
             else:
                 await query.answer("Выбери свободную клетку")
-                logging.info(
+                cl.custom_logger.info(
                 "пользователь выбрал занятую клетку клетку",
                     extra={"username": query.from_user.username,
                     "state": "idk",
@@ -156,7 +156,7 @@ async def mark_button(query: CallbackQuery):
                 await set_state(query.bot, query.from_user.id, "")
                 await set_state(query.bot, properties["players"][1 - properties["players"].index([query.from_user.username, query.from_user.id])][1], "")
                 del game.crossZeroes.rooms[query.data[1:]]
-                logging.info(
+                cl.custom_logger.info(
                 "пользователь победил",
                     extra={"username": query.from_user.username,
                     "state": "idk",
@@ -186,7 +186,7 @@ async def mark_button(query: CallbackQuery):
                             FSInputFile(img),
                             reply_markup=properties["keyboard"]
     )
-                logging.info(
+                cl.custom_logger.info(
                 "ничья",
                     extra={"username": query.from_user.username,
                     "state": "idk",
@@ -216,7 +216,7 @@ async def mark_button(query: CallbackQuery):
                                        minutes=1,
                                        kwargs = {"query": query, "properties": game.crossZeroes.rooms[query.data[1:]]},
                                        id=query.data[1:])
-                logging.info(
+                cl.custom_logger.info(
                 f"пользователь сделал ход на клетку {query.data[0]+1}",
                     extra={"username": query.from_user.username,
                     "state": "idk",
@@ -243,7 +243,7 @@ async def reload_game(iquery: CallbackQuery):
                                        game.crossZeroes.rooms[iquery.inline_message_id]["first_player"] == players[0] else 
                                        (f"игра в крестики-нолики\n\n @{players[0]} O \n --> @{players[1]} X"),
                                        reply_markup=k)
-    logging.info(
+    cl.custom_logger.info(
                 "пользователь начал игру в крестики нолики заново",
                     extra={"username": iquery.from_user.username,
                     "state": "idk",
@@ -277,7 +277,7 @@ async def new_game_cross_zeroes_in_bot(call: CallbackQuery, state: FSMContext):
                                         id=call.from_user.username)
             if not game.crossZeroes.scheduler.running:
                 game.crossZeroes.scheduler.start()
-        logging.info(
+        cl.custom_logger.info(
                 "пользователь начал поиск в крестики нолики",
                     extra={"username": call.from_user.username,
                     "state": "idk",
@@ -286,7 +286,7 @@ async def new_game_cross_zeroes_in_bot(call: CallbackQuery, state: FSMContext):
                     )
     else:
         await call.answer("у тебя есть игра, закончи ее прежде, чем начинать новую", show_alert=True)
-        logging.info(
+        cl.custom_logger.info(
                 "пользователь попытался начать игру, но уже имеет текущую",
                     extra={"username": call.from_user.username,
                     "state": "idk",

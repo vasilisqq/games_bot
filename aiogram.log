@@ -1,0 +1,7 @@
+2025-02-16 14:48:42,763 - aiogram.dispatcher - INFO - Start polling
+2025-02-16 14:48:42,839 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-16 14:51:48,550 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-16 14:51:48,551 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-16 14:51:48,551 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-16 14:51:53,831 - aiogram.dispatcher - INFO - Start polling
+2025-02-16 14:51:53,904 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'

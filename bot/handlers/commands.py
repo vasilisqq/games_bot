@@ -1,20 +1,20 @@
 from aiogram import Router
 from aiogram.filters import Command
-from aiogram.types import Message, FSInputFile, Update
+from aiogram.types import Message, FSInputFile
 from bot.texts import start_text
 from bot.config import settings
-from aiogram.types.input_media_photo import InputMediaPhoto
-import random
 from gameControll.game import game
 from aiogram.fsm.context import FSMContext
 from bot.keyboards.reply_keyboard import choose_game_or_else
-import logging
+from bot.logger import cl
+
+
 router = Router()
 
 
 @router.message(Command("start"))
 async def start_bot(message: Message):
-    logging.info(
+    cl.custom_logger.info(
         "команда старт",
         extra={"username": message.from_user.username,
                "state": "None",
@@ -33,7 +33,7 @@ async def exit_all_games(message: Message, state: FSMContext):
     a = await state.get_data()
     if a == {} or not a["state"].startswith("in_game"):
         await message.answer("у тебя нет начатых игр")
-        logging.info(
+        cl.custom_logger.info(
         "пользователь завершил все начатые игры (их не было)",
         extra={"username": message.from_user.username,
                "state": "cleared",
@@ -52,7 +52,7 @@ async def exit_all_games(message: Message, state: FSMContext):
         text = "игра закончится автоматически совсем скоро"
     await message.answer(text)  
     await state.clear()
-    logging.info(
+    cl.custom_logger.info(
         "пользователь завершил все начатые игры",
         extra={"username": message.from_user.username,
                "state": "cleared",

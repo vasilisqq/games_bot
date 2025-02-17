@@ -4,6 +4,7 @@ from gameControll.game import game
 from bot.keyboards.inline_keyboard import return_to_bot
 from bot.bot_configs import set_state
 from db.DAO import DAO
+from bot.logger import cl
 
 async def kick_game(query: CallbackQuery|ChosenInlineResult, is_end=False)->None:
     if not is_end:
@@ -14,6 +15,13 @@ async def kick_game(query: CallbackQuery|ChosenInlineResult, is_end=False)->None
         )
     game.crossZeroes.scheduler.remove_job(query.inline_message_id)
     del game.crossZeroes.rooms[query.inline_message_id]
+    cl.custom_logger.info(
+        f"игра в крестики нолики inline завершена досрочно id: {query.inline_message_id}",
+        extra={"username": query.from_user.username,
+               "state": "None",
+               "handler_name": "kick_game",
+               "params":"{}"}
+    )
 
 async def kick_open_game(query: CallbackQuery, properties: dict, first: bool = False) -> None:
     if first:
@@ -60,3 +68,10 @@ async def kick_open_game(query: CallbackQuery, properties: dict, first: bool = F
                     query.from_user.id)
     await set_state(query.bot, properties["players"][0][1], "")
     await set_state(query.bot, properties["players"][0][0], "")
+    cl.custom_logger.info(
+        "игра в крестики-нолики в боте закончена досрочно",
+        extra={"username": [properties["players"][0][1],properties["players"][0][0]],
+               "state": "None",
+               "handler_name": "kick_open_game",
+               "params":"{}"}
+    )

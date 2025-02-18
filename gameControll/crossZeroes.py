@@ -7,15 +7,15 @@ from aiogram.types import User
 from db.DAO import DAO
 class CrossZeroes:
     symbols = "XO"
-    scheduler = AsyncIOScheduler(timezone='Europe/Moscow')
     rooms: dict = {}
     open_rooms_listener: str = None
     scheduler = AsyncIOScheduler(timezone="Europe/Moscow")
     async def create__private_room(self, username: str, 
                                    keyboard: InlineKeyboardMarkup, 
                                    inline:str,
+                                   user,
                                    reload=False) -> None:
-        players = self.rooms[inline]["players"] if reload else [username, ""]
+        players = self.rooms[inline]["players"] if reload else [user, None]
         first = random.choice(players)
         self.rooms.update({inline: {"players": players,
                                             "first_player": first,

@@ -21,10 +21,16 @@ async def print_error(event: ErrorEvent, state: FSMContext):
             f"у пользователя {event.update.callback_query.from_user.username} произошла ошибка {event.exception}\n"
         )
         except:
-            text = (
-            f"у пользователя {event.update.inline_query.from_user.username} произошла ошибка {event.exception} \n"+
-            f"его состояние: {await state.get_data()}"
-        )
+            try:
+                text = (
+                f"у пользователя {event.update.inline_query.from_user.username} произошла ошибка {event.exception} \n"+
+                f"его состояние: {await state.get_data()}"
+                )
+            except:
+                text = (
+                f"у пользователя {event.update.chosen_inline_result.from_user.username} произошла ошибка {event.exception} \n"+
+                f"его состояние: {await state.get_data()}"
+                )
     # await event.update.bot.send_message(
     #     chat_id=settings.ADMIN_ID,
     #     text=text

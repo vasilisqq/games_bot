@@ -17,3 +17,50 @@
 2025-02-18 14:10:40,966 - my_bot - INFO - пользователь начал поиск игры в крестики-нолики - None - {'state': 'in_game_cross_zeroes'} - alone_game - nothing
 2025-02-18 14:10:42,584 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - None - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
 2025-02-18 14:10:43,959 - my_bot - INFO - пользователь начал поиск игры в крестики-нолики - None - {'state': 'in_game_cross_zeroes'} - alone_game - nothing
+2025-02-18 15:43:58,323 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-18 15:49:08,812 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-18 15:50:01,989 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-18 15:52:34,913 - my_bot - INFO - команда старт - vasilisqqe - None - start_bot - {}
+2025-02-18 15:53:16,234 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-18 15:53:21,326 - my_bot - INFO - команда старт - vasilisqqe - None - start_bot - {}
+2025-02-18 16:04:39,522 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-18 16:05:03,582 - my_bot - INFO - пользователь тегнул бота в чате - None - None - new_user - {}
+2025-02-18 16:07:00,042 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-18 16:07:04,930 - my_bot - INFO - пользователь тегнул бота в чате - None - None - new_user - {}
+2025-02-18 16:07:06,655 - my_bot - INFO - пользователь выбрал что-то - None - None - f - 02da
+2025-02-18 16:08:07,012 - my_bot - INFO - игра в крестики нолики inline завершена досрочно id: AQAAANvN6YsBAAAA0BkAANB3rqUPA4Uc - None - None - kick_game - {}
+2025-02-18 16:10:25,402 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-18 16:10:30,893 - my_bot - INFO - пользователь тегнул бота в чате - vasilisqqe - None - new_user - {}
+2025-02-18 16:12:39,036 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-18 16:12:43,151 - my_bot - INFO - пользователь тегнул бота в чате - vasilisqqe - None - new_user - {}
+2025-02-18 16:12:44,325 - my_bot - INFO - пользователь выбрал что-то - 814237754 - None - f - 50c2
+2025-02-18 16:13:45,458 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-18 16:13:49,565 - my_bot - INFO - пользователь тегнул бота в чате - vasilisqqe - None - new_user - {}
+2025-02-18 16:13:50,906 - my_bot - INFO - пользователь выбрал что-то - 814237754 - None - f - 697a
+2025-02-18 16:14:31,703 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-18 16:14:32,465 - my_bot - INFO - пользователь тегнул бота в чате - vasilisqqe - None - new_user - {}
+2025-02-18 16:14:34,067 - my_bot - INFO - пользователь выбрал что-то - 814237754 - None - f - c7c1
+2025-02-18 16:15:34,295 - my_bot - INFO - игра в крестики нолики inline завершена досрочно id: AgAAALDTCwA6SIgwNdTLwi4bAI8 - vasilisqqe - None - kick_game - {}
+2025-02-18 16:20:18,996 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-18 16:20:22,654 - my_bot - INFO - пользователь тегнул бота в чате - vasilisqqe - None - new_user - {}
+2025-02-18 16:20:24,512 - my_bot - INFO - пользователь выбрал что-то - 814237754 - None - f - 320e
+2025-02-18 16:20:53,619 - my_bot - INFO - пользователь сделал ход на клетку 0 - 6642322907 - cleared - mark_button - game: inline, game_id: AgAAALPTCwA6SIgwT3PmLXD_Hvk
+2025-02-18 16:21:53,856 - my_bot - INFO - игра в крестики нолики inline завершена досрочно id: AgAAALPTCwA6SIgwT3PmLXD_Hvk - None - None - kick_game - {}
+2025-02-18 16:22:09,738 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-18 16:22:16,540 - my_bot - INFO - пользователь тегнул бота в чате - vasilisqqe - None - new_user - {}
+2025-02-18 16:22:18,460 - my_bot - INFO - пользователь выбрал что-то - 814237754 - None - f - 0b84
+2025-02-18 16:23:18,769 - my_bot - INFO - игра в крестики нолики inline завершена досрочно id: AgAAALfTCwA6SIgwA8uUvDZzL60 - vasilisqqe - None - kick_game - {}
+2025-02-18 16:25:34,921 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-18 16:25:39,245 - my_bot - INFO - пользователь тегнул бота в чате - vasilisqqe - None - new_user - {}
+2025-02-18 16:25:40,531 - my_bot - INFO - пользователь выбрал что-то - 814237754 - None - f - 6366
+2025-02-18 16:25:58,670 - my_bot - INFO - пользователь сделал ход на клетку 0 - 6642322907 - cleared - mark_button - game: inline, game_id: AgAAALnTCwA6SIgwQAilUi29ai8
+2025-02-18 16:26:27,067 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-18 16:26:31,667 - my_bot - INFO - пользователь тегнул бота в чате - vasilisqqe - None - new_user - {}
+2025-02-18 16:26:33,437 - my_bot - INFO - пользователь выбрал что-то - 814237754 - None - f - a179
+2025-02-18 16:27:08,149 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-18 16:27:11,438 - my_bot - INFO - пользователь тегнул бота в чате - vasilisqqe - None - new_user - {}
+2025-02-18 16:27:13,344 - my_bot - INFO - пользователь выбрал что-то - 814237754 - None - f - d109
+2025-02-18 16:28:13,577 - my_bot - INFO - игра в крестики нолики inline завершена досрочно id: AgAAALvTCwA6SIgwhfrPouaDJjk - vasilisqqe - None - kick_game - {}
+2025-02-18 16:30:12,213 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-18 16:30:14,373 - my_bot - INFO - пользователь тегнул бота в чате - vasilisqqe - None - new_user - {}
+2025-02-18 16:30:16,465 - my_bot - INFO - пользователь выбрал что-то - 814237754 - None - f - d5c7

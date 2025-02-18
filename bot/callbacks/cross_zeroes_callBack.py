@@ -15,18 +15,18 @@ from bot.logger import cl
 router = Router()
 
 @router.callback_query(F.data[0].in_([str(i) for i in range(9)]))
-async def mark_button(query: CallbackQuery):
+async def mark_button(query: CallbackQuery, user):
     if len(query.data) ==1:
         properties = game.crossZeroes.rooms[query.inline_message_id]
         # добавление второго пользователя
-        if properties["players"][1] == "" and properties["move"] == "" and properties["players"][0] != query.from_user.username:
-            properties["players"][1] = query.from_user.username
-            if properties["first_player"] == "":
-                properties["first_player"] = query.from_user.username
-            properties["move"] = query.from_user.username
-        if properties["move"] == query.from_user.username:
+        if properties["players"][1] == None and properties["move"] == None and properties["players"][0] != user:
+            properties["players"][1] = user
+            if properties["first_player"] == None:
+                properties["first_player"] = user
+            properties["move"] = user
+        if properties["move"].user_id == user.user_id:
             game.crossZeroes.scheduler.remove_job(query.inline_message_id)
-            if properties["first_player"] == query.from_user.username:
+            if properties["first_player"] == user:
                 symbol = "X"
             else:
                 symbol = "O"
@@ -45,14 +45,14 @@ async def mark_button(query: CallbackQuery):
                                         id=query.inline_message_id)
                 cl.custom_logger.info(
                 "пользователь выбрал не свою клетку",
-                    extra={"username": query.from_user.username,
+                    extra={"username": query.from_user.id,
                     "state": "cleared",
                     "handler_name": "mark_button",
                     "params":f"game: inline, game_id: {query.inline_message_id}"}
                     )
                 return
             if await game.crossZeroes.check_win(query.inline_message_id):
-                text = f"Победил @{query.from_user.username}"
+                text = f"Победил @{user.username}"
                 await query.bot.edit_message_text(text=text, 
                                                 inline_message_id=query.inline_message_id,
                                                 reply_markup=properties["keyboard"])
@@ -82,23 +82,23 @@ async def mark_button(query: CallbackQuery):
                                         id=query.inline_message_id)
                 cl.custom_logger.info(
                 "ничья в игре в крестики нолики",
-                    extra={"username": query.from_user.username,
+                    extra={"username": query.from_user.id,
                     "state": "cleared",
                     "handler_name": "mark_button",
                     "params":f"game: inline, game_id: {query.inline_message_id}"}
                     )
             else:
-                properties["move"] = properties["players"][1 - properties["players"].index(query.from_user.username)]
+                properties["move"] = properties["players"][1 - properties["players"].index(user)] # ???????????
                 if properties["move"] == properties["players"][0]:
                     if properties["first_player"] == properties["players"][0]:
-                        text = (f"игра в крестики-нолики\n\n --> @{properties["players"][0]} X \n @{properties["players"][1]} O")
+                        text = (f"игра в крестики-нолики\n\n --> {properties["players"][0].username} X \n {properties["players"][1].username} O")
                     else:
-                        text = (f"игра в крестики-нолики\n\n --> @{properties["players"][0]} O \n @{properties["players"][1]} X")
+                        text = (f"игра в крестики-нолики\n\n --> {properties["players"][0].username} O \n {properties["players"][1].username} X")
                 else:
                     if properties["first_player"] == properties["players"][0]:
-                        text = (f"игра в крестики-нолики\n\n@{properties["players"][0]} X \n--> @{properties["players"][1]} O")
+                        text = (f"игра в крестики-нолики\n\n {properties["players"][0].username} X \n--> {properties["players"][1].username} O")
                     else:
-                        text = (f"игра в крестики-нолики\n\n@{properties["players"][0]} O \n--> @{properties["players"][1]} X")
+                        text = (f"игра в крестики-нолики\n\n {properties["players"][0].username} O \n--> {properties["players"][1].username} X")
                 await query.bot.edit_message_text(inline_message_id=query.inline_message_id,
                                                 text=text, reply_markup=properties["keyboard"])
                 game.crossZeroes.scheduler.add_job(kick_game,
@@ -108,7 +108,7 @@ async def mark_button(query: CallbackQuery):
                                         id=query.inline_message_id)
                 cl.custom_logger.info(
                 f"пользователь сделал ход на клетку {query.data}",
-                    extra={"username": query.from_user.username,
+                    extra={"username": query.from_user.id,
                     "state": "cleared",
                     "handler_name": "mark_button",
                     "params":f"game: inline, game_id: {query.inline_message_id}"}

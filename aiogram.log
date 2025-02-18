@@ -1005,3 +1005,241 @@ AttributeError: 'NoneType' object has no attribute 'from_user'
 2025-02-18 14:11:27,584 - aiogram.dispatcher - WARNING - Received SIGINT signal
 2025-02-18 14:11:27,585 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
 2025-02-18 14:11:27,585 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-18 15:43:58,323 - aiogram.dispatcher - INFO - Start polling
+2025-02-18 15:43:58,391 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 15:44:11,067 - aiogram.event - INFO - Update id=241309736 is handled. Duration 518 ms by bot id=7722417104
+2025-02-18 15:49:03,869 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-18 15:49:03,871 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 15:49:03,871 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-18 15:49:08,814 - aiogram.dispatcher - INFO - Start polling
+2025-02-18 15:49:08,884 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 15:49:11,662 - aiogram.event - INFO - Update id=241309737 is handled. Duration 636 ms by bot id=7722417104
+2025-02-18 15:49:57,241 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-18 15:49:57,243 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 15:49:57,243 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-18 15:50:01,991 - aiogram.dispatcher - INFO - Start polling
+2025-02-18 15:50:02,058 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 15:52:36,423 - aiogram.event - INFO - Update id=241309738 is handled. Duration 1538 ms by bot id=7722417104
+2025-02-18 15:53:11,817 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-18 15:53:11,818 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 15:53:11,818 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-18 15:53:16,235 - aiogram.dispatcher - INFO - Start polling
+2025-02-18 15:53:16,295 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 15:53:22,937 - aiogram.event - INFO - Update id=241309739 is handled. Duration 1632 ms by bot id=7722417104
+2025-02-18 16:00:23,059 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-18 16:00:23,060 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:00:23,060 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-18 16:04:39,523 - aiogram.dispatcher - INFO - Start polling
+2025-02-18 16:04:39,594 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:05:03,582 - aiogram.event - INFO - Update id=241309740 is handled. Duration 355 ms by bot id=7722417104
+2025-02-18 16:05:04,893 - aiogram.event - INFO - Update id=241309741 is not handled. Duration 21 ms by bot id=7722417104
+2025-02-18 16:05:04,894 - aiogram.event - ERROR - Cause exception while process update id=241309741 by bot id=7722417104
+AttributeError: 'NoneType' object has no attribute 'from_user'
+Traceback (most recent call last):
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/utilites/botGames/bot/middlewares/user_middleware.py", line 31, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 174, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/utilites/botGames/bot/handlers/inline.py", line 53, in f
+    await game.crossZeroes.create__private_room(iquery.from_user.username, k, iquery.inline_message_id, user)
+  File "/home/vasilisqq/utilites/botGames/gameControll/crossZeroes.py", line 19, in create__private_room
+    first = random.choice(players).user_id
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'user_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/vasilisqq/utilites/botGames/bot/handlers/errors_handler.py", line 15, in print_error
+    f"у пользователя {event.update.message.from_user.username} произошла ошибка {event.exception} \n"+
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'from_user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/vasilisqq/utilites/botGames/bot/handlers/errors_handler.py", line 21, in print_error
+    f"у пользователя {event.update.callback_query.from_user.username} произошла ошибка {event.exception}\n"
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'from_user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/error.py", line 29, in __call__
+    response = await self.router.propagate_event(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 174, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/utilites/botGames/bot/handlers/errors_handler.py", line 25, in print_error
+    f"у пользователя {event.update.inline_query.from_user.username} произошла ошибка {event.exception} \n"+
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'from_user'
+2025-02-18 16:06:54,719 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-18 16:06:54,721 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:06:54,721 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-18 16:07:00,043 - aiogram.dispatcher - INFO - Start polling
+2025-02-18 16:07:00,110 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:07:04,930 - aiogram.event - INFO - Update id=241309742 is handled. Duration 211 ms by bot id=7722417104
+2025-02-18 16:07:06,656 - aiogram.event - INFO - Update id=241309743 is handled. Duration 530 ms by bot id=7722417104
+2025-02-18 16:10:20,643 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-18 16:10:20,644 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:10:20,645 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-18 16:10:25,403 - aiogram.dispatcher - INFO - Start polling
+2025-02-18 16:10:25,473 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:10:30,894 - aiogram.event - INFO - Update id=241309744 is handled. Duration 248 ms by bot id=7722417104
+2025-02-18 16:10:32,254 - aiogram.event - INFO - Update id=241309745 is handled. Duration 259 ms by bot id=7722417104
+2025-02-18 16:12:34,232 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-18 16:12:34,234 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:12:34,234 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-18 16:12:39,037 - aiogram.dispatcher - INFO - Start polling
+2025-02-18 16:12:39,105 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:12:43,152 - aiogram.event - INFO - Update id=241309746 is handled. Duration 233 ms by bot id=7722417104
+2025-02-18 16:12:44,325 - aiogram.event - INFO - Update id=241309747 is handled. Duration 129 ms by bot id=7722417104
+2025-02-18 16:13:41,035 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-18 16:13:41,037 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:13:41,037 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-18 16:13:45,459 - aiogram.dispatcher - INFO - Start polling
+2025-02-18 16:13:45,517 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:13:49,565 - aiogram.event - INFO - Update id=241309748 is handled. Duration 221 ms by bot id=7722417104
+2025-02-18 16:13:50,907 - aiogram.event - INFO - Update id=241309749 is handled. Duration 153 ms by bot id=7722417104
+2025-02-18 16:14:24,160 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-18 16:14:24,161 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:14:24,161 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-18 16:14:31,704 - aiogram.dispatcher - INFO - Start polling
+2025-02-18 16:14:31,768 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:14:32,466 - aiogram.event - INFO - Update id=241309750 is handled. Duration 220 ms by bot id=7722417104
+2025-02-18 16:14:34,067 - aiogram.event - INFO - Update id=241309751 is handled. Duration 156 ms by bot id=7722417104
+2025-02-18 16:14:41,970 - aiogram.event - INFO - Update id=241309752 is handled. Duration 79 ms by bot id=7722417104
+2025-02-18 16:20:14,193 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-18 16:20:14,195 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:20:14,195 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-18 16:20:18,998 - aiogram.dispatcher - INFO - Start polling
+2025-02-18 16:20:19,076 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:20:22,655 - aiogram.event - INFO - Update id=241309753 is handled. Duration 212 ms by bot id=7722417104
+2025-02-18 16:20:24,512 - aiogram.event - INFO - Update id=241309754 is handled. Duration 204 ms by bot id=7722417104
+2025-02-18 16:20:51,485 - aiogram.event - INFO - Update id=241309755 is handled. Duration 428 ms by bot id=7722417104
+2025-02-18 16:20:53,620 - aiogram.event - INFO - Update id=241309756 is handled. Duration 300 ms by bot id=7722417104
+2025-02-18 16:21:00,795 - aiogram.event - INFO - Update id=241309757 is handled. Duration 104 ms by bot id=7722417104
+2025-02-18 16:21:06,222 - aiogram.event - INFO - Update id=241309758 is handled. Duration 213 ms by bot id=7722417104
+2025-02-18 16:21:06,974 - aiogram.event - INFO - Update id=241309759 is handled. Duration 93 ms by bot id=7722417104
+2025-02-18 16:22:03,565 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-18 16:22:03,567 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:22:03,567 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-18 16:22:09,739 - aiogram.dispatcher - INFO - Start polling
+2025-02-18 16:22:09,835 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:22:16,540 - aiogram.event - INFO - Update id=241309760 is handled. Duration 276 ms by bot id=7722417104
+2025-02-18 16:22:18,460 - aiogram.event - INFO - Update id=241309761 is handled. Duration 192 ms by bot id=7722417104
+2025-02-18 16:22:21,282 - aiogram.event - INFO - Update id=241309762 is handled. Duration 145 ms by bot id=7722417104
+2025-02-18 16:22:38,755 - aiogram.event - INFO - Update id=241309763 is handled. Duration 215 ms by bot id=7722417104
+2025-02-18 16:22:47,725 - aiogram.event - INFO - Update id=241309764 is handled. Duration 83 ms by bot id=7722417104
+2025-02-18 16:22:48,594 - aiogram.event - INFO - Update id=241309765 is handled. Duration 97 ms by bot id=7722417104
+2025-02-18 16:22:48,808 - aiogram.event - INFO - Update id=241309766 is handled. Duration 102 ms by bot id=7722417104
+2025-02-18 16:22:49,170 - aiogram.event - INFO - Update id=241309767 is handled. Duration 110 ms by bot id=7722417104
+2025-02-18 16:22:49,477 - aiogram.event - INFO - Update id=241309768 is handled. Duration 107 ms by bot id=7722417104
+2025-02-18 16:22:54,004 - aiogram.event - INFO - Update id=241309769 is handled. Duration 84 ms by bot id=7722417104
+2025-02-18 16:25:30,262 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-18 16:25:30,263 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:25:30,263 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-18 16:25:34,922 - aiogram.dispatcher - INFO - Start polling
+2025-02-18 16:25:34,990 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:25:39,246 - aiogram.event - INFO - Update id=241309770 is handled. Duration 221 ms by bot id=7722417104
+2025-02-18 16:25:40,532 - aiogram.event - INFO - Update id=241309771 is handled. Duration 161 ms by bot id=7722417104
+2025-02-18 16:25:58,670 - aiogram.event - INFO - Update id=241309772 is handled. Duration 409 ms by bot id=7722417104
+2025-02-18 16:26:05,539 - aiogram.event - INFO - Update id=241309773 is handled. Duration 147 ms by bot id=7722417104
+2025-02-18 16:26:22,182 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-18 16:26:22,184 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:26:22,184 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-18 16:26:27,067 - aiogram.dispatcher - INFO - Start polling
+2025-02-18 16:26:27,134 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:26:31,668 - aiogram.event - INFO - Update id=241309774 is handled. Duration 232 ms by bot id=7722417104
+2025-02-18 16:26:33,438 - aiogram.event - INFO - Update id=241309775 is handled. Duration 176 ms by bot id=7722417104
+2025-02-18 16:26:35,672 - aiogram.event - INFO - Update id=241309776 is handled. Duration 157 ms by bot id=7722417104
+2025-02-18 16:27:03,618 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-18 16:27:03,619 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:27:03,619 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-18 16:27:08,150 - aiogram.dispatcher - INFO - Start polling
+2025-02-18 16:27:08,245 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:27:11,438 - aiogram.event - INFO - Update id=241309777 is handled. Duration 210 ms by bot id=7722417104
+2025-02-18 16:27:13,345 - aiogram.event - INFO - Update id=241309778 is handled. Duration 125 ms by bot id=7722417104
+2025-02-18 16:27:15,049 - aiogram.event - INFO - Update id=241309779 is handled. Duration 88 ms by bot id=7722417104
+2025-02-18 16:30:07,300 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-18 16:30:07,301 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:30:07,302 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-18 16:30:12,214 - aiogram.dispatcher - INFO - Start polling
+2025-02-18 16:30:12,376 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:30:14,374 - aiogram.event - INFO - Update id=241309780 is handled. Duration 493 ms by bot id=7722417104
+2025-02-18 16:30:16,466 - aiogram.event - INFO - Update id=241309781 is handled. Duration 152 ms by bot id=7722417104
+2025-02-18 16:30:22,048 - aiogram.event - INFO - Update id=241309782 is handled. Duration 584 ms by bot id=7722417104
+2025-02-18 16:31:19,431 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-18 16:31:19,432 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-18 16:31:19,432 - aiogram.dispatcher - INFO - Polling stopped

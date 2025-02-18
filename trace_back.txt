@@ -11,7 +11,7 @@ Traceback (most recent call last):
   File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
     return await wrapped_inner(event, kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/vasilisqq/utilites/botGames/bot/middlewares/user_middleware.py", line 30, in __call__
+  File "/home/vasilisqq/utilites/botGames/bot/middlewares/user_middleware.py", line 31, in __call__
     return await handler(event, data)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
@@ -44,8 +44,7 @@ Traceback (most recent call last):
   File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
     return await wrapped()
            ^^^^^^^^^^^^^^^
-  File "/home/vasilisqq/utilites/botGames/bot/callbacks/cross_zeroes_callBack.py", line 28, in mark_button
-    game.crossZeroes.scheduler.remove_job(query.inline_message_id)
-  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/apscheduler/schedulers/base.py", line 722, in remove_job
-    raise JobLookupError(job_id)
-apscheduler.jobstores.base.JobLookupError: 'No job by the id of None was found'
+  File "/home/vasilisqq/utilites/botGames/bot/callbacks/cross_zeroes_callBack.py", line 91, in mark_button
+    properties["move"] = properties["players"][1 - properties["players"].index(user)]
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: <db.models.user.Users object at 0x7f2c38cd1430> is not in list

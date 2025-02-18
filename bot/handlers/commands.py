@@ -8,7 +8,6 @@ from aiogram.fsm.context import FSMContext
 from bot.keyboards.reply_keyboard import choose_game_or_else
 from bot.logger import cl
 
-
 router = Router()
 
 
@@ -21,12 +20,13 @@ async def start_bot(message: Message):
                "handler_name": "start_bot",
                "params":"{}"}
     )
-    a = await message.answer_animation(
+    await message.answer_animation(
         animation=FSInputFile(f"{settings.HOME_PATH}/medias/gifs/start.mp4"),
         caption=start_text,
         reply_markup=choose_game_or_else,
         message_effect_id="5159385139981059251"
     )
+
 
 @router.message(Command("exit"))
 async def exit_all_games(message: Message, state: FSMContext):

@@ -48,13 +48,13 @@ async def new_user(iquery: InlineQuery) -> None:
 
 #сюда приходит то, что пользователь отправил в предыдущем запросе
 @router.chosen_inline_result()
-async def f(iquery: ChosenInlineResult) -> None:
+async def f(iquery: ChosenInlineResult, user) -> None:
     k = create_cross_aeroes()
-    await game.crossZeroes.create__private_room(iquery.from_user.username, k, iquery.inline_message_id)
+    await game.crossZeroes.create__private_room(iquery.from_user.username, k, iquery.inline_message_id, user)
     await iquery.bot.edit_message_text(inline_message_id=iquery.inline_message_id, 
-                                       text=(f"игра в крестики-нолики\n\n --> @{iquery.from_user.username} X \n ? O") if 
-                                       game.crossZeroes.rooms[iquery.inline_message_id]["first_player"] == iquery.from_user.username else 
-                                       (f"игра в крестики-нолики\n\n @{iquery.from_user.username} O \n --> ? X"),
+                                       text=(f"игра в крестики-нолики\n\n --> {user.username} X \n ? O") if 
+                                       game.crossZeroes.rooms[iquery.inline_message_id]["first_player"] == user else 
+                                       (f"игра в крестики-нолики\n\n {user.username} O \n --> ? X"),
                                        reply_markup=k)
     game.crossZeroes.scheduler.add_job(kick_game,
                                        trigger="interval",
@@ -65,7 +65,7 @@ async def f(iquery: ChosenInlineResult) -> None:
         game.crossZeroes.scheduler.start()
     cl.custom_logger.info(
         f"пользователь выбрал что-то",
-        extra={"username": iquery.from_user.username,
+        extra={"username": iquery.from_user.id,
                "state": "None",
                "handler_name": "f",
                "params":iquery.result_id}

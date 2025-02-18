@@ -1,3 +1,19 @@
-2025-02-16 14:47:29,835 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
-2025-02-16 14:48:42,762 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
-2025-02-16 14:51:53,831 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-18 14:04:38,985 - my_bot - INFO - пользователь начал поиск в крестики нолики - None - idk - new_game_cross_zeroes_in_bot - game: cb, game_id: none
+2025-02-18 14:05:32,063 - my_bot - INFO - команда старт - None - None - start_bot - {}
+2025-02-18 14:05:35,492 - my_bot - INFO - пользоваатель написал сообщение - None - None - helper_in_menu - Выбор игры
+2025-02-18 14:05:36,956 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - None - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-18 14:05:39,555 - my_bot - INFO - пользователь начал поиск игры в крестики-нолики - None - {'state': 'in_game_cross_zeroes'} - alone_game - nothing
+2025-02-18 14:09:50,016 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-18 14:09:56,148 - my_bot - INFO - пользоваатель написал сообщение - None - None - helper_in_menu - Выбор игры
+2025-02-18 14:09:58,599 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - None - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-18 14:10:02,082 - my_bot - INFO - пользователь начал поиск игры в крестики-нолики - None - {'state': 'in_game_cross_zeroes'} - alone_game - nothing
+2025-02-18 14:10:06,335 - my_bot - INFO - пользоваатель написал сообщение - None - None - helper_in_menu - Выбор игры
+2025-02-18 14:10:07,721 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - None - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-18 14:10:09,168 - my_bot - INFO - пользователь начал поиск игры в крестики-нолики - None - {'state': 'in_game_cross_zeroes'} - alone_game - nothing
+2025-02-18 14:10:32,369 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-18 14:10:35,824 - my_bot - INFO - пользоваатель написал сообщение - None - None - helper_in_menu - Выбор игры
+2025-02-18 14:10:38,442 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - None - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-18 14:10:40,399 - my_bot - INFO - пользоваатель написал сообщение - None - None - helper_in_menu - Выбор игры
+2025-02-18 14:10:40,966 - my_bot - INFO - пользователь начал поиск игры в крестики-нолики - None - {'state': 'in_game_cross_zeroes'} - alone_game - nothing
+2025-02-18 14:10:42,584 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - None - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-18 14:10:43,959 - my_bot - INFO - пользователь начал поиск игры в крестики-нолики - None - {'state': 'in_game_cross_zeroes'} - alone_game - nothing

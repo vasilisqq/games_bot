@@ -2,6 +2,7 @@ from db.database import async_session_maker
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy import update, select, or_, case, func
 from db.models.user import Users
+from bot.logger import cl
 
 class DAO:
 
@@ -10,7 +11,10 @@ class DAO:
     async def create_and_return_user(cls, user_id:int, username):
         async with async_session_maker() as session:
             user = insert(Users).values(user_id=user_id, username=username)
-            user = user.on_conflict_do_nothing().returning(Users)
+            user = user.on_conflict_do_update(
+                index_elements=["user_id"],
+                set_={"username":username}
+            ).returning(Users)
             res = await session.execute(user)
             await session.commit()
             return res.scalar_one_or_none()
@@ -26,7 +30,13 @@ class DAO:
                 raiting_cross_zeroes=func.greatest(0, Users.raiting_cross_zeroes-8))
             await session.execute(user)
             await session.commit()
-
+            cl.custom_logger.info(
+        "у пользователей изменен рейтинг в крестики-нолики",
+        extra={"username": [user_id1, user_id2],
+               "state": "None",
+               "handler_name": "player_win_and_loose",
+               "params": {}}
+    )
 
     @classmethod
     async def get_two_raiting(cls, user_id1:int, user_id2: int) -> list[int]:
@@ -36,7 +46,7 @@ class DAO:
             )
             answer = await session.execute(query)
             return [item for item in answer.scalars()]
-
+            
 
     @classmethod
     async def wordlie_change_rait(cls, user_id, rait):
@@ -45,6 +55,13 @@ class DAO:
                 raiting_wordlie=func.greatest(0, Users.raiting_wordlie+rait))
             await session.execute(user)
             await session.commit()
+            cl.custom_logger.info(
+        "у пользователя изменен рейтинг wordlie",
+        extra={"username": user_id,
+               "state": "None",
+               "handler_name": "wordlie_change_rait",
+               "params": {}}
+    )
 
     
     @classmethod

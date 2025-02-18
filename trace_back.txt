@@ -1,0 +1,51 @@
+Traceback (most recent call last):
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/utilites/botGames/bot/middlewares/user_middleware.py", line 30, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 174, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/utilites/botGames/bot/callbacks/cross_zeroes_callBack.py", line 28, in mark_button
+    game.crossZeroes.scheduler.remove_job(query.inline_message_id)
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/apscheduler/schedulers/base.py", line 722, in remove_job
+    raise JobLookupError(job_id)
+apscheduler.jobstores.base.JobLookupError: 'No job by the id of None was found'

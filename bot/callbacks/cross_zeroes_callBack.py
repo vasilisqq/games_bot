@@ -217,7 +217,7 @@ async def mark_button(query: CallbackQuery):
                                        kwargs = {"query": query, "properties": game.crossZeroes.rooms[query.data[1:]]},
                                        id=query.data[1:])
                 cl.custom_logger.info(
-                f"пользователь сделал ход на клетку {query.data[0]+1}",
+                f"пользователь сделал ход на клетку {query.data[0]}",
                     extra={"username": query.from_user.username,
                     "state": "idk",
                     "handler_name": "mark_button",

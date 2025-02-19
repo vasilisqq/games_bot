@@ -39,7 +39,7 @@ async def new_user(iquery: InlineQuery) -> None:
     cache_time=1)
     cl.custom_logger.info(
         "пользователь тегнул бота в чате",
-        extra={"username": iquery.from_user.username,
+        extra={"username": iquery.from_user.id,
                "state": "None",
                "handler_name": "new_user",
                "params":"{}"}
@@ -48,14 +48,15 @@ async def new_user(iquery: InlineQuery) -> None:
 
 #сюда приходит то, что пользователь отправил в предыдущем запросе
 @router.chosen_inline_result()
-async def f(iquery: ChosenInlineResult, user) -> None:
+async def f(iquery: ChosenInlineResult) -> None:
     k = create_cross_aeroes()
-    await game.crossZeroes.create__private_room(iquery.from_user.username, k, iquery.inline_message_id, user)
+    await game.crossZeroes.create__private_room(iquery.from_user.id, k, iquery.inline_message_id)
     await iquery.bot.edit_message_text(inline_message_id=iquery.inline_message_id, 
-                                       text=(f"игра в крестики-нолики\n\n --> {user.username} X \n ? O") if 
-                                       game.crossZeroes.rooms[iquery.inline_message_id]["first_player"] == user else 
-                                       (f"игра в крестики-нолики\n\n {user.username} O \n --> ? X"),
-                                       reply_markup=k)
+                                       text=(f'игра в крестики-нолики\n\n --> <a href="tg://user?id={iquery.from_user.id}"> {iquery.from_user.first_name} </a> X \n ? O') if 
+                                       game.crossZeroes.rooms[iquery.inline_message_id]["first_player"] == iquery.from_user.id else 
+                                       (f'игра в крестики-нолики\n\n <a href="tg://user?id={iquery.from_user.id}"> {iquery.from_user.first_name} </a> O \n --> ? X'),
+                                       reply_markup=k,
+                                       parse_mode="HTML")
     game.crossZeroes.scheduler.add_job(kick_game,
                                        trigger="interval",
                                        minutes=1,

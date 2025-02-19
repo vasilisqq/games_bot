@@ -64,3 +64,10 @@
 2025-02-18 16:30:12,213 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
 2025-02-18 16:30:14,373 - my_bot - INFO - пользователь тегнул бота в чате - vasilisqqe - None - new_user - {}
 2025-02-18 16:30:16,465 - my_bot - INFO - пользователь выбрал что-то - 814237754 - None - f - d5c7
+2025-02-19 18:24:12,522 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-19 18:24:28,912 - my_bot - INFO - команда старт - yanahds - None - start_bot - {}
+2025-02-19 18:30:23,143 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-19 18:30:27,392 - my_bot - INFO - команда старт - yanahds - None - start_bot - {}
+2025-02-19 18:44:19,655 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-19 18:44:39,717 - my_bot - INFO - пользователь тегнул бота в чате - 6387547653 - None - new_user - {}
+2025-02-19 18:44:42,352 - my_bot - INFO - пользователь выбрал что-то - 6387547653 - None - f - 9cca

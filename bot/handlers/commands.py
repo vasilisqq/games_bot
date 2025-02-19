@@ -26,6 +26,9 @@ async def start_bot(message: Message):
         reply_markup=choose_game_or_else,
         message_effect_id="5159385139981059251"
     )
+    await message.answer(
+        f'<a href="tg://user?id={message.from_user.id}"> {message.from_user.first_name} </a>',
+        parse_mode="HTML")
 
 
 @router.message(Command("exit"))

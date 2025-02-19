@@ -1243,3 +1243,22 @@ AttributeError: 'NoneType' object has no attribute 'from_user'
 2025-02-18 16:31:19,431 - aiogram.dispatcher - WARNING - Received SIGINT signal
 2025-02-18 16:31:19,432 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
 2025-02-18 16:31:19,432 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-19 18:24:12,523 - aiogram.dispatcher - INFO - Start polling
+2025-02-19 18:24:12,583 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-19 18:24:31,616 - aiogram.event - INFO - Update id=241309783 is handled. Duration 2766 ms by bot id=7722417104
+2025-02-19 18:30:18,842 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-19 18:30:18,843 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-19 18:30:18,843 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-19 18:30:23,144 - aiogram.dispatcher - INFO - Start polling
+2025-02-19 18:30:23,203 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-19 18:30:29,720 - aiogram.event - INFO - Update id=241309784 is handled. Duration 2384 ms by bot id=7722417104
+2025-02-19 18:32:32,354 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-19 18:32:32,355 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-19 18:32:32,356 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-19 18:44:19,656 - aiogram.dispatcher - INFO - Start polling
+2025-02-19 18:44:19,719 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-19 18:44:39,718 - aiogram.event - INFO - Update id=241309785 is handled. Duration 256 ms by bot id=7722417104
+2025-02-19 18:44:42,352 - aiogram.event - INFO - Update id=241309786 is handled. Duration 419 ms by bot id=7722417104
+2025-02-19 18:45:02,653 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-19 18:45:02,654 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-19 18:45:02,655 - aiogram.dispatcher - INFO - Polling stopped

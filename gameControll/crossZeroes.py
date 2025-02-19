@@ -10,12 +10,11 @@ class CrossZeroes:
     rooms: dict = {}
     open_rooms_listener: str = None
     scheduler = AsyncIOScheduler(timezone="Europe/Moscow")
-    async def create__private_room(self, username: str, 
+    async def create__private_room(self, user_id: str, 
                                    keyboard: InlineKeyboardMarkup, 
                                    inline:str,
-                                   user,
                                    reload=False) -> None:
-        players = self.rooms[inline]["players"] if reload else [user, None]
+        players = self.rooms[inline]["players"] if reload else [user_id, None]
         first = random.choice(players)
         self.rooms.update({inline: {"players": players,
                                             "first_player": first,

@@ -21,11 +21,8 @@ class UserMiddleware(BaseMiddleware):
             or event.chosen_inline_result
         )
         if not current_evenr:
-            return
-        if current_evenr.from_user.username:
-            username = current_evenr.from_user.username
-        else:
-            username = current_evenr.from_user.first_name 
-        user = await DAO.create_and_return_user(current_evenr.from_user.id, username)
-        data["user"] = user
+            return 
+        await DAO.create_and_return_user(
+            current_evenr.from_user.id, 
+            current_evenr.from_user.first_name)
         return await handler(event, data)

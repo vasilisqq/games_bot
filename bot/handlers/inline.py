@@ -10,7 +10,7 @@ from bot.keyboards.inline_keyboard import create_cross_aeroes
 from gameControll.game import game
 from bot.schedulers.cross_zeroes import kick_game
 from bot.logger import cl
-
+from bot.texts import create_user_name
 
 router = Router()
 keyboard = create_cross_aeroes()
@@ -48,13 +48,13 @@ async def new_user(iquery: InlineQuery) -> None:
 
 #сюда приходит то, что пользователь отправил в предыдущем запросе
 @router.chosen_inline_result()
-async def f(iquery: ChosenInlineResult) -> None:
+async def f(iquery: ChosenInlineResult,user) -> None:
     k = create_cross_aeroes()
-    await game.crossZeroes.create__private_room(iquery.from_user.id, k, iquery.inline_message_id)
+    await game.crossZeroes.create__private_room(user, k, iquery.inline_message_id)
     await iquery.bot.edit_message_text(inline_message_id=iquery.inline_message_id, 
-                                       text=(f'игра в крестики-нолики\n\n --> <a href="tg://user?id={iquery.from_user.id}"> {iquery.from_user.first_name} </a> X \n ? O') if 
-                                       game.crossZeroes.rooms[iquery.inline_message_id]["first_player"] == iquery.from_user.id else 
-                                       (f'игра в крестики-нолики\n\n <a href="tg://user?id={iquery.from_user.id}"> {iquery.from_user.first_name} </a> O \n --> ? X'),
+                                       text=(f'игра в крестики-нолики\n\n --> {create_user_name(user)} X \n ? O') if 
+                                       game.crossZeroes.rooms[iquery.inline_message_id]["first_player"] is not None else 
+                                       (f'игра в крестики-нолики\n\n {create_user_name(user)} O \n --> ? X'),
                                        reply_markup=k,
                                        parse_mode="HTML")
     game.crossZeroes.scheduler.add_job(kick_game,

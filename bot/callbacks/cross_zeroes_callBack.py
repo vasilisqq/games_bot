@@ -12,6 +12,8 @@ from bot.config import settings
 import random
 from aiogram.types import FSInputFile
 from bot.logger import cl
+from bot.texts import create_user_name
+
 router = Router()
 
 @router.callback_query(F.data[0].in_([str(i) for i in range(9)]))
@@ -19,14 +21,14 @@ async def mark_button(query: CallbackQuery, user):
     if len(query.data) ==1:
         properties = game.crossZeroes.rooms[query.inline_message_id]
         # добавление второго пользователя
-        if properties["players"][1] == None and properties["move"] == None and properties["players"][0] != user:
+        if properties["players"][1] == None and properties["move"] == None and properties["players"][0].user_id != user.user_id:
             properties["players"][1] = user
             if properties["first_player"] == None:
                 properties["first_player"] = user
             properties["move"] = user
         if properties["move"].user_id == user.user_id:
             game.crossZeroes.scheduler.remove_job(query.inline_message_id)
-            if properties["first_player"] == user:
+            if properties["first_player"].user_id == user.user_id:
                 symbol = "X"
             else:
                 symbol = "O"
@@ -52,10 +54,11 @@ async def mark_button(query: CallbackQuery, user):
                     )
                 return
             if await game.crossZeroes.check_win(query.inline_message_id):
-                text = f"Победил @{user.username}"
+                text = f"Победил {create_user_name(user)}"
                 await query.bot.edit_message_text(text=text, 
                                                 inline_message_id=query.inline_message_id,
-                                                reply_markup=properties["keyboard"])
+                                                reply_markup=properties["keyboard"],
+                                                parse_mode="HTML")
                 game.crossZeroes.scheduler.add_job(kick_game,
                                         trigger="interval",
                                         minutes=1,
@@ -63,7 +66,7 @@ async def mark_button(query: CallbackQuery, user):
                                         id=query.inline_message_id)
                 cl.custom_logger.info(
                 "пользователь выиграл",
-                    extra={"username": query.from_user.username,
+                    extra={"username": query.from_user.id,
                     "state": "cleared",
                     "handler_name": "mark_button",
                     "params":f"game: inline, game_id: {query.inline_message_id}"}
@@ -74,7 +77,8 @@ async def mark_button(query: CallbackQuery, user):
                                                     callback_data="reload_cross_zeroes_inline"), return_to_bot])
                 await query.bot.edit_message_text(text=text, 
                                                 inline_message_id=query.inline_message_id,
-                                                reply_markup=properties["keyboard"])
+                                                reply_markup=properties["keyboard"],
+                                                parse_mode="HTML")
                 game.crossZeroes.scheduler.add_job(kick_game,
                                         trigger="interval",
                                         minutes=1,
@@ -88,19 +92,20 @@ async def mark_button(query: CallbackQuery, user):
                     "params":f"game: inline, game_id: {query.inline_message_id}"}
                     )
             else:
-                properties["move"] = properties["players"][1 - properties["players"].index(user)] # ???????????
-                if properties["move"] == properties["players"][0]:
-                    if properties["first_player"] == properties["players"][0]:
-                        text = (f"игра в крестики-нолики\n\n --> {properties["players"][0].username} X \n {properties["players"][1].username} O")
+                properties["move"] = properties["players"][1] if properties["players"][0].user_id == user.user_id else properties["players"][0]
+                if properties["move"]!= None and properties["move"].user_id == properties["players"][0].user_id:
+                    if properties["first_player"].user_id == properties["players"][0].user_id:
+                        text = (f"игра в крестики-нолики\n\n --> {create_user_name(properties["players"][0])} X \n {create_user_name(properties["players"][1])} O")
                     else:
-                        text = (f"игра в крестики-нолики\n\n --> {properties["players"][0].username} O \n {properties["players"][1].username} X")
+                        text = (f"игра в крестики-нолики\n\n --> {create_user_name(properties["players"][0])} O \n {create_user_name(properties["players"][1])} X")
                 else:
-                    if properties["first_player"] == properties["players"][0]:
-                        text = (f"игра в крестики-нолики\n\n {properties["players"][0].username} X \n--> {properties["players"][1].username} O")
+                    if properties["first_player"].user_id == properties["players"][0].user_id:
+                        text = (f"игра в крестики-нолики\n\n {create_user_name(properties["players"][0])} X \n--> {create_user_name(properties["players"][1])} O")
                     else:
-                        text = (f"игра в крестики-нолики\n\n {properties["players"][0].username} O \n--> {properties["players"][1].username} X")
+                        text = (f"игра в крестики-нолики\n\n {create_user_name(properties["players"][0])} O \n--> {create_user_name(properties["players"][1])} X")
                 await query.bot.edit_message_text(inline_message_id=query.inline_message_id,
-                                                text=text, reply_markup=properties["keyboard"])
+                                                text=text, reply_markup=properties["keyboard"],
+                                                parse_mode="HTML")
                 game.crossZeroes.scheduler.add_job(kick_game,
                                         trigger="interval",
                                         minutes=1,
@@ -228,7 +233,7 @@ async def mark_button(query: CallbackQuery, user):
 
 
 @router.callback_query(F.data == "reload_cross_zeroes_inline")
-async def reload_game(iquery: CallbackQuery):
+async def reload_game(iquery: CallbackQuery, user):
     game.crossZeroes.scheduler.remove_job(iquery.inline_message_id)
     game.crossZeroes.scheduler.add_job(kick_game,
                                        trigger="interval",
@@ -236,16 +241,17 @@ async def reload_game(iquery: CallbackQuery):
                                        kwargs = {"query": iquery},
                                        id=iquery.inline_message_id)
     k = create_cross_aeroes()
-    await game.crossZeroes.create__private_room(iquery.from_user.username, k, iquery.inline_message_id, reload=True)
+    await game.crossZeroes.create__private_room(user, k, iquery.inline_message_id, reload=True)
     players = game.crossZeroes.rooms[iquery.inline_message_id]["players"]
     await iquery.bot.edit_message_text(inline_message_id=iquery.inline_message_id, 
-                                       text=(f"игра в крестики-нолики\n\n --> @{players[0]} X \n @{players[1]} O") if 
-                                       game.crossZeroes.rooms[iquery.inline_message_id]["first_player"] == players[0] else 
-                                       (f"игра в крестики-нолики\n\n @{players[0]} O \n --> @{players[1]} X"),
-                                       reply_markup=k)
+                                       text=(f"игра в крестики-нолики\n\n --> {create_user_name(players[0])} X \n {create_user_name(players[1])} O") if 
+                                       game.crossZeroes.rooms[iquery.inline_message_id]["first_player"].user_id == players[0].user_id else 
+                                       (f"игра в крестики-нолики\n\n {create_user_name(players[1])} O \n --> {create_user_name(players[1])} X"),
+                                       reply_markup=k,
+                                       parse_mode="HTML")
     cl.custom_logger.info(
                 "пользователь начал игру в крестики нолики заново",
-                    extra={"username": iquery.from_user.username,
+                    extra={"username": iquery.from_user.id,
                     "state": "idk",
                     "handler_name": "reload_game",
                     "params":f"game: inline, game_id: {iquery.inline_message_id}"}

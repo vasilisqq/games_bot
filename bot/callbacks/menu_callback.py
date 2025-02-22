@@ -42,7 +42,7 @@ async def choose_mate(call: CallbackQuery, state: FSMContext):
                               reply_markup=friend_or_alone_ni)
         cl.custom_logger.info(
                 f"пользователь нажал на кнопку вордли",
-                    extra={"username": call.from_user.username,
+                    extra={"username": call.from_user.id,
                     "state": await state.get_data(),
                     "handler_name": "choose_mate",
                     "params":"nothing"}
@@ -51,49 +51,51 @@ async def choose_mate(call: CallbackQuery, state: FSMContext):
         await call.message.answer("у тебя есть игра, закончи ее прежде, чем начинать новую")
         cl.custom_logger.info(
                 f"пользователь попытался войти в вордли, но у него есть начатая игра",
-                    extra={"username": call.from_user.username,
+                    extra={"username": call.from_user.id,
                     "state": await state.get_data(),
                     "handler_name": "choose_mate",
                     "params":"nothing"}
                     )
 
 @router.callback_query(F.data == "game_alone")
-async def alone_game(call: CallbackQuery, state: FSMContext):
+async def alone_game(call: CallbackQuery, state: FSMContext, user):
     await call.message.delete()
     a:dict[str, str] = await state.get_data()
     if a["state"].startswith("in_game"):
         await call.message.answer("у тебя есть игра, закончи ее прежде, чем начинать новую")
         cl.custom_logger.info(
                 f"пользователь попытался поиграть в крестики-нолики один, но у него уже ест игра",
-                    extra={"username": call.from_user.username,
+                    extra={"username": call.from_user.id,
                     "state": await state.get_data(),
                     "handler_name": "alone_game",
                     "params":"nothing"}
                     )
     else:
         await call.message.answer("идет поиск противника")
-        a = await game.crossZeroes.add_to_listener(call.from_user)
+        a = await game.crossZeroes.add_to_listener(user)
         await state.update_data(state="in_game_cross_zeroes")
         if a != None:
             m = await call.message.answer(text=a[0],
-                                        reply_markup=a[1])
+                                        reply_markup=a[1],
+                                        parse_mode="HTML")
             m1 = await call.bot.send_message(
                 chat_id=a[2],
                 text=a[0],
-                reply_markup=a[1]
+                reply_markup=a[1],
+                parse_mode="HTML"
             )
-            game.crossZeroes.rooms[call.from_user.username]["message_id"] = {
+            game.crossZeroes.rooms[call.from_user.id]["message_id"] = {
                 call.from_user.id:m.message_id, a[2]:m1.message_id}
             game.crossZeroes.scheduler.add_job(kick_open_game,
                                         trigger="interval",
                                         minutes=1,
-                                        kwargs = {"query": call, "properties": game.crossZeroes.rooms[call.from_user.username], "first":True},
-                                        id=call.from_user.username)
+                                        kwargs = {"query": call, "properties": game.crossZeroes.rooms[call.from_user.id], "first":True},
+                                        id=str(call.from_user.id))
             if not game.crossZeroes.scheduler.running:
                 game.crossZeroes.scheduler.start()
         cl.custom_logger.info(
                 f"пользователь начал поиск игры в крестики-нолики",
-                    extra={"username": call.from_user.username,
+                    extra={"username": call.from_user.id,
                     "state": await state.get_data(),
                     "handler_name": "alone_game",
                     "params":"nothing"}

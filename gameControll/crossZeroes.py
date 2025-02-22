@@ -3,7 +3,7 @@ import random
 from aiogram.types import InlineKeyboardButton
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from bot.keyboards.inline_keyboard import create_cross_aeroes, return_to_bot
-from aiogram.types import User
+from bot.texts import create_user_name
 from db.DAO import DAO
 class CrossZeroes:
     symbols = "XO"
@@ -122,24 +122,24 @@ class CrossZeroes:
                                                  callback_data="reload_cross_zeroes_inline"), return_to_bot])
         return field
         
-    async def add_to_listener(self, user: User) -> list[str, InlineKeyboardMarkup, int]:
+    async def add_to_listener(self, user) -> list[str, InlineKeyboardMarkup, int]:
         if self.open_rooms_listener is not None:
             user1, user2 = user, self.open_rooms_listener
             self.open_rooms_listener = None
-            rait = await DAO.get_two_raiting(user1.id, user2.id)
-            f = random.choice([[user1.username, user1.id], [user2.username, user2.id]])
-            k = create_cross_aeroes(user1.username)
-            self.rooms.update({user1.username: {"players": [[user1.username, user1.id], [user2.username, user2.id]],
+            rait = await DAO.get_two_raiting(user1.user_id, user2.user_id)
+            f = random.choice([user1, user2])
+            k = create_cross_aeroes(str(user1.user_id))
+            self.rooms.update({user1.user_id: {"players": [user1, user2],
                                             "first_player": f,
-                                            "move": f[0], 
+                                            "move": f, 
                                             "keyboard":k,
                                             "message_id": None, 
                                             "rait": rait
                                             }})
-            text=((f"игра в крестики-нолики\n\n --> @{user1.username} ({rait[0]}) X \n @{user2.username} ({rait[1]}) O") if 
-                                       f[0] == user1.username else 
-                                       (f"игра в крестики-нолики\n\n @{user1.username} ({rait[0]}) O \n --> @{user2.username} ({rait[1]}) X"))
-            return [text, k, user2.id]
+            text=((f"игра в крестики-нолики\n\n --> {create_user_name(user1)} ({rait[0]}) X \n {create_user_name(user2)} ({rait[1]}) O") if 
+                                       f.user_id == user1.user_id else 
+                                       (f"игра в крестики-нолики\n\n {create_user_name(user1)} ({rait[0]}) O \n --> {create_user_name(user2)} ({rait[1]}) X"))
+            return [text, k, user2.user_id]
         else:
             self.open_rooms_listener = user
             return None    

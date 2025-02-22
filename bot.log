@@ -158,3 +158,93 @@
 2025-02-21 19:03:38,865 - my_bot - INFO - пользователь сделал ход на клетку 7 - 6642322907 - cleared - mark_button - game: inline, game_id: AQAAANvN6YsBAAAAExoAALr5K20fs2xk
 2025-02-21 19:03:39,894 - my_bot - INFO - ничья в игре в крестики нолики - 814237754 - cleared - mark_button - game: inline, game_id: AQAAANvN6YsBAAAAExoAALr5K20fs2xk
 2025-02-21 19:03:42,041 - my_bot - INFO - пользователь начал игру в крестики нолики заново - 814237754 - idk - reload_game - game: inline, game_id: AQAAANvN6YsBAAAAExoAALr5K20fs2xk
+2025-02-22 08:46:24,725 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-22 08:47:59,974 - my_bot - INFO - команда старт - vasilisqqe - None - start_bot - {}
+2025-02-22 08:48:02,969 - my_bot - INFO - пользоваатель написал сообщение - vasilisqqe - None - helper_in_menu - Выбор игры
+2025-02-22 08:48:19,451 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - vasilisqqe - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-22 08:48:21,679 - my_bot - INFO - пользователь начал поиск игры в крестики-нолики - 814237754 - {'state': 'in_game_cross_zeroes'} - alone_game - nothing
+2025-02-22 08:48:25,858 - my_bot - INFO - пользоваатель написал сообщение - yanahds - None - helper_in_menu - Выбор игры
+2025-02-22 08:48:28,349 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - yanahds - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-22 08:50:31,850 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-22 08:50:39,142 - my_bot - INFO - пользоваатель написал сообщение - vasilisqqe - None - helper_in_menu - Выбор игры
+2025-02-22 08:50:42,159 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - vasilisqqe - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-22 08:50:43,819 - my_bot - INFO - пользователь начал поиск игры в крестики-нолики - 814237754 - {'state': 'in_game_cross_zeroes'} - alone_game - nothing
+2025-02-22 08:50:49,309 - my_bot - INFO - пользоваатель написал сообщение - yanahds - None - helper_in_menu - Выбор игры
+2025-02-22 08:50:52,675 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - yanahds - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-22 08:52:07,691 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-22 08:52:50,441 - my_bot - INFO - пользоваатель написал сообщение - vasilisqqe - None - helper_in_menu - Выбор игры
+2025-02-22 08:52:52,903 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - vasilisqqe - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-22 08:52:54,695 - my_bot - INFO - пользователь начал поиск игры в крестики-нолики - 814237754 - {'state': 'in_game_cross_zeroes'} - alone_game - nothing
+2025-02-22 08:52:59,625 - my_bot - INFO - пользоваатель написал сообщение - yanahds - None - helper_in_menu - Выбор игры
+2025-02-22 08:53:03,513 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - yanahds - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-22 08:54:52,994 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-22 08:54:58,176 - my_bot - INFO - пользоваатель написал сообщение - vasilisqqe - None - helper_in_menu - Выбор игры
+2025-02-22 08:55:00,299 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - vasilisqqe - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-22 08:55:01,580 - my_bot - INFO - пользователь начал поиск игры в крестики-нолики - 814237754 - {'state': 'in_game_cross_zeroes'} - alone_game - nothing
+2025-02-22 08:55:06,828 - my_bot - INFO - пользоваатель написал сообщение - yanahds - None - helper_in_menu - Выбор игры
+2025-02-22 08:55:09,910 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - yanahds - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-22 08:55:13,293 - my_bot - INFO - пользователь начал поиск игры в крестики-нолики - 6387547653 - {'state': 'in_game_cross_zeroes'} - alone_game - nothing
+2025-02-22 08:57:21,783 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-22 08:57:26,534 - my_bot - INFO - пользоваатель написал сообщение - vasilisqqe - None - helper_in_menu - Выбор игры
+2025-02-22 08:57:28,667 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - vasilisqqe - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-22 08:57:30,821 - my_bot - INFO - пользователь начал поиск игры в крестики-нолики - 814237754 - {'state': 'in_game_cross_zeroes'} - alone_game - nothing
+2025-02-22 08:57:34,430 - my_bot - INFO - пользоваатель написал сообщение - yanahds - None - helper_in_menu - Выбор игры
+2025-02-22 08:57:37,433 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - yanahds - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-22 08:59:00,806 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-22 08:59:05,080 - my_bot - INFO - пользоваатель написал сообщение - vasilisqqe - None - helper_in_menu - Выбор игры
+2025-02-22 08:59:07,435 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - vasilisqqe - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-22 08:59:09,345 - my_bot - INFO - пользователь начал поиск игры в крестики-нолики - 814237754 - {'state': 'in_game_cross_zeroes'} - alone_game - nothing
+2025-02-22 08:59:14,446 - my_bot - INFO - пользоваатель написал сообщение - yanahds - None - helper_in_menu - Выбор игры
+2025-02-22 08:59:17,081 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - yanahds - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-22 08:59:21,194 - my_bot - INFO - пользователь начал поиск игры в крестики-нолики - 6387547653 - {'state': 'in_game_cross_zeroes'} - alone_game - nothing
+2025-02-22 08:59:27,090 - my_bot - INFO - пользователь сделал ход на клетку 0 - 814237754 - idk - mark_button - game: cb, game_id: 6387547653
+2025-02-22 09:00:38,498 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-22 09:00:42,127 - my_bot - INFO - пользоваатель написал сообщение - vasilisqqe - None - helper_in_menu - Выбор игры
+2025-02-22 09:00:44,619 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - vasilisqqe - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-22 09:00:47,101 - my_bot - INFO - пользователь начал поиск игры в крестики-нолики - 814237754 - {'state': 'in_game_cross_zeroes'} - alone_game - nothing
+2025-02-22 09:00:51,710 - my_bot - INFO - пользоваатель написал сообщение - yanahds - None - helper_in_menu - Выбор игры
+2025-02-22 09:00:55,755 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - yanahds - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-22 09:00:59,337 - my_bot - INFO - пользователь начал поиск игры в крестики-нолики - 6387547653 - {'state': 'in_game_cross_zeroes'} - alone_game - nothing
+2025-02-22 09:01:04,603 - my_bot - INFO - пользователь тегнул бота в чате - 6387547653 - None - new_user - {}
+2025-02-22 09:01:07,101 - my_bot - INFO - пользователь выбрал что-то - 6387547653 - None - f - 8ea4
+2025-02-22 09:01:24,580 - my_bot - INFO - пользователь сделал ход на клетку 0 - 6387547653 - idk - mark_button - game: cb, game_id: 6387547653
+2025-02-22 09:01:26,617 - my_bot - INFO - пользователь сделал ход на клетку 3 - 814237754 - idk - mark_button - game: cb, game_id: 6387547653
+2025-02-22 09:01:28,656 - my_bot - INFO - пользователь сделал ход на клетку 1 - 6387547653 - idk - mark_button - game: cb, game_id: 6387547653
+2025-02-22 09:01:30,273 - my_bot - INFO - пользователь сделал ход на клетку 4 - 814237754 - idk - mark_button - game: cb, game_id: 6387547653
+2025-02-22 09:01:32,876 - my_bot - INFO - у пользователей изменен рейтинг в крестики-нолики - [6387547653, 814237754] - None - player_win_and_loose - {}
+2025-02-22 09:01:32,877 - my_bot - INFO - пользователь победил - 6387547653 - idk - mark_button - game: cb, game_id: 6387547653
+2025-02-22 09:01:37,209 - my_bot - INFO - пользователь начал поиск в крестики нолики - 6387547653 - idk - new_game_cross_zeroes_in_bot - game: cb, game_id: none
+2025-02-22 09:02:07,487 - my_bot - INFO - игра в крестики нолики inline завершена досрочно id: AQAAAAU-unwBAAAAikcAALNYGU03KC2P - yanahds - None - kick_game - {}
+2025-02-22 09:02:26,195 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-22 09:02:32,150 - my_bot - INFO - пользоваатель написал сообщение - vasilisqqe - None - helper_in_menu - Выбор игры
+2025-02-22 09:02:34,097 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - vasilisqqe - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-22 09:02:35,827 - my_bot - INFO - пользователь начал поиск игры в крестики-нолики - 814237754 - {'state': 'in_game_cross_zeroes'} - alone_game - nothing
+2025-02-22 09:02:40,069 - my_bot - INFO - пользоваатель написал сообщение - yanahds - None - helper_in_menu - Выбор игры
+2025-02-22 09:02:42,558 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - yanahds - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-22 09:02:45,504 - my_bot - INFO - пользователь начал поиск игры в крестики-нолики - 6387547653 - {'state': 'in_game_cross_zeroes'} - alone_game - nothing
+2025-02-22 09:02:54,378 - my_bot - INFO - пользователь тегнул бота в чате - 6387547653 - None - new_user - {}
+2025-02-22 09:02:57,697 - my_bot - INFO - пользователь выбрал что-то - 6387547653 - None - f - b22e
+2025-02-22 09:03:05,241 - my_bot - INFO - пользователь сделал ход на клетку 0 - 814237754 - cleared - mark_button - game: inline, game_id: AQAAAAU-unwBAAAAlUcAAOTB1tEo0K1w
+2025-02-22 09:03:13,614 - my_bot - INFO - пользователь сделал ход на клетку 0 - 6387547653 - idk - mark_button - game: cb, game_id: 6387547653
+2025-02-22 09:03:15,869 - my_bot - INFO - пользователь сделал ход на клетку 3 - 814237754 - idk - mark_button - game: cb, game_id: 6387547653
+2025-02-22 09:03:17,856 - my_bot - INFO - пользователь сделал ход на клетку 1 - 6387547653 - idk - mark_button - game: cb, game_id: 6387547653
+2025-02-22 09:03:20,638 - my_bot - INFO - пользователь сделал ход на клетку 4 - 814237754 - idk - mark_button - game: cb, game_id: 6387547653
+2025-02-22 09:03:23,770 - my_bot - INFO - пользователь сделал ход на клетку 6 - 6387547653 - idk - mark_button - game: cb, game_id: 6387547653
+2025-02-22 09:03:26,041 - my_bot - INFO - у пользователей изменен рейтинг в крестики-нолики - [814237754, 814237754] - None - player_win_and_loose - {}
+2025-02-22 09:03:26,041 - my_bot - INFO - пользователь победил - 814237754 - idk - mark_button - game: cb, game_id: 6387547653
+2025-02-22 09:04:05,658 - my_bot - INFO - игра в крестики нолики inline завершена досрочно id: AQAAAAU-unwBAAAAlUcAAOTB1tEo0K1w - vasilisqqe - None - kick_game - {}
+2025-02-22 09:08:00,221 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-22 09:08:07,750 - my_bot - INFO - пользоваатель написал сообщение - vasilisqqe - None - helper_in_menu - Выбор игры
+2025-02-22 09:08:11,347 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - vasilisqqe - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-22 09:08:13,140 - my_bot - INFO - пользователь начал поиск игры в крестики-нолики - 814237754 - {'state': 'in_game_cross_zeroes'} - alone_game - nothing
+2025-02-22 09:08:21,266 - my_bot - INFO - команда старт - yanahds - None - start_bot - {}
+2025-02-22 09:08:27,199 - my_bot - INFO - пользоваатель написал сообщение - yanahds - None - helper_in_menu - Выбор игры
+2025-02-22 09:08:30,185 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - yanahds - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-22 09:09:18,689 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing
+2025-02-22 09:09:24,643 - my_bot - INFO - пользоваатель написал сообщение - vasilisqqe - None - helper_in_menu - Выбор игры
+2025-02-22 09:09:26,923 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - vasilisqqe - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-22 09:09:29,052 - my_bot - INFO - пользователь начал поиск игры в крестики-нолики - 814237754 - {'state': 'in_game_cross_zeroes'} - alone_game - nothing
+2025-02-22 09:09:34,526 - my_bot - INFO - пользоваатель написал сообщение - yanahds - None - helper_in_menu - Выбор игры
+2025-02-22 09:09:37,950 - my_bot - INFO - пользователь нажал на кнопку крестиков ноликов - yanahds - {'state': 'cross-zeroes'} - choose_mate_inline_games - nothing
+2025-02-22 09:09:40,956 - my_bot - INFO - пользователь начал поиск игры в крестики-нолики - 6387547653 - {'state': 'in_game_cross_zeroes'} - alone_game - nothing
+2025-02-22 09:10:37,317 - my_bot - DEBUG - Бот запущен - SYSTEM - nothing - MAIN - nothing

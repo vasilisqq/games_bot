@@ -1419,3 +1419,142 @@ AttributeError: 'NoneType' object has no attribute 'from_user'
 2025-02-21 19:03:46,188 - aiogram.dispatcher - WARNING - Received SIGINT signal
 2025-02-21 19:03:46,189 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
 2025-02-21 19:03:46,189 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-22 08:46:24,726 - aiogram.dispatcher - INFO - Start polling
+2025-02-22 08:46:24,797 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-22 08:48:01,469 - aiogram.event - INFO - Update id=241309875 is handled. Duration 1552 ms by bot id=7722417104
+2025-02-22 08:48:02,969 - aiogram.event - INFO - Update id=241309876 is handled. Duration 96 ms by bot id=7722417104
+2025-02-22 08:48:19,451 - aiogram.event - INFO - Update id=241309877 is handled. Duration 608 ms by bot id=7722417104
+2025-02-22 08:48:21,679 - aiogram.event - INFO - Update id=241309878 is handled. Duration 216 ms by bot id=7722417104
+2025-02-22 08:48:25,859 - aiogram.event - INFO - Update id=241309879 is handled. Duration 142 ms by bot id=7722417104
+2025-02-22 08:48:28,349 - aiogram.event - INFO - Update id=241309880 is handled. Duration 380 ms by bot id=7722417104
+2025-02-22 08:48:32,124 - aiogram.event - INFO - Update id=241309881 is handled. Duration 572 ms by bot id=7722417104
+2025-02-22 08:50:27,158 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-22 08:50:27,160 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-22 08:50:27,160 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-22 08:50:31,851 - aiogram.dispatcher - INFO - Start polling
+2025-02-22 08:50:31,922 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-22 08:50:39,142 - aiogram.event - INFO - Update id=241309882 is handled. Duration 289 ms by bot id=7722417104
+2025-02-22 08:50:42,160 - aiogram.event - INFO - Update id=241309883 is handled. Duration 904 ms by bot id=7722417104
+2025-02-22 08:50:43,819 - aiogram.event - INFO - Update id=241309884 is handled. Duration 171 ms by bot id=7722417104
+2025-02-22 08:50:49,309 - aiogram.event - INFO - Update id=241309885 is handled. Duration 125 ms by bot id=7722417104
+2025-02-22 08:50:52,676 - aiogram.event - INFO - Update id=241309886 is handled. Duration 417 ms by bot id=7722417104
+2025-02-22 08:50:56,534 - aiogram.event - INFO - Update id=241309887 is handled. Duration 1109 ms by bot id=7722417104
+2025-02-22 08:52:02,274 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-22 08:52:02,275 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-22 08:52:02,275 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-22 08:52:07,692 - aiogram.dispatcher - INFO - Start polling
+2025-02-22 08:52:07,764 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-22 08:52:50,442 - aiogram.event - INFO - Update id=241309888 is handled. Duration 326 ms by bot id=7722417104
+2025-02-22 08:52:52,903 - aiogram.event - INFO - Update id=241309889 is handled. Duration 461 ms by bot id=7722417104
+2025-02-22 08:52:54,695 - aiogram.event - INFO - Update id=241309890 is handled. Duration 172 ms by bot id=7722417104
+2025-02-22 08:52:59,625 - aiogram.event - INFO - Update id=241309891 is handled. Duration 90 ms by bot id=7722417104
+2025-02-22 08:53:03,514 - aiogram.event - INFO - Update id=241309892 is handled. Duration 394 ms by bot id=7722417104
+2025-02-22 08:53:07,064 - aiogram.event - INFO - Update id=241309893 is handled. Duration 666 ms by bot id=7722417104
+2025-02-22 08:54:48,076 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-22 08:54:48,077 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-22 08:54:48,077 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-22 08:54:52,995 - aiogram.dispatcher - INFO - Start polling
+2025-02-22 08:54:53,069 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-22 08:54:58,176 - aiogram.event - INFO - Update id=241309894 is handled. Duration 324 ms by bot id=7722417104
+2025-02-22 08:55:00,299 - aiogram.event - INFO - Update id=241309895 is handled. Duration 517 ms by bot id=7722417104
+2025-02-22 08:55:01,581 - aiogram.event - INFO - Update id=241309896 is handled. Duration 189 ms by bot id=7722417104
+2025-02-22 08:55:06,829 - aiogram.event - INFO - Update id=241309897 is handled. Duration 100 ms by bot id=7722417104
+2025-02-22 08:55:09,910 - aiogram.event - INFO - Update id=241309898 is handled. Duration 526 ms by bot id=7722417104
+2025-02-22 08:55:13,293 - aiogram.event - INFO - Update id=241309899 is handled. Duration 416 ms by bot id=7722417104
+2025-02-22 08:55:23,068 - aiogram.event - INFO - Update id=241309900 is handled. Duration 371 ms by bot id=7722417104
+2025-02-22 08:57:17,381 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-22 08:57:17,382 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-22 08:57:17,382 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-22 08:57:21,784 - aiogram.dispatcher - INFO - Start polling
+2025-02-22 08:57:21,849 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-22 08:57:26,535 - aiogram.event - INFO - Update id=241309901 is handled. Duration 261 ms by bot id=7722417104
+2025-02-22 08:57:28,668 - aiogram.event - INFO - Update id=241309902 is handled. Duration 593 ms by bot id=7722417104
+2025-02-22 08:57:30,821 - aiogram.event - INFO - Update id=241309903 is handled. Duration 171 ms by bot id=7722417104
+2025-02-22 08:57:34,431 - aiogram.event - INFO - Update id=241309904 is handled. Duration 141 ms by bot id=7722417104
+2025-02-22 08:57:37,433 - aiogram.event - INFO - Update id=241309905 is handled. Duration 386 ms by bot id=7722417104
+2025-02-22 08:57:40,833 - aiogram.event - INFO - Update id=241309906 is handled. Duration 715 ms by bot id=7722417104
+2025-02-22 08:58:56,702 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-22 08:58:56,704 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-22 08:58:56,704 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-22 08:59:00,807 - aiogram.dispatcher - INFO - Start polling
+2025-02-22 08:59:00,873 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-22 08:59:05,080 - aiogram.event - INFO - Update id=241309907 is handled. Duration 274 ms by bot id=7722417104
+2025-02-22 08:59:07,435 - aiogram.event - INFO - Update id=241309908 is handled. Duration 585 ms by bot id=7722417104
+2025-02-22 08:59:09,345 - aiogram.event - INFO - Update id=241309909 is handled. Duration 200 ms by bot id=7722417104
+2025-02-22 08:59:14,446 - aiogram.event - INFO - Update id=241309910 is handled. Duration 118 ms by bot id=7722417104
+2025-02-22 08:59:17,081 - aiogram.event - INFO - Update id=241309911 is handled. Duration 399 ms by bot id=7722417104
+2025-02-22 08:59:21,194 - aiogram.event - INFO - Update id=241309912 is handled. Duration 414 ms by bot id=7722417104
+2025-02-22 08:59:27,090 - aiogram.event - INFO - Update id=241309913 is handled. Duration 257 ms by bot id=7722417104
+2025-02-22 09:00:33,850 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-22 09:00:33,852 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-22 09:00:33,852 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-22 09:00:38,499 - aiogram.dispatcher - INFO - Start polling
+2025-02-22 09:00:38,560 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-22 09:00:42,128 - aiogram.event - INFO - Update id=241309914 is handled. Duration 346 ms by bot id=7722417104
+2025-02-22 09:00:44,619 - aiogram.event - INFO - Update id=241309915 is handled. Duration 424 ms by bot id=7722417104
+2025-02-22 09:00:47,102 - aiogram.event - INFO - Update id=241309916 is handled. Duration 360 ms by bot id=7722417104
+2025-02-22 09:00:51,711 - aiogram.event - INFO - Update id=241309917 is handled. Duration 101 ms by bot id=7722417104
+2025-02-22 09:00:55,756 - aiogram.event - INFO - Update id=241309918 is handled. Duration 665 ms by bot id=7722417104
+2025-02-22 09:00:59,337 - aiogram.event - INFO - Update id=241309919 is handled. Duration 562 ms by bot id=7722417104
+2025-02-22 09:01:04,604 - aiogram.event - INFO - Update id=241309920 is handled. Duration 95 ms by bot id=7722417104
+2025-02-22 09:01:07,102 - aiogram.event - INFO - Update id=241309921 is handled. Duration 441 ms by bot id=7722417104
+2025-02-22 09:01:24,580 - aiogram.event - INFO - Update id=241309922 is handled. Duration 307 ms by bot id=7722417104
+2025-02-22 09:01:26,617 - aiogram.event - INFO - Update id=241309923 is handled. Duration 180 ms by bot id=7722417104
+2025-02-22 09:01:28,656 - aiogram.event - INFO - Update id=241309924 is handled. Duration 183 ms by bot id=7722417104
+2025-02-22 09:01:30,274 - aiogram.event - INFO - Update id=241309925 is handled. Duration 222 ms by bot id=7722417104
+2025-02-22 09:01:32,878 - aiogram.event - INFO - Update id=241309926 is handled. Duration 206 ms by bot id=7722417104
+2025-02-22 09:01:37,209 - aiogram.event - INFO - Update id=241309927 is handled. Duration 135 ms by bot id=7722417104
+2025-02-22 09:01:40,160 - aiogram.event - INFO - Update id=241309928 is handled. Duration 766 ms by bot id=7722417104
+2025-02-22 09:02:21,824 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-22 09:02:21,825 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-22 09:02:21,825 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-22 09:02:26,196 - aiogram.dispatcher - INFO - Start polling
+2025-02-22 09:02:26,260 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-22 09:02:32,150 - aiogram.event - INFO - Update id=241309929 is handled. Duration 269 ms by bot id=7722417104
+2025-02-22 09:02:34,098 - aiogram.event - INFO - Update id=241309930 is handled. Duration 422 ms by bot id=7722417104
+2025-02-22 09:02:35,827 - aiogram.event - INFO - Update id=241309931 is handled. Duration 178 ms by bot id=7722417104
+2025-02-22 09:02:40,069 - aiogram.event - INFO - Update id=241309932 is handled. Duration 121 ms by bot id=7722417104
+2025-02-22 09:02:42,558 - aiogram.event - INFO - Update id=241309933 is handled. Duration 455 ms by bot id=7722417104
+2025-02-22 09:02:45,504 - aiogram.event - INFO - Update id=241309934 is handled. Duration 434 ms by bot id=7722417104
+2025-02-22 09:02:54,379 - aiogram.event - INFO - Update id=241309935 is handled. Duration 93 ms by bot id=7722417104
+2025-02-22 09:02:57,698 - aiogram.event - INFO - Update id=241309936 is handled. Duration 340 ms by bot id=7722417104
+2025-02-22 09:03:05,241 - aiogram.event - INFO - Update id=241309937 is handled. Duration 294 ms by bot id=7722417104
+2025-02-22 09:03:13,614 - aiogram.event - INFO - Update id=241309938 is handled. Duration 180 ms by bot id=7722417104
+2025-02-22 09:03:15,870 - aiogram.event - INFO - Update id=241309939 is handled. Duration 186 ms by bot id=7722417104
+2025-02-22 09:03:17,856 - aiogram.event - INFO - Update id=241309940 is handled. Duration 247 ms by bot id=7722417104
+2025-02-22 09:03:20,638 - aiogram.event - INFO - Update id=241309941 is handled. Duration 186 ms by bot id=7722417104
+2025-02-22 09:03:23,771 - aiogram.event - INFO - Update id=241309942 is handled. Duration 176 ms by bot id=7722417104
+2025-02-22 09:03:26,042 - aiogram.event - INFO - Update id=241309943 is handled. Duration 213 ms by bot id=7722417104
+2025-02-22 09:03:40,646 - aiogram.event - INFO - Update id=241309944 is handled. Duration 343 ms by bot id=7722417104
+2025-02-22 09:07:55,576 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-22 09:07:55,578 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-22 09:07:55,578 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-22 09:08:00,222 - aiogram.dispatcher - INFO - Start polling
+2025-02-22 09:08:00,288 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-22 09:08:07,751 - aiogram.event - INFO - Update id=241309945 is handled. Duration 290 ms by bot id=7722417104
+2025-02-22 09:08:11,348 - aiogram.event - INFO - Update id=241309946 is handled. Duration 795 ms by bot id=7722417104
+2025-02-22 09:08:13,141 - aiogram.event - INFO - Update id=241309947 is handled. Duration 192 ms by bot id=7722417104
+2025-02-22 09:08:22,489 - aiogram.event - INFO - Update id=241309948 is handled. Duration 1233 ms by bot id=7722417104
+2025-02-22 09:08:27,199 - aiogram.event - INFO - Update id=241309949 is handled. Duration 107 ms by bot id=7722417104
+2025-02-22 09:08:30,186 - aiogram.event - INFO - Update id=241309950 is handled. Duration 515 ms by bot id=7722417104
+2025-02-22 09:08:33,977 - aiogram.event - INFO - Update id=241309951 is handled. Duration 1259 ms by bot id=7722417104
+2025-02-22 09:09:14,225 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-22 09:09:14,227 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-22 09:09:14,227 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-22 09:09:18,689 - aiogram.dispatcher - INFO - Start polling
+2025-02-22 09:09:18,753 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-22 09:09:24,644 - aiogram.event - INFO - Update id=241309952 is handled. Duration 266 ms by bot id=7722417104
+2025-02-22 09:09:26,924 - aiogram.event - INFO - Update id=241309953 is handled. Duration 471 ms by bot id=7722417104
+2025-02-22 09:09:29,052 - aiogram.event - INFO - Update id=241309954 is handled. Duration 250 ms by bot id=7722417104
+2025-02-22 09:09:34,527 - aiogram.event - INFO - Update id=241309955 is handled. Duration 155 ms by bot id=7722417104
+2025-02-22 09:09:37,951 - aiogram.event - INFO - Update id=241309956 is handled. Duration 510 ms by bot id=7722417104
+2025-02-22 09:09:40,956 - aiogram.event - INFO - Update id=241309957 is handled. Duration 337 ms by bot id=7722417104
+2025-02-22 09:09:44,331 - aiogram.event - INFO - Update id=241309958 is handled. Duration 333 ms by bot id=7722417104
+2025-02-22 09:10:32,930 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-22 09:10:32,931 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-22 09:10:32,932 - aiogram.dispatcher - INFO - Polling stopped
+2025-02-22 09:10:37,318 - aiogram.dispatcher - INFO - Start polling
+2025-02-22 09:10:37,400 - aiogram.dispatcher - INFO - Run polling for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-22 09:10:57,189 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-02-22 09:10:57,190 - aiogram.dispatcher - INFO - Polling stopped for bot @PlayPalGameBot id=7722417104 - 'PlayPal'
+2025-02-22 09:10:57,190 - aiogram.dispatcher - INFO - Polling stopped

@@ -129,7 +129,7 @@ class CrossZeroes:
             rait = await DAO.get_two_raiting(user1.user_id, user2.user_id)
             f = random.choice([user1, user2])
             k = create_cross_aeroes(str(user1.user_id))
-            self.rooms.update({user1.user_id: {"players": [user1, user2],
+            self.rooms.update({str(user1.user_id): {"players": [user1, user2],
                                             "first_player": f,
                                             "move": f, 
                                             "keyboard":k,

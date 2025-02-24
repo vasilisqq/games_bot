@@ -84,12 +84,12 @@ async def alone_game(call: CallbackQuery, state: FSMContext, user):
                 reply_markup=a[1],
                 parse_mode="HTML"
             )
-            game.crossZeroes.rooms[call.from_user.id]["message_id"] = {
+            game.crossZeroes.rooms[str(call.from_user.id)]["message_id"] = {
                 call.from_user.id:m.message_id, a[2]:m1.message_id}
             game.crossZeroes.scheduler.add_job(kick_open_game,
                                         trigger="interval",
                                         minutes=1,
-                                        kwargs = {"query": call, "properties": game.crossZeroes.rooms[call.from_user.id], "first":True},
+                                        kwargs = {"query": call, "properties": game.crossZeroes.rooms[str(call.from_user.id)],"user":user, "first":True},
                                         id=str(call.from_user.id))
             if not game.crossZeroes.scheduler.running:
                 game.crossZeroes.scheduler.start()

@@ -13,7 +13,7 @@ from bot.contexts.wordlie_context import router as wr
 from bot.callbacks.wordlie_callback import router as wcbr
 from bot.callbacks.top_callBack import router as router_top
 from bot.handlers.errors_handler import router as re
-from bot.config import settings
+# from bot.config import settings
 from bot.logger import cl
 
 async def main() -> None:

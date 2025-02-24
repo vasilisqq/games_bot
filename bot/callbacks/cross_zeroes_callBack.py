@@ -121,7 +121,7 @@ async def mark_button(query: CallbackQuery, user):
         else:
             await query.answer("Не твой ход")
     else:
-        properties = game.crossZeroes.rooms[int(query.data[1:])]
+        properties = game.crossZeroes.rooms[query.data[1:]]
         if properties["move"].user_id == query.from_user.id:
             if properties["first_player"].user_id == query.from_user.id:
                 symbol = "X"
@@ -151,7 +151,9 @@ async def mark_button(query: CallbackQuery, user):
                                                 chat_id=query.from_user.id, 
                                                 message_id=properties["message_id"][query.from_user.id],
                                                 reply_markup=properties["keyboard"])
-                chat_id = properties["players"][1].user_id if properties["players"][0].user_id == user.user_id else properties["players"][1].user_id #!!!!!
+                print(query.from_user.id)
+                chat_id = properties["players"][1].user_id if properties["players"][0].user_id == query.from_user.id else properties["players"][0].user_id #!!!!!
+                print(chat_id)
                 message_id = properties["message_id"][chat_id]
                 await query.bot.edit_message_text(text="😢 Увы, ты проиграл. 😞 \n\n🥇Твой рейтинг:🏆 -8",
                                                   chat_id=chat_id, 
@@ -193,6 +195,9 @@ async def mark_button(query: CallbackQuery, user):
                             FSInputFile(img),
                             reply_markup=properties["keyboard"]
     )
+                
+                await set_state(query.bot, properties["players"][0].user_id, "")
+                await set_state(query.bot, properties["players"][1].user_id, "")
                 cl.custom_logger.info(
                 "ничья",
                     extra={"username": query.from_user.username,
@@ -203,7 +208,6 @@ async def mark_button(query: CallbackQuery, user):
             else:
                 # properties["move"] = properties["players"][1 - properties["players"].index([query.from_user.username, query.from_user.id])][0] #### !!!!!!!!!!!!!!!!!!!!!!!
                 properties["move"] = properties["players"][1] if properties["players"][0].user_id == user.user_id else properties["players"][0]
-                
                 if properties["move"].user_id == properties["players"][0].user_id:
                     if properties["first_player"].user_id == properties["players"][0].user_id:
                         text = (f"игра в крестики-нолики\n\n --> {create_user_name(properties["players"][0])} ({properties["rait"][0]}) X \n {create_user_name(properties["players"][1])} ({properties["rait"][1]}) O")
@@ -225,7 +229,7 @@ async def mark_button(query: CallbackQuery, user):
                 game.crossZeroes.scheduler.add_job(kick_open_game,
                                        trigger="interval",
                                        minutes=1,
-                                       kwargs = {"query": query, "properties": game.crossZeroes.rooms[query.data[1:]]},
+                                       kwargs = {"query": query, "properties": game.crossZeroes.rooms[query.data[1:]], "user":user},
                                        id=query.data[1:])
                 cl.custom_logger.info(
                 f"пользователь сделал ход на клетку {query.data[0]}",
@@ -267,26 +271,28 @@ async def reload_game(iquery: CallbackQuery, user):
 @router.callback_query(F.data == "reload_cross_zeroes_callback")
 async def new_game_cross_zeroes_in_bot(call: CallbackQuery, state: FSMContext, user):
     a:dict[str, str] = await state.get_data()
-    print(a)
+    # print(a)
     if a == {} or not a["state"].startswith("in_game"):
         await call.message.answer("идет поиск противника")
         a = await game.crossZeroes.add_to_listener(user)
         await state.update_data(state="in_game_cross_zeroes")
         if a != None:
             m = await call.message.answer(text=a[0],
-                                        reply_markup=a[1])
+                                        reply_markup=a[1],
+                                        parse_mode="HTML")
             m1 = await call.bot.send_message(
                 chat_id=a[2],
                 text=a[0],
-                reply_markup=a[1]
+                reply_markup=a[1],
+                parse_mode="HTML"
             )
-            game.crossZeroes.rooms[call.from_user.id]["message_id"] = {
+            game.crossZeroes.rooms[str(call.from_user.id)]["message_id"] = {
                     call.from_user.id:m.message_id, a[2]:m1.message_id}
             game.crossZeroes.scheduler.add_job(kick_open_game,
                                         trigger="interval",
                                         minutes=1,
-                                        kwargs = {"query": call, "properties": game.crossZeroes.rooms[call.from_user.id], "first":True},
-                                        id=call.from_user.id)
+                                        kwargs = {"query": call, "properties": game.crossZeroes.rooms[str(call.from_user.id)],"user":user, "first":True},
+                                        id=str(call.from_user.id))
             if not game.crossZeroes.scheduler.running:
                 game.crossZeroes.scheduler.start()
         cl.custom_logger.info(

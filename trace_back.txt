@@ -44,10 +44,7 @@ Traceback (most recent call last):
   File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
     return await wrapped()
            ^^^^^^^^^^^^^^^
-  File "/home/vasilisqq/utilites/botGames/bot/callbacks/cross_zeroes_callBack.py", line 149, in mark_button
-    if await game.crossZeroes.check_win(query.data[1:], in_bot=True):
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/vasilisqq/utilites/botGames/gameControll/crossZeroes.py", line 26, in check_win
-    field = self.rooms[id]["keyboard"].inline_keyboard
-            ~~~~~~~~~~^^^^
-KeyError: '6387547653'
+  File "/home/vasilisqq/utilites/botGames/bot/callbacks/cross_zeroes_callBack.py", line 200, in mark_button
+    await set_state(query.bot, chat_id, "")
+                               ^^^^^^^
+UnboundLocalError: cannot access local variable 'chat_id' where it is not associated with a value

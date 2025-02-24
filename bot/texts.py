@@ -14,6 +14,8 @@ instruction_text = ("После нажатия кнопки « Игра с др�
 )
 
 def create_user_name(user):
-    return (
+    if user:
+        return (
         f'<a href="tg://user?id={user.user_id}"> {user.username} </a>'
-    )
+        )
+    return "?"

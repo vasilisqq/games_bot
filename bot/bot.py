@@ -18,6 +18,14 @@ from bot.logger import cl
 
 async def main() -> None:
     dp.update.middleware(UserMiddleware())
+    cl.schedule.start()
+    cl.schedule.add_job(
+        cl.send_logs_to_admin,
+        trigger='cron',
+        hour=23,
+        minute=59,
+        kwargs={"bot":bot}  # Укажите вашу временную зону
+    )
     dp.include_routers(
         re,
         c_r,

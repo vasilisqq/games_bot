@@ -128,7 +128,7 @@ async def create_alone_room(call: CallbackQuery, state: FSMContext):
                 )
 
 @router.callback_query(F.data == "with_friend")
-async def create_word_for_friend(call: CallbackQuery, state: FSMContext):
+async def create_word_for_friend(call: CallbackQuery, state: FSMContext, user):
     await call.message.delete()
     await call.message.answer("Введи username без собачки своего друга, а через пробел введи загаданное слово \n\n чтобы выйти отсюда напиши 'отмена' ",
                               reply_markup=cancel_btn)

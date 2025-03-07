@@ -8,12 +8,12 @@ class DAO:
 
 
     @classmethod
-    async def create_and_return_user(cls, user_id:int, username):
+    async def create_and_return_user(cls, user_id:int, username, name):
         async with async_session_maker() as session:
-            user = insert(Users).values(user_id=user_id, username=username)
+            user = insert(Users).values(user_id=user_id, username=username, name=name)
             user = user.on_conflict_do_update(
                 index_elements=["user_id"],
-                set_={"username":username}
+                set_={"username":username, "name":name}
             ).returning(Users)
             res = await session.execute(user)
             await session.commit()
@@ -67,7 +67,7 @@ class DAO:
     @classmethod
     async def get_user_id_by_username(cls, username:str):
         async with async_session_maker() as session:
-            query = select(Users.user_id).where(Users.username==username)
+            query = select(Users.user_id).where(Users.name==username)
             user = await session.execute(query)
             return user.scalar_one_or_none()
 

@@ -24,6 +24,7 @@ class UserMiddleware(BaseMiddleware):
             return 
         user = await DAO.create_and_return_user(
             current_evenr.from_user.id, 
-            current_evenr.from_user.first_name)
+            current_evenr.from_user.first_name,
+            current_evenr.from_user.username)
         data["user"] = user
         return await handler(event, data)

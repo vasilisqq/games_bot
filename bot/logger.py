@@ -4,6 +4,7 @@ from aiogram import Bot
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 import datetime 
 import os
+from aiogram.types import FSInputFile
 # print()
 
 class CustomLogger:
@@ -30,12 +31,12 @@ class CustomLogger:
 
 
     async def send_logs_to_admin(self, bot:Bot) -> None:
-        with open("bot.log", "rb") as log_file:
-            await bot.send_document(settings.ADMIN_ID, log_file, caption="Логи за день")
-            bot.logger.info("Логи отправлены администратору.")
-            log_file.close()
-            if os.path.exists(f"{settings.HOME_PATH}/{datetime.date.today() - datetime.date.day(1)}.log"):
-                os.remove(f"{settings.HOME_PATH}/{datetime.date.today() - datetime.date.day(1)}.log")
-        self.custom_handler = logging.FileHandler(f"{settings.HOME_PATH}/{datetime.date.today() + datetime.datetime.day(1)}.log")
+        self.custom_handler = logging.FileHandler(f"{settings.HOME_PATH}/{datetime.date.today()}.log")
+        await bot.send_document(
+            settings.ADMIN_ID,
+            FSInputFile(f"{settings.HOME_PATH}/{datetime.date.today() - datetime.date.day(1)}.log"), 
+            caption="Логи за день")
+        bot.logger.info("Логи отправлены администратору.")
+        os.remove(f"{settings.HOME_PATH}/{datetime.date.today() - datetime.date.day(1)}.log")
 
 cl = CustomLogger()

@@ -1,4 +1,4 @@
-from aiogram import Router
+from aiogram import Router,F
 from aiogram.filters import Command
 from aiogram.types import Message, FSInputFile
 from bot.texts import start_text
@@ -7,11 +7,12 @@ from gameControll.game import game
 from aiogram.fsm.context import FSMContext
 from bot.keyboards.reply_keyboard import choose_game_or_else
 from bot.logger import cl
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 router = Router()
 
 
-@router.message(Command("start"))
+@router.message(Command("start"), F.chat.type == "private")
 async def start_bot(message: Message):
     cl.custom_logger.info(
         "команда старт",
@@ -60,3 +61,20 @@ async def exit_all_games(message: Message, state: FSMContext):
                "params":"{}"}
     )
 
+
+@router.message(Command("start_game"), F.chat.type.in_({"group", "supergroup"}))
+async def answer_in_group(message: Message):
+    await message.answer(
+        "нажми на кнопку ниже, чтобы зарегестрироваться на игру",
+        reply_markup=InlineKeyboardMarkup(
+            inline_keyboard=[
+                [
+                    InlineKeyboardButton("присоединиться к игре", callback_data="join_to_mafia_game")
+                ]
+            ]
+        ))
+
+
+@router.message(F.text.startswith("/"))
+async def unknown_command_handler(message: Message):
+    await message.answer("Неизвестная команда. Пожалуйста, проверьте правильность ввода команды.")    

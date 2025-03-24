@@ -44,12 +44,11 @@ Traceback (most recent call last):
   File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
     return await wrapped()
            ^^^^^^^^^^^^^^^
-  File "/home/vasilisqq/utilites/botGames/bot/contexts/wordlie_context.py", line 132, in check_word
-    print(await message.bot.get_chat(f"@{message.from_user.username}"))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/client/bot.py", line 1661, in get_chat
-    return await self(call, request_timeout=request_timeout)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vasilisqq/utilites/botGames/bot/handlers/commands.py", line 23, in start_bot
+    await message.answer_animation(
+  File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/methods/base.py", line 84, in emit
+    return await bot(self)
+           ^^^^^^^^^^^^^^^
   File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/client/bot.py", line 494, in __call__
     return await self.session(self, method, timeout=request_timeout)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -61,4 +60,4 @@ Traceback (most recent call last):
                ^^^^^^^^^^^^^^^^^^^^
   File "/home/vasilisqq/.cache/pypoetry/virtualenvs/botgames-Y7R7oDsK-py3.12/lib/python3.12/site-packages/aiogram/client/session/base.py", line 120, in check_response
     raise TelegramBadRequest(method=method, message=description)
-aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: chat not found
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: can't use message effects in the chat

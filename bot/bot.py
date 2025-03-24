@@ -22,8 +22,8 @@ async def main() -> None:
     cl.schedule.add_job(
         cl.send_logs_to_admin,
         trigger='cron',
-        hour=23,
-        minute=59,
+        hour=00,
+        minute=00,
         kwargs={"bot":bot}  # Укажите вашу временную зону
     )
     dp.include_routers(

@@ -13,7 +13,7 @@ def create_cross_aeroes(uniq_id:str=None) -> InlineKeyboardMarkup:
 
 
 return_to_bot = InlineKeyboardButton(text="к боту", 
-                                     url="https://t.me/gamedota22_bot")
+                                     url="https://t.me/PlayPalGameBot")
 
 choose_game = InlineKeyboardMarkup(
     inline_keyboard=[[

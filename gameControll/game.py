@@ -1,11 +1,13 @@
 from gameControll.crossZeroes import CrossZeroes
 from gameControll.wordlie import Wordlie
+from gameControll.mafiaControll import Mafia
 from aiogram.fsm.state import State, StatesGroup
 from db.DAO import DAO
 
 class Game(StatesGroup):
     crossZeroes = CrossZeroes()
     wordlie = Wordlie()
+    mafia_games : dict[str, Mafia]
     state = State()
     
     async def get_top(self, game_name):
@@ -18,5 +20,8 @@ class Game(StatesGroup):
             f"   @{top[4].username} {top[4].rait} \n"
         )
         return text
+
+    async def create_mafia_game(self, key:int):
+        self.mafia_games.update({key: Mafia()})
 
 game = Game()

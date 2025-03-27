@@ -1,20 +1,12 @@
 import asyncio
-import logging
 import json
-from bot.middlewares.user_middleware import UserMiddleware
-from bot.handlers.inline import router
-from bot.callbacks.cross_zeroes_callBack import router as router_call_back
-from bot.handlers.commands import router as c_r
-from bot.handlers.messages import router as router_m
-from bot.callbacks.menu_callback import router as router_mc 
+from .handlers import main_router_handler
+from .middlewares.user_middleware import UserMiddleware 
 from gameControll.game import game
-from bot.bot_configs import bot, dp
-from bot.contexts.wordlie_context import router as wr
-from bot.callbacks.wordlie_callback import router as wcbr
-from bot.callbacks.top_callBack import router as router_top
-from bot.handlers.errors_handler import router as re
-# from bot.config import settings
-from bot.logger import cl
+from .bot_configs import bot, dp
+from .contexts import main_router_contexts
+from .callbacks import main_router_callback
+from .logger import cl
 
 async def main() -> None:
     dp.update.middleware(UserMiddleware())
@@ -27,15 +19,9 @@ async def main() -> None:
         kwargs={"bot":bot}  # Укажите вашу временную зону
     )
     dp.include_routers(
-        re,
-        c_r,
-        wcbr,
-        wr,
-        router,
-        router_mc,
-        router_m,
-        router_call_back,
-        router_top
+        main_router_handler,
+        main_router_callback,
+        main_router_contexts,
     )
     await bot.delete_webhook(True)
     with open("words.json", "r", encoding="UTF-8") as f:

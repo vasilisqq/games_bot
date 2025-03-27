@@ -7,8 +7,8 @@ from gameControll.game import game
 from aiogram.fsm.context import FSMContext
 from bot.keyboards.reply_keyboard import choose_game_or_else
 from bot.logger import cl
+from aiogram import Dispatcher
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-
 router = Router()
 
 
@@ -59,22 +59,4 @@ async def exit_all_games(message: Message, state: FSMContext):
                "state": "cleared",
                "handler_name": "exit_all_games",
                "params":"{}"}
-    )
-
-
-@router.message(Command("start_game"), F.chat.type.in_({"group", "supergroup"}))
-async def answer_in_group(message: Message):
-    await message.answer(
-        "нажми на кнопку ниже, чтобы зарегестрироваться на игру",
-        reply_markup=InlineKeyboardMarkup(
-            inline_keyboard=[
-                [
-                    InlineKeyboardButton("присоединиться к игре", callback_data="join_to_mafia_game")
-                ]
-            ]
-        ))
-
-
-@router.message(F.text.startswith("/"))
-async def unknown_command_handler(message: Message):
-    await message.answer("Неизвестная команда. Пожалуйста, проверьте правильность ввода команды.")    
+    )    

@@ -1,7 +1,6 @@
-from aiogram import Router, F
-from aiogram.types import CallbackQuery, InlineQuery, InputMediaPhoto
-from bot.keyboards.inline_keyboard import create_cross_aeroes
-from bot.keyboards.inline_keyboard import return_to_bot
+from aiogram import Router, F, Dispatcher
+from aiogram.types import CallbackQuery
+from bot.keyboards.inline_keyboard import create_cross_aeroes, return_to_bot
 from gameControll.game import game
 from aiogram.types import InlineKeyboardButton
 from bot.schedulers.cross_zeroes import kick_game, kick_open_game

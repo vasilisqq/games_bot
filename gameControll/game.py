@@ -3,13 +3,15 @@ from gameControll.wordlie import Wordlie
 from gameControll.mafiaControll import Mafia
 from aiogram.fsm.state import State, StatesGroup
 from db.DAO import DAO
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 class Game(StatesGroup):
     crossZeroes = CrossZeroes()
     wordlie = Wordlie()
     mafia_games : dict[str, Mafia]
     state = State()
-    
+
+
     async def get_top(self, game_name):
         top = await DAO.get_top_from_game(game_name)
         text = (
@@ -21,7 +23,8 @@ class Game(StatesGroup):
         )
         return text
 
-    async def create_mafia_game(self, key:int):
-        self.mafia_games.update({key: Mafia()})
+    async def create_mafia_game(self, key:int, callable: int|str):
+        self.mafia_games.update({key: Mafia(callable)})
+
 
 game = Game()

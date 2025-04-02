@@ -3,13 +3,9 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 
 class Mafia:
-    players: list[Union[str|int]]
+    players: list[Union[str|int]] = []
+    last_message: str|int
 
-    scheduler = AsyncIOScheduler(timezone="Europe/Moscow")
-
-    async def __init__(self, callable: str|int) -> None:
+    def __init__(self, callable: str|int,m) -> None:
         self.players.append(callable)
-
-    async def registration_schedule(self):
-        if len(self.players) < 4:
-            ...
+        self.last_message = m

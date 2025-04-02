@@ -8,10 +8,8 @@ router = Router()
 
 @router.message(Command("start_game"), F.chat.type.in_({"group", "supergroup"}))
 async def answer_in_group(message: Message):
-    game.create_mafia_game(
-        message.chat.id,
-        message.from_user.id)
-    await message.answer(
+    await message.delete()
+    mes = await message.answer(
         "нажми на кнопку ниже, чтобы зарегестрироваться на игру",
         reply_markup=InlineKeyboardMarkup(
             inline_keyboard=[
@@ -20,6 +18,11 @@ async def answer_in_group(message: Message):
                 ]
             ]
         ))
+    await game.create_mafia_game(
+        message.chat.id,
+        message.from_user.id,
+        message.bot,
+        mes.message_id)
 
 
 @router.message(F.text.startswith("/"))

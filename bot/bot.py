@@ -11,6 +11,7 @@ from .logger import cl
 async def main() -> None:
     dp.update.middleware(UserMiddleware())
     cl.schedule.start()
+    game.mafia_schedule.start()
     cl.schedule.add_job(
         cl.send_logs_to_admin,
         trigger='cron',

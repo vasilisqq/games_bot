@@ -49,6 +49,7 @@ class Game(StatesGroup):
             ...
         self.mafia_schedule.remove_job(str(id_game))
 
-
-
+    async def add_user_in_mafia_game(self, key, id):
+        return await self.mafia_games[key].add_user(id)
+    
 game = Game()

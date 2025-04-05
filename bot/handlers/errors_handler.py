@@ -3,6 +3,7 @@ from aiogram.types import ErrorEvent, FSInputFile
 from aiogram.fsm.context import FSMContext
 from bot.config import settings
 import traceback
+import datetime
 
 router = Router()
 @router.error()
@@ -37,7 +38,7 @@ async def print_error(event: ErrorEvent, state: FSMContext):
     # )
     await event.update.bot.send_document(
         chat_id=settings.ADMIN_ID,
-        document=FSInputFile(f"{settings.HOME_PATH}/bot.log"),
+        document=FSInputFile(f"{settings.HOME_PATH}/{datetime.date.today()}.log"),
         caption=text
     )
     await event.update.bot.send_document(

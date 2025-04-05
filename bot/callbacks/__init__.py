@@ -3,6 +3,7 @@ from .cross_zeroes_callBack import router as router_cross_zeroes
 from .menu_callback import router as router_menu
 from .top_callBack import router as router_top
 from .wordlie_callback import router as router_wordlie
+from .mafia_callback import router as router_mafia
 
 
 main_router_callback = Router()
@@ -11,5 +12,6 @@ main_router_callback.include_routers(
     router_cross_zeroes,
     router_menu,
     router_top,
-    router_wordlie
+    router_wordlie,
+    router_mafia
 )

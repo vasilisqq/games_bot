@@ -7,8 +7,6 @@ from gameControll.game import game
 from aiogram.fsm.context import FSMContext
 from bot.keyboards.reply_keyboard import choose_game_or_else
 from bot.logger import cl
-from aiogram import Dispatcher
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 router = Router()
 
 

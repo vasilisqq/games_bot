@@ -3,7 +3,6 @@ from bot.config import settings
 
 bot = Bot(settings.BOT_TOKEN.get_secret_value())
 dp = Dispatcher()
-print(dp)
 
 async def get_state(bot, id) -> str:
     s = dp.fsm.get_context(

@@ -3,15 +3,16 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 
 class Mafia:
-    players: list[Union[str|int]] = []
+    players = []
     last_message: str|int
 
     def __init__(self, callable: str|int,m) -> None:
         self.players.append(callable)
         self.last_message = m
     
-    async def add_user(self, id):
-        if not id in self.players:
-            self.players.append(id)
-            return self.players     
-        return None
+    async def add_user(self, user):
+        for item in self.players:
+            if user.user_id == item.user_id:
+                return None
+        self.players.append(user)     
+        return self.players

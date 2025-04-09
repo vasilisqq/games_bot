@@ -8,15 +8,18 @@ router = Router()
 @router.callback_query(F.data == "join_to_mafia_game")
 async def join_to_mafia_room(query: CallbackQuery, user) -> None:
     message = query.message
-    is_added = game.add_user_in_mafia_game(message.chat.id, query.from_user.id)
+    is_added = await game.add_user_in_mafia_game(message.chat.id, user)
     text = "нажми на кнопку ниже, чтобы зарегестрироваться на игру\n\n"
     if is_added:
         for item in is_added:
-            text += create_user_name()
-    await query.bot.edit_message_text(
-        text=text + f"\n{create_user_name(user)}",
+            print(item.username)
+            text += create_user_name(item) + "\n"
+        await query.bot.edit_message_text(
+        text=text,
         chat_id=message.chat.id,
         message_id=message.message_id,
         parse_mode="HTML",
         reply_markup=join_mafia_game
-    )
+        )
+    else:
+        await query.answer("ты уже зарегестрирован в игру", show_alert=True)

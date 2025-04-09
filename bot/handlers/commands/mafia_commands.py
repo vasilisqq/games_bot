@@ -18,7 +18,7 @@ async def answer_in_group(message: Message, user):
         reply_markup=join_mafia_game)
     await game.create_mafia_game(
         message.chat.id,
-        message.from_user.id,
+        user,
         message.bot,
         mes.message_id)
 

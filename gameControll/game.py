@@ -25,7 +25,7 @@ class Game(StatesGroup):
         )
         return text
 
-    async def create_mafia_game(self, key:int|str, callable: int|str, bot, m):
+    async def create_mafia_game(self, key:int|str, callable, bot, m):
         self.mafia_games.update({key: Mafia(callable,m)})
         self.mafia_schedule.add_job(
             self.start_or_not,
@@ -36,6 +36,7 @@ class Game(StatesGroup):
         )
 
     async def start_or_not(self, bot: Bot, id_game):
+        self.mafia_schedule.remove_job(str(id_game))
         if len(self.mafia_games[id_game].players) < 4:
             await bot.delete_message(
                 chat_id=id_game,
@@ -47,9 +48,8 @@ class Game(StatesGroup):
                 chat_id=id_game)
         else:
             ...
-        self.mafia_schedule.remove_job(str(id_game))
 
-    async def add_user_in_mafia_game(self, key, id):
-        return await self.mafia_games[key].add_user(id)
+    async def add_user_in_mafia_game(self, key, user):
+        return await self.mafia_games[key].add_user(user)
     
 game = Game()

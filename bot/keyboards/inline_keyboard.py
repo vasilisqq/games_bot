@@ -1,6 +1,7 @@
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from aiogram.types import InlineKeyboardButton, KeyboardButtonRequestChat, SwitchInlineQueryChosenChat, CopyTextButton
 from aiogram.types import InlineKeyboardMarkup
+from bot.config import settings
 
 def create_cross_aeroes(uniq_id:str=None) -> InlineKeyboardMarkup: 
     cross_zeroes_markup = InlineKeyboardBuilder()
@@ -13,7 +14,7 @@ def create_cross_aeroes(uniq_id:str=None) -> InlineKeyboardMarkup:
 
 
 return_to_bot = InlineKeyboardButton(text="к боту", 
-                                     url="https://t.me/PlayPalGameBot")
+                                     url=settings.BOT_LINK)
 
 choose_game = InlineKeyboardMarkup(
     inline_keyboard=[[
@@ -53,7 +54,9 @@ show_top = InlineKeyboardMarkup(
 join_mafia_game = InlineKeyboardMarkup(
             inline_keyboard=[
                 [
-                    InlineKeyboardButton(text="присоединиться к игре", callback_data="join_to_mafia_game")
+                    InlineKeyboardButton(text="присоединиться к игре", 
+                                         callback_data="join_to_mafia_game",
+                                         url=f"{settings.BOT_LINK}?start=start")
                 ]
             ]
         )

@@ -47,7 +47,7 @@ class Game(StatesGroup):
                 text="Недостаточное количестве игроков",
                 chat_id=id_game)
         else:
-            ...
+            await self.mafia_games[id_game].start_game()
 
     async def add_user_in_mafia_game(self, key, user):
         return await self.mafia_games[key].add_user(user)

@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     DB_URL: SecretStr
     HOME_PATH:Path = Path.cwd()
     ADMIN_ID: int
+    BOT_LINK: str
     model_config = SettingsConfigDict(
         env_file = ".env"
     )

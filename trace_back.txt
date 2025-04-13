@@ -53,13 +53,14 @@ Traceback (most recent call last):
   File "/home/vasilisqq/utilites/botGames/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
     return await wrapped()
            ^^^^^^^^^^^^^^^
-  File "/home/vasilisqq/utilites/botGames/bot/callbacks/mafia_callback.py", line 11, in join_to_mafia_room
-    is_added = await game.add_user_in_mafia_game(message.chat.id, user)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/vasilisqq/utilites/botGames/gameControll/game.py", line 53, in add_user_in_mafia_game
-    return await self.mafia_games[key].add_user(user)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/vasilisqq/utilites/botGames/gameControll/mafiaControll.py", line 15, in add_user
-    if user.user_id == item.user_id:
-                       ^^^^^^^^^^^^
-AttributeError: 'int' object has no attribute 'user_id'
+  File "/home/vasilisqq/utilites/botGames/bot/handlers/commands/mafia_commands.py", line 19, in answer_in_group
+    await game.create_mafia_game(
+  File "/home/vasilisqq/utilites/botGames/gameControll/game.py", line 30, in create_mafia_game
+    self.mafia_schedule.add_job(
+  File "/home/vasilisqq/utilites/botGames/.venv/lib/python3.12/site-packages/apscheduler/schedulers/base.py", line 512, in add_job
+    self._real_add_job(job, jobstore, replace_existing)
+  File "/home/vasilisqq/utilites/botGames/.venv/lib/python3.12/site-packages/apscheduler/schedulers/base.py", line 1076, in _real_add_job
+    store.add_job(job)
+  File "/home/vasilisqq/utilites/botGames/.venv/lib/python3.12/site-packages/apscheduler/jobstores/memory.py", line 39, in add_job
+    raise ConflictingIdError(job.id)
+apscheduler.jobstores.base.ConflictingIdError: 'Job identifier (-1002430594946) conflicts with an existing job'

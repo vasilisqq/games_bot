@@ -51,12 +51,14 @@ show_top = InlineKeyboardMarkup(
     ]
 )
 
-join_mafia_game = InlineKeyboardMarkup(
-            inline_keyboard=[
-                [
-                    InlineKeyboardButton(text="присоединиться к игре", 
-                                         callback_data="join_to_mafia_game",
-                                         url=f"{settings.BOT_LINK}?start=start")
+async def create_join_button(game_id,name):
+    return InlineKeyboardMarkup(
+                inline_keyboard=[
+                    [
+                        InlineKeyboardButton(text="присоединиться к игре", 
+                                            callback_data="join_to_mafia_game",
+                                            url=f"{settings.BOT_LINK}?start={game_id}_{name}"
+                                            )
+                    ]
                 ]
-            ]
-        )
+            )

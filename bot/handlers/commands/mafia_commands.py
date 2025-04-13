@@ -2,7 +2,7 @@ from aiogram import Router, F
 from aiogram.filters import Command
 from aiogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 from gameControll.game import game
-from bot.keyboards.inline_keyboard import join_mafia_game
+from bot.keyboards.inline_keyboard import create_join_button
 from bot.texts import create_user_name
 
 router = Router()
@@ -15,7 +15,7 @@ async def answer_in_group(message: Message, user):
         "нажми на кнопку ниже, чтобы зарегестрироваться на игру\n\n"+
         f"{create_user_name(user)}",
         parse_mode="HTML",
-        reply_markup=join_mafia_game)
+        reply_markup=await create_join_button(message.chat.id, message.chat.full_name))
     await game.create_mafia_game(
         message.chat.id,
         user,

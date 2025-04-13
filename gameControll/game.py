@@ -52,4 +52,9 @@ class Game(StatesGroup):
     async def add_user_in_mafia_game(self, key, user):
         return await self.mafia_games[key].add_user(user)
     
+    async def user_in_game(self, key,user):
+        for usr in self.mafia_games[key].players:
+            if user.user_id == usr.user_id:
+                return True
+        return False
 game = Game()
